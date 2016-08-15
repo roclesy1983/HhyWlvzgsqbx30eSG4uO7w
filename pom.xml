@@ -224,7 +224,7 @@
                     <artifactId>maven-antrun-plugin</artifactId>
                     <version>1.8</version>
                     <executions>
-                        <execution>
+                        <!--<execution>
                             <id>hsqldb-start</id>
                             <configuration>
                                 <target>
@@ -257,7 +257,7 @@
                                     <echo message="Database stopped successfully" />
                                 </target>
                             </configuration>
-                        </execution>
+                        </execution>-->
                         <execution>
                             <id>change-identifier</id>
                             <configuration>
@@ -269,9 +269,9 @@
                     </executions>
                     <dependencies>
                         <dependency>
-                            <groupId>org.hsqldb</groupId>
-                            <artifactId>hsqldb</artifactId>
-                            <version>${hsqldb.version}</version>
+                            <groupId>mysql</groupId>
+    						<artifactId>mysql-connector-java</artifactId>
+    						<version>5.1.26</version>
                         </dependency>
                     </dependencies>
                 </plugin>
