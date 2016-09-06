@@ -14,8 +14,8 @@
     <properties>
         <!-- httpsPort and httpPort are used by embeded jetty server.-->
         <!-- Make sure the following httpsPort matches what's in the runtime-properties file,  -->
-        <httpsPort>8444</httpsPort> 
-        <httpPort>8081</httpPort>
+        <httpsPort>8443</httpsPort> 
+        <httpPort>8080</httpPort>
         <path>/admin</path>
     </properties>
     <build>
