@@ -51,8 +51,8 @@
                                         </td>
                                         <td align="center" th:utext="*{quantity}"></td>
                                         <td align="left" blc:price="*{price}"></td>
-                                        <td align="center" style="color: #E40037;" th:if="*{adjustmentValue.zero}">---</td>
-                                        <td align="center" style="color: #E40037;" th:unless="*{adjustmentValue.zero}" >
+                                        <td align="center" style="color: #00a3c8;" th:if="*{adjustmentValue.zero}">---</td>
+                                        <td align="center" style="color: #00a3c8;" th:unless="*{adjustmentValue.zero}" >
                                              <span  align="center"  blc:price="*{adjustmentValue}" class="promotion" ></span>
                                              <div th:if="*{#lists.size(orderItemPriceDetails)>=1}" >
                                                 <div th:each="orderItemPriceDetail : *{orderItemPriceDetails}" th:object="${orderItemPriceDetail}">
@@ -87,8 +87,8 @@
                                 </tr>
                                 <tr>
                                     <td style="padding: 5px 0; border-bottom: dotted 1px #afafaf;">Promotions</td>
-                                    <td style="padding: 5px 0; border-bottom: dotted 1px #afafaf; color: #E40037;" th:if="${order.orderAdjustmentsValue.zero}">---</td>
-                                    <td style="padding: 5px 0; border-bottom: dotted 1px #afafaf; color: #E40037;" th:unless="*{order.orderAdjustmentsValue.zero}" blc:price="${order.orderAdjustmentsValue}"></td>
+                                    <td style="padding: 5px 0; border-bottom: dotted 1px #afafaf; color: #00a3c8;" th:if="${order.orderAdjustmentsValue.zero}">---</td>
+                                    <td style="padding: 5px 0; border-bottom: dotted 1px #afafaf; color: #00a3c8;" th:unless="*{order.orderAdjustmentsValue.zero}" blc:price="${order.orderAdjustmentsValue}"></td>
                                 </tr>
                                 <tr>
                                     <td style="padding: 5px 0; border-bottom: dotted 1px #afafaf;">Taxes</td>

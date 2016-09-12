@@ -1,6 +1,6 @@
 /* =============================================================================
    HTML5 Boilerplate CSS: h5bp.com/css
-   red = #E40037 (link, button, cart bar)
+   red = #00a3c8 (link, button, cart bar)
    plum = #3e0000 (titles, dark trans buttons)
    text = #262322
    light-grey = #E7E3E2 (highlight areas, inactive buttons)
@@ -15,11 +15,11 @@ html { font-size: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 10
 html, button, input, select, textarea { font-family: sans-serif; color: #222; }
 body { margin: 0; font: 12px/18px Georgia, serif; color: #655c5a; background: url(../img/canvas.jpg) repeat; }
 
-::-moz-selection { background: #E40037; color: #fff; text-shadow: none; }
-::selection { background: #E40037; color: #fff; text-shadow: none; }
+::-moz-selection { background: #00a3c8; color: #fff; text-shadow: none; }
+::selection { background: #00a3c8; color: #fff; text-shadow: none; }
 
-a { color: #E40037; } 
-a:visited { color: #E40037; }
+a { color: #00a3c8; } 
+a:visited { color: #00a3c8; }
 a:hover { color: #3e0000; }
 a:focus { outline: thin dotted; }
 a:hover, a:active { outline: 0; }
@@ -187,7 +187,7 @@ textarea {
 table { border-collapse: collapse; border-spacing: 0; }
 td { vertical-align: top; }
 td.error {
-    color: #E40037;
+    color: #00a3c8;
     font-weight: bold;
 }
 
@@ -198,7 +198,7 @@ td.error {
 .group { zoom:1; /* For IE 6/7 (trigger hasLayout) */ }
 
 span.error,span.productOptionsSpan, div.error, p.error {
-    color: #E40037;
+    color: #00a3c8;
     font-weight: bold;
     display: inline-block;
 }
@@ -251,7 +251,7 @@ span.error_spacer {
     position: fixed;
     z-index: 999;
     line-height: 24px;
-    border-bottom: 3px solid #E40037;
+    border-bottom: 3px solid #00a3c8;
 }
 
 header {
@@ -259,7 +259,7 @@ header {
     color: #342020;
     font: 15px/28px 'Open Sans', Helvetica, sans-serif;
     font-weight: 600;
-    border-top: 15px solid #E40037;
+    border-top: 15px solid #00a3c8;
 }
 
 #header_content {
@@ -269,7 +269,7 @@ header {
 }
 
 #header_content_fixed {
-    border-bottom: 15px solid #E40037;
+    border-bottom: 15px solid #00a3c8;
     background: url(../img/canvas.jpg) repeat;
     width: 100%;
     position: fixed;
@@ -307,7 +307,7 @@ header {
         }
 
         #header_content_checkout #checkout_info #checkout_total_table tr td.discount {
-            color: #E40037;
+            color: #00a3c8;
         }
 
         #header_content_checkout #checkout_info h3 {
@@ -370,7 +370,7 @@ header {
 
     #header_content #cart_info {
         padding: 10px 20px;
-        background-color: #E40037;
+        background-color: #00a3c8;
         color: white;
         text-align: right;
         float: right;
@@ -535,7 +535,7 @@ nav {
     #home_feature h2 {
         font: 19px/17px 'Open Sans', Helvetica, sans-serif;
         font-weight: 600;
-        color: #E40037;
+        color: #00a3c8;
         margin: 0;
         padding: 0;
     }
@@ -725,7 +725,7 @@ form.manage-account input[type="submit"] {
     text-decoration: underline;
 }
 .promotion {
-     color: #E40037;
+     color: #00a3c8;
      white-space: nowrap;
       list-style: none;
 }
@@ -808,7 +808,7 @@ li.promotion,  ul.promotion{
 
 .order-details-container .payment-information h3 {
     color: #fff;
-    background-color: #E40037;
+    background-color: #00a3c8;
 }
 
 .order-details-container .details {
@@ -868,7 +868,7 @@ li.promotion,  ul.promotion{
 }
 
 .order-details-container td.price.discount {
-    color: #E40037; 
+    color: #00a3c8; 
 }
 
 .order-details-container .order-summary th {
@@ -1003,7 +1003,7 @@ li.promotion,  ul.promotion{
     }
             
     #cart_products tbody tr td.discount {
-        color: #E40037;
+        color: #00a3c8;
         width: 100px;
         white-space: nowrap;
     }
@@ -1081,7 +1081,7 @@ li.promotion,  ul.promotion{
     }
             
     #wishlist_items tbody tr td.discount {
-        color: #E40037;
+        color: #00a3c8;
     }
     
     #wishlist_items ul.productOptions {
@@ -1158,7 +1158,7 @@ li.promotion,  ul.promotion{
     
     #cart_total #orderDiscounts {
         margin-top: 10px;
-        color: #E40037;
+        color: #00a3c8;
         font-weight: bold;
     }
     
@@ -1176,7 +1176,7 @@ li.promotion,  ul.promotion{
         }
         
         #cart_total #total_table tr td.discount {
-            color: #E40037;
+            color: #00a3c8;
         }
     
 #cart_promo {
@@ -1218,7 +1218,7 @@ li.promotion,  ul.promotion{
     }
 
     .checkout_promo {
-        color: #E40037 !important;
+        color: #00a3c8 !important;
     }
     
     input#promoCode, input.quantityInput {
@@ -1488,7 +1488,7 @@ ul.payment_methods li {
     }
     
     #product_content #price .sale {
-        color: #E40037;
+        color: #00a3c8;
         margin-bottom: 10px;
     }
     
@@ -1553,7 +1553,7 @@ ul.payment_methods li {
             }
             
             #products li .image .sale {
-                color: #E40037;
+                color: #00a3c8;
                 bottom: 41px;
                 padding: 0 0 5px 0;
             }
@@ -1806,7 +1806,7 @@ ul.payment_methods li {
         }
         
         #featured_products li .image .sale {
-            color: #E40037;
+            color: #00a3c8;
             bottom: 41px;
             padding: 0 0 5px 0;
         }
@@ -1940,7 +1940,7 @@ input[type="submit"].small, a.small-button {
 
 input[type="submit"].red, a.red-button, a.addToCart, .addToCart {
     color: white;
-    background-color: #E40037;
+    background-color: #00a3c8;
 }
 
 input[type="submit"].dark, a.dark-button, #featured_products .addToCart {
@@ -2025,7 +2025,7 @@ and (max-width : 480px) {
     #header_content #cart_info {
         width: 300px;
         padding: 5px 10px;
-        background-color: #E40037;
+        background-color: #00a3c8;
         color: white;
         text-align: right;
         float: right;
@@ -2210,7 +2210,7 @@ and (max-width : 480px) {
             font-weight: 600;
             margin: 10px auto;
             padding: 15px 35px;
-            background-color: #E40037;
+            background-color: #00a3c8;
             color: white;
             text-transform: uppercase;
             text-decoration: none;
@@ -2307,7 +2307,7 @@ and (max-width : 480px) {
                 font-weight: 600;
                 margin: 10px auto;
                 padding: 15px 35px;
-                background-color: #E40037;
+                background-color: #00a3c8;
                 color: white;
                 text-transform: uppercase;
                 text-decoration: none;
@@ -2505,7 +2505,7 @@ and (max-width : 480px) {
 
 #cart_promo #promoCode {margin-left: 0;}
 
-#header_content_fixed {border-bottom: 3px solid #E40037;}
+#header_content_fixed {border-bottom: 3px solid #00a3c8;}
 #header_content_checkout {width: 100%;}
 #header_content_checkout #checkout_info {width: 100%; margin: 0;}
 #checkout_content {width: 100%; margin-top: 50px;}
@@ -2804,7 +2804,7 @@ and (max-width : 480px) {
 }.product-option-group li .option-label {font-size: 11px; position: relative; top: 2px; display: block; background-color: inherit; color: inherit; text-decoration: none;}
 .product-option-group li .price-adjustment {font-size: 10px; font-weight: normal; display: block; position: relative; top: -5px;}
 .product-option-group li:hover {cursor: pointer;}
-.product-option-group li.active div, .product-option-group li:hover div {background-color: #E40037; color: #fff;}
+.product-option-group li.active div, .product-option-group li:hover div {background-color: #00a3c8; color: #fff;}
 
 
 .product-option-group.colors li {width: 31px; height: 31px; margin: 0 3px 0 0;}
