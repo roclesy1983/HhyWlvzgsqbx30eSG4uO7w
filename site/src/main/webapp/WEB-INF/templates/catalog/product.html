@@ -13,10 +13,12 @@
                 <div id="maker" th:utext="*{manufacturer}"></div>
                 
                 <div id="price" th:if="${#object instanceof T(org.broadleafcommerce.core.catalog.domain.ProductBundle)}">
-
+                    <!--<div blc:price="*{salePrice}" th:if="*{onSale}" th:classappend="*{onSale}? 'sale'"></div>
+                    <div blc:price="*{retailPrice}" th:classappend="*{onSale}? 'has-sale'"></div>-->
                 </div>
                 <div id="price" th:unless="${#object instanceof T(org.broadleafcommerce.core.catalog.domain.ProductBundle)}">
-
+                    <!--<div blc:price="*{defaultSku.salePrice}" th:if="*{defaultSku.onSale}" th:classappend="*{defaultSku.onSale}? 'sale'"></div>
+                    <div blc:price="*{defaultSku.retailPrice}" th:classappend="*{defaultSku.onSale}? 'has-sale'"></div>-->
                 </div>
                 
                 <div class="product-options" th:substituteby="catalog/partials/productOptions"/>                                
@@ -50,6 +52,7 @@
                             <div class="add_to_cart" th:classappend="${inCart or !availableInventory}? ' hidden'">
                                 <input type="hidden" name="productId" th:value="*{id}" />
                                 <input type="hidden" name="quantity" value="1" />
+                                <!--<input type="submit" class="addToCart big red" th:value="#{product.buyNow}"/>-->
                                 &nbsp;
                             </div>
                             <p class="error" th:if="${param.errorMessage}" th:utext="${param.errorMessage[0]}"></p>

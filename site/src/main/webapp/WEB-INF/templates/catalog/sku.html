@@ -40,6 +40,7 @@
                                 <input type="hidden" name="productId" th:value="*{product.id}" />
                                 <input type="hidden" name="skuId" th:value="*{id}" />
                                 <input type="hidden" name="quantity" value="1" />
+                                <!--<input type="submit" class="addToCart big red" th:value="#{product.buyNow}"/>-->
                                 &nbsp;
                             </div>
                             <p class="error" th:if="${param.errorMessage}" th:utext="${param.errorMessage[0]}"></p>

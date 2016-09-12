@@ -8,7 +8,10 @@
             <img th:if="${optionValue.attributeValue == #object.skuMedia['alt2']?.tags}" th:src="@{*{skuMedia['alt2'].url} + '?browse'}" alt="Sauce Image" />
         </th:block>
         <img th:if="*{#lists.isEmpty(productOptionValues)}" th:src="@{*{skuMedia['primary'].url} + '?browse'}" alt="Sauce Image" />
-
+        <!--<div class="price">
+            <div blc:price="*{salePrice}" th:if="*{onSale}" th:classappend="*{onSale}? 'sale'"></div>
+            <div blc:price="*{retailPrice}" th:classappend="*{onSale}? 'has-sale'"></div>
+        </div>-->
     </a>
 </div>
 
@@ -36,6 +39,7 @@
             <input type="hidden" name="productId" th:value="*{product.id}" />
             <input type="hidden" name="skuId" th:value="*{id}" />
             <input type="hidden" name="quantity" value="1" />
+            <!--<input type="submit" class="addToCart" th:value="#{product.buyNow}"/>-->
             &nbsp;
         </blc:form>
     </div>
