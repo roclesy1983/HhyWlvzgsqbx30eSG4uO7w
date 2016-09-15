@@ -1,3 +1,4 @@
 <div class="section">
-    <a th:href="@{/hot-sauces}"><img blc:src="@{/img/rhs-ad.jpg}" /></a>
+    <blc:content contentType="Right Hand Side Banner Ad" />  
+    <a th:if="${contentItem !=null and contentItem['targetUrl'] !=null and contentItem['imageUrl'] !=null}"  th:href="@{${contentItem['targetUrl']}}"><img blc:src="@{${contentItem['imageUrl']}}" /></a>
 </div>

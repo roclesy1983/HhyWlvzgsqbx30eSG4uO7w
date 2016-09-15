@@ -3,9 +3,9 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.mycompany-community</groupId>
+        <groupId>com.mycompany</groupId>
         <artifactId>ecommerce-website</artifactId>
-        <version>5.0</version>
+        <version>1.0</version>
     </parent>
     <artifactId>core</artifactId>
     <name>core</name>
@@ -45,10 +45,6 @@
         <dependency>
             <groupId>org.broadleafcommerce</groupId>
             <artifactId>broadleaf-menu</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.broadleafcommerce</groupId>
-            <artifactId>broadleaf-sample-payment-gateway</artifactId>
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
