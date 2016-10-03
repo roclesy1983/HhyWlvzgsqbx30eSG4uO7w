@@ -119,7 +119,7 @@
     </bean>
     
     <bean id="blOrderConfirmationEmailInfo" parent="blEmailInfo">
-        <property name="subject" value="Your order with The Heat Clinic"/>
+        <property name="subject" value="Your order with MediDoc Search"/>
         <property name="emailTemplate" value="orderConfirmation-email"/>
     </bean>
                   

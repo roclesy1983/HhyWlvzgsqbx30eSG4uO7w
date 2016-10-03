@@ -38,7 +38,9 @@ public class LoginController extends BroadleafLoginController {
     
     @RequestMapping("/login")
     public String login(HttpServletRequest request, HttpServletResponse response, Model model) {
-        return super.login(request, response, model);
+    	String loginView = super.login(request, response, model);
+    	model.addAttribute("successUrl", "/");
+        return loginView;
     }
     
     @RequestMapping(value="/login/forgotPassword", method=RequestMethod.GET)

@@ -40,7 +40,9 @@ public class RegisterController extends BroadleafRegisterController {
     @RequestMapping(method=RequestMethod.GET)
     public String register(HttpServletRequest request, HttpServletResponse response, Model model,
             @ModelAttribute("registrationForm") RegisterCustomerForm registerCustomerForm) {
-        return super.register(registerCustomerForm, request, response, model);
+    	String registerView = super.register(registerCustomerForm, request, response, model);
+    	registerCustomerForm.setRedirectUrl("/");
+        return registerView;
     }
     
     @RequestMapping(method=RequestMethod.POST)
