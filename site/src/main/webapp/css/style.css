@@ -11,7 +11,7 @@
      linkHoverColor       : #007995
      logoImage            : ../img/the-heat-clinic-logo-internal.png
      mainButtonColor      : #00a3c8
-     mainButtonHoverColor : #a50832
+     mainButtonHoverColor : #007995
      mainButtonTextColor  : white
      separatorColor       : #007995
      newBadge             : ../img/badge-new.png
@@ -2212,7 +2212,7 @@ footer {
 
     footer #blc_brand p {
         display: block;
-        margin: -20px 0 0 100px;
+        margin: 0 0 0 20px;
     }
 
     footer #blc_brand h4, footer #blc_brand a{
@@ -2293,7 +2293,7 @@ input[type="submit"].small:hover, a.small-button:hover,
 }
 
 input[type="submit"].red:hover, a.red-button:hover, .addToCart:hover {
-    background-color: #a50832;
+    background-color: #007995;
 }
 
 input[type="submit"].gray:hover, a.gray-button:hover, a.inCart:hover {
@@ -2922,7 +2922,7 @@ and (max-width : 480px) {
         }
         
         #product_content .add_to_cart a:hover {
-            background-color: #a50832;
+            background-color: #007995;
             -webkit-transition: background-color 0.2s ease-in;  
             -moz-transition: background-color 0.2s ease-in;  
             -o-transition: background-color 0.2s ease-in;  
@@ -3020,7 +3020,7 @@ and (max-width : 480px) {
             }
             
             #products li .add_to_cart a:hover {
-                background-color: #a50832;
+                background-color: #007995;
                 -webkit-transition: background-color 0.2s ease-in;  
                 -moz-transition: background-color 0.2s ease-in;  
                 -o-transition: background-color 0.2s ease-in;  
@@ -3302,7 +3302,7 @@ and (max-width : 480px) {
     #home_feature {margin-left: 20px; margin-right: 20px; padding: 10px 0;}
     #products {margin: 15px 10px;}
     #products li, #products li .image, #products li .image img, #products li .content, #products li .content .title  {width: 334px;}
-    footer #blc_brand {padding-left: 525px;}
+    footer #blc_brand {padding-left: 625px;}
     footer #left_content, footer #right_content {display:none;}
     
     #left_column {width: 548px;}
