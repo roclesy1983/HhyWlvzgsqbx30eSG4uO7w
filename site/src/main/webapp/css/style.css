@@ -2434,6 +2434,11 @@ and (max-width : 1024px)  {
     #cart.cart_modal #cart_products {margin: 10px 0 0 10px; width: 68%;}
 
     #cart.cart_modal #cart_total {width: 25%; margin: 5px 0;}
+    
+    #wishlist_items {
+    	width: 508px;
+    	float: left;
+	}
 
 }
 
@@ -2656,6 +2661,11 @@ and (max-width : 768px)  {
         width: 468px;
         float: left;
     }
+    
+    #wishlist_items {
+    	width: 305px;
+    	float: left;
+	}
 
 }
 
@@ -3205,6 +3215,11 @@ and (max-width : 480px) {
     #checkout_content #cart_total {display: block; padding: 10px 20px; margin: 0; width: 260px;}
 
     #cart_promo #promoCode {margin-left: 0;}
+    
+    #wishlist_items {
+    	width: 297px;
+    	float: left;
+	}
 
     #header_content_fixed {border-bottom: 3px solid #00a3c8;}
     #header_content_checkout {width: 100%;}
