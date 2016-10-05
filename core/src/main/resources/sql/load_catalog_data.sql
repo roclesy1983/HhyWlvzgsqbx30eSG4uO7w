@@ -697,7 +697,7 @@ INSERT INTO BLC_URL_HANDLER(URL_HANDLER_ID, INCOMING_URL, NEW_URL, URL_REDIRECT_
 
 -----------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------------------
--- RELATED PRODUCT - DATA (featured products for right-hand side display)
+-- RELATED PRODUCT - DATA (Featured Clinics for right-hand side display)
 -----------------------------------------------------------------------------------------------------------------------------------
 -- Adding to merchandise category
 -- INSERT INTO BLC_PRODUCT_FEATURED(FEATURED_PRODUCT_ID, SEQUENCE, CATEGORY_ID, PRODUCT_ID)  VALUES (5, 1, 2003, 4);
