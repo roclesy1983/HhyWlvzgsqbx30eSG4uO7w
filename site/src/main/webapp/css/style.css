@@ -3574,7 +3574,7 @@ and (max-width : 480px) {
     .product-option-group.colors li.Bleu div    {background-color:  #0000FF;}
 
 /*customer ratings and reviews*/
-#customer-reviews-container {margin: 30px 0 0 20px; width: 400px;}
+#customer-reviews-container {margin: 30px 0 0 20px; width: 90%;}
 #customer-reviews-container .title {font: 16px/18px 'Oxygen', Helvetica, sans-serif; font-weight: bold;}
 #customer-reviews-container #community-rating-container {float: right;}
 #customer-reviews-container .total-reviews {float: right;}
