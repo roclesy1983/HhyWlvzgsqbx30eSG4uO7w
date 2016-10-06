@@ -3104,7 +3104,7 @@ and (max-width : 480px) {
     }
     
     #featured_products li {
-        width: 300px;
+        width: 290px;
         display: block;
     }
     
@@ -3319,42 +3319,124 @@ and (max-width : 480px) {
     and (width : 768px)
     and (orientation:portrait) { 
     
-    #content, #header_content, header {width: 748px; margin-left: 10px; margin-right: 10px;}
-    nav ul li a {padding: 25px 20px; font-size: 13px;}
-    #header_content #cart_info {margin-right: 10px;}
-    #header_content #search {right: 10px;}
-    #banners {margin-top: 10px;}
-    #banners img {width: 100%;}
-    #banners, nav, #home_feature, #content .title_bar, #products, footer {width: 708px;}
-    #home_feature {margin-left: 20px; margin-right: 20px; padding: 10px 0;}
-    #products {margin: 15px 10px;}
-    #products li, #products li .image, #products li .image img, #products li .content, #products li .content .title  {width: 334px;}
-    footer #blc_brand {padding-left: 625px;}
-    footer #left_content, footer #right_content {display:none;}
-    
-    #left_column {width: 548px;}
-    #left_column #products {width: 508px;}
-    #left_column #products li, #left_column #products li .image, #left_column #products li .image img, #left_column #products li .content, 
-    #left_column #products li .content .title {width: 234px;}
-    #right_column {width: 180px; margin: 80px 20px 0 0;}
-    #right_column header, #right_column #options {width: 160px;}
-    #right_column header {width: 160px; margin: 0; padding: 10px;}
-    #right_column #options {margin: 10px;}
-    #right_column #options .maker {width: 140px;}
-    #right_column img {width: 160px;}
-    #right_column #right_column {display: none;}
-    
-    #right_column #featured_products {}
-    #right_column #featured_products li .image {float: none; display: block; width: 160px;}
-    #featured_products li .image img {width: 140px; margin: 5px 10px;}
-    #featured_products li .image .price {right: 10px;}
-    #featured_products li .content {float: none; display: block; }
-    #featured_products li .content .title {width: 160px; text-align: center; margin: 5px 0;}
-    #featured_products li .content p {width: 140px; margin: 10px 10px 0;}
-    
-    #product_content {width: 504px;}
-    #featured_products li .add_to_cart, #featured_products li .in_cart {margin-left: 30px;}
-        
+    #header_content {
+        width: 100%;
+    }
+
+    #header_content #search {
+        right: 5px;
+    }
+
+    #header_content #logo h1, #header_content_checkout #logo h1 {
+        background: url('../img/the-heat-clinic-logo-internal.png') top left no-repeat;
+        background-size: 60%;
+    }
+
+    #content, #checkout_content {
+        width: 748px;
+    }
+
+    #content .title_bar, #checkout_content .title_bar {
+        margin: 0;
+        width: 100%;
+    }
+
+    nav {
+        width: 748px;
+        margin: 0;
+    }
+
+    nav ul li a {
+        padding: 25px 15px;
+    }
+
+    #banners {
+        width: 768px;
+        margin: 0;
+    }
+
+    #home_feature {
+        width: 728px;
+        padding: 10px 20px;
+        margin: 10px 0px;
+    }
+
+    #left_column, #right_column {
+        display: block;
+        float: none;
+    }
+
+    #right_column {
+        display: inherit;
+        float: none;
+        margin: 60px auto;
+        width: 520px;
+        height: 100%;
+    }
+
+    #right_column div {
+        display: inline-block;
+    }
+
+    #right_column div:first-child {
+        float: right;
+    }
+
+    footer {
+        width: 768px;
+        padding: 0;
+    }
+
+    footer #left_content, footer #right_content {
+        display: none;
+    }
+
+    footer #blc_brand {
+        margin: 100px 0 0 -270px;
+    }
+
+    .manage-account-form-wrapper {
+        width: 508px;
+    }
+
+    #header_content_checkout {
+        width: 768px;
+    }
+
+    #header_content_checkout #checkout_info {
+        width: 450px;
+    }
+
+    #cart {
+        width: 748px;
+        padding: 10px;
+        margin: 0;
+    }
+
+    .cart_title {
+        width: 728px;
+    }
+
+    #shipping_info_section {
+        width: 748px;
+    }
+
+    #shipping_info_section .cart_title, #billing_info_section .cart_title {
+        width: 728px;
+    }
+
+    .checkout_warning {
+        width: 708px;
+    }
+
+    #shipping_info_section .checkout_warning {
+        width: 408px;
+    }
+
+    #cart.cart_modal #cart_products {margin: 10px 0 0 10px; width: 68%;}
+
+    #cart.cart_modal #cart_total {width: 25%; margin: 5px 0;}
+
     #wishlist_items {
     	width: 305px;
     	float: left;
