@@ -2273,7 +2273,7 @@ input[type="submit"].red, a.red-button, a.addToCart, .addToCart {
 
 input[type="submit"].dark, a.dark-button, #featured_products .addToCart {
     color: white;
-    background-color: #3D0001;
+    background-color: #337ab7;
 }
     
 input[type="submit"].gray, a.gray-button, a.inCart {
@@ -3170,7 +3170,7 @@ and (max-width : 480px) {
                 font-weight: 600;
                 margin: 10px 0;
                 padding: 10px 20px;
-                background-color: #3D0001;
+                background-color: #337ab7;
                 color: white;
                 text-transform: uppercase;
                 text-decoration: none;
