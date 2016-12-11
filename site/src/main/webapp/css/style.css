@@ -2146,6 +2146,7 @@ ul#payment_methods li {
             float: right;
             display: inline;
             max-height: 170px;
+            overflow: hidden;
         }
         
         #featured_products li .content .title {
