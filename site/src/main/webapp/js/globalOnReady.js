@@ -38,8 +38,12 @@ $(function(){
         });
     }
     
-    $('ul#products li .content').dotdotdot(); // trim product descriptions in the small layout
-    $('ul#featured_products li .content').dotdotdot(); // trim product descriptions in the small layout
+    $('ul#products li .content').dotdotdot({
+    	wrap: 'children'
+    }); // trim product descriptions in the small layout
+    $('ul#featured_products li .content').dotdotdot({
+    	wrap: 'children'
+    }); // trim product descriptions in the small layout
 
     /**
      * Catch each phase of the swipe.
