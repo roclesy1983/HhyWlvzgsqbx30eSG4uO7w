@@ -62,7 +62,7 @@
         
         <div id="search">
             <blc:form th:action="@{/search}" method="GET">
-            <input type="search" class="search" name="q" th:value="${originalQuery}" />
+            <input type="search" class="search" name="q" th:value="${originalQuery}" placeholder="City or Station"/>
             <input type="submit" id="search_button" value="go" />
             </blc:form>
         </div>

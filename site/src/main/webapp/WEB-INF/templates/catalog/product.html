@@ -132,7 +132,7 @@
                 <div id="customer-reviews-container">
                     <blc:ratings itemId="${product.id}" />
                     <div th:if="${ratingSummary}" th:object="${ratingSummary}">
-                        <span class="title">Community Rating</span>
+                        <span class="title">Patients' Rating</span>
                         <div id="community-rating-container">
                             <blc:form id="community-rating" class="star-rating" th:attr="data-community-rating=*{averageRating}">
                                 <input type="radio" class="star {split:4}" /> 
