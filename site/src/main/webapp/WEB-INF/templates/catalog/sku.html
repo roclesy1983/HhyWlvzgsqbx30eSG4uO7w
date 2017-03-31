@@ -23,8 +23,11 @@
                                    availableInventory=${checkInventory ? #object.quantityAvailable != null and #object.quantityAvailable != 0 : true},
                                    inCart=${cart.containsSku(#object)}">
                     <blc:form method="POST" th:action="@{/cart/add}">
-                        <div th:utext="*{longDescription}" id="description"></div>
-                        
+	                    <div th:if="${customer.loggedIn}" th:utext="*{longDescription}" id="description">
+	                    </div>
+	                    <div th:unless="${customer.loggedIn}" id="description">
+	                        <a th:href="@{/login}" class="account">Login to see the details</a>
+	                    </div>
                         <div id="inventory" th:if="${checkInventory}">
                             <b>Available inventory:</b> <span th:utext="*{quantityAvailable == null ? '0' : quantityAvailable}" />
                             <div th:if="${!availableInventory}" class="out_of_stock">
