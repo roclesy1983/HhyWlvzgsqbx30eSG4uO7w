@@ -35,12 +35,11 @@
                                 </select>
                             </div>
                         </div>
-						<div th:utext="*{longDescription}" id="description"></div>
-	                    <!--<div th:if="${customer.loggedIn}" th:utext="*{longDescription}" id="description">
+						<div th:if="${customer.loggedIn}" th:utext="*{longDescription}" id="description">
 	                    </div>
 	                    <div th:unless="${customer.loggedIn}" id="description">
 	                        <a th:href="@{/login}" class="account">Login to see the details</a>
-	                    </div>-->
+	                    </div>
 
                         <div id="inventory" th:if="${checkInventory}">
                             <b>Available inventory:</b> <span th:utext="*{defaultSku.quantityAvailable == null ? '0' : defaultSku.quantityAvailable}" />
@@ -92,7 +91,7 @@
                 </div>
                     
                 <p>
-                    Share this Sauce:
+                    Share this Clinic:
                     <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
                         <a class="addthis_button_preferred_1"></a>
                         <a class="addthis_button_preferred_2"></a>
