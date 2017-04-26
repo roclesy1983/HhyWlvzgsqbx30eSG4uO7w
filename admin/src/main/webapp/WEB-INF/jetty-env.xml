@@ -18,10 +18,10 @@ IT IS NOT RECOMMENDED TO USE JETTY IN A PRODUCTION ENVIRONMENT.
         <Arg>jdbc/web</Arg>
         <Arg>
             <New class="org.apache.commons.dbcp.BasicDataSource">
-                <Set name="driverClassName">org.hsqldb.jdbcDriver</Set>
-                <Set name="url">jdbc:hsqldb:hsql://localhost/broadleaf</Set>
-                <Set name="username">sa</Set>
-                <Set name="password"></Set>
+			    <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+				<property name="url" value="jdbc:mysql://localhost:3306/broadleaf" />
+				<property name="username" value="root" />
+				<property name="password" value="root" />
             </New>
         </Arg>
     </New>
@@ -30,10 +30,10 @@ IT IS NOT RECOMMENDED TO USE JETTY IN A PRODUCTION ENVIRONMENT.
         <Arg>jdbc/secure</Arg>
         <Arg>
             <New class="org.apache.commons.dbcp.BasicDataSource">
-                <Set name="driverClassName">org.hsqldb.jdbcDriver</Set>
-                <Set name="url">jdbc:hsqldb:hsql://localhost/broadleaf</Set>
-                <Set name="username">sa</Set>
-                <Set name="password"></Set>
+			    <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+				<property name="url" value="jdbc:mysql://localhost:3306/broadleaf" />
+				<property name="username" value="root" />
+				<property name="password" value="root" />
             </New>
         </Arg>
     </New>
@@ -42,10 +42,10 @@ IT IS NOT RECOMMENDED TO USE JETTY IN A PRODUCTION ENVIRONMENT.
         <Arg>jdbc/storage</Arg>
         <Arg>
             <New class="org.apache.commons.dbcp.BasicDataSource">
-                <Set name="driverClassName">org.hsqldb.jdbcDriver</Set>
-                <Set name="url">jdbc:hsqldb:hsql://localhost/broadleaf</Set>
-                <Set name="username">sa</Set>
-                <Set name="password"></Set>
+			    <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+				<property name="url" value="jdbc:mysql://localhost:3306/broadleaf" />
+				<property name="username" value="root" />
+				<property name="password" value="root" />
             </New>
         </Arg>
     </New>

@@ -1,18 +1,28 @@
 $(function(){
     // Set up basic options for the cart modal
     var modalCartOptions = {
-        minWidth    : 940,
-        maxWidth    : 940,
-        minHeight   : 355,
-        maxHeight   : 570,
-        position    : ['30px']
+            minHeight   : 355,
+            maxHeight   : 570,
+            fitToView   : false,
+            width       : '100%',
+            height      : '100%',
+            autoSize    : true,
+            closeClick  : false,
+            topRatio    : 0,
+            position    : ['30px']
     };
     
     var modalProductOptionsOptions = {
-        minWidth    : 190,
-        maxWidth    : 190,
-        minHeight   : 300,
-        position    : ['30px']
+            minWidth    : 190,
+            maxWidth    : 190,
+            minHeight   : 355,
+            fitToView   : false,
+            width       : '100%',
+            height      : '100%',
+            autoSize    : true,
+            closeClick  : false,
+            topRatio    : 0,
+            position    : ['30px']
     };
     
     // This will change the header "X item(s)" text to the new count and pluralization of "item"

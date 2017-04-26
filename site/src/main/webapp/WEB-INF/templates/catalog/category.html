@@ -29,29 +29,29 @@
 	        </section>
 	    
 	        <section id="right_column">
-	            <header><span th:utext="#{category.filterResults}">Filter your results</span></header>
-	            <div id="options">
+	        	<div class="right_column">
+	            	<header><span th:utext="#{category.filterResults}">Filter your results</span></header>
+	            	<div id="options">
 	                
-	                <div th:substituteby="catalog/partials/facetFilter" />
+	                	<div th:substituteby="catalog/partials/facetFilter" />
 	                
-	                <!--<div th:substituteby="catalog/partials/rightHandBannerAds" />-->
-	                
-	                <section id="right_column">
-	                    <header><span th:utext="#{category.featuredProducts}">Featured Clinics</span></header>
-	                    <div id="options">
-	                        <div class="section" th:object="${category}">
-	                             <blc:related_products categoryId="*{id}" quantity="3"/>     
-	                             <ul th:unless="${skus}" id="featured_products" class="group">
-	                                <li th:each="product : ${products}" th:object="${product}" th:include="catalog/partials/productListItem" class="product_container"></li>
-	                             </ul>
-	                             <ul th:if="${skus}" id="featured_products" class="group">
-	                                <li th:each="relatedSku : ${relatedSkus}" th:object="${relatedSku}" th:include="catalog/partials/skuListItem" class="product_container"></li>
-	                             </ul>
-	                        </div>                                  
-	                    </div>
-	                </section>  
-	                
+	                	<!--<div th:substituteby="catalog/partials/rightHandBannerAds" />-->
+	            	</div>
 	            </div>
+				<div class="right_column">
+					<header><span th:utext="#{category.featuredProducts}">Featured Clinics</span></header>
+					<div id="options">
+					    <div class="section" th:object="${category}">
+					         <blc:related_products categoryId="*{id}" quantity="3"/>     
+					         <ul th:unless="${skus}" id="featured_products" class="group">
+					            <li th:each="product : ${products}" th:object="${product}" th:include="catalog/partials/productListItem" class="product_container"></li>
+					         </ul>
+					         <ul th:if="${skus}" id="featured_products" class="group">
+					            <li th:each="relatedSku : ${relatedSkus}" th:object="${relatedSku}" th:include="catalog/partials/skuListItem" class="product_container"></li>
+					         </ul>
+					    </div>                                  
+					</div>
+				</div>  
 	        </section>
 	            
 	    </div>

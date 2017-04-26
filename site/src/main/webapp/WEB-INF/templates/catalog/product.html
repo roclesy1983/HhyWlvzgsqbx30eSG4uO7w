@@ -55,8 +55,7 @@
                             <div class="add_to_cart" th:classappend="${inCart or !availableInventory}? ' hidden'">
                                 <input type="hidden" name="productId" th:value="*{id}" />
                                 <input type="hidden" name="quantity" value="1" />
-                                <!--<input type="submit" class="addToCart big red" th:value="#{product.buyNow}"/>-->
-                                &nbsp;
+                                <input type="submit" class="addToCart big red" th:value="#{product.buyNow}"/>
                             </div>
                             <p class="error" th:if="${param.errorMessage}" th:utext="${param.errorMessage[0]}"></p>
                         </div>

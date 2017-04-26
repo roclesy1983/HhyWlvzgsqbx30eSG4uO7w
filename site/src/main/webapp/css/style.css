@@ -1232,12 +1232,22 @@ li.promotion,  ul.promotion{
             font-size: 11px;
         }
     
+    #cart_products tbody tr td.product-image {
+        width: 60px;
+    }
+
     #cart_products tbody tr td.name {
         font: 14px/18px 'Oxygen', Helvetica, sans-serif;
+        width: 190px;
     }
     
         #cart_products tbody tr td.name a {
             text-decoration: none;
+        }
+        #cart_products tbody tr td.name a.update-product-options,
+        #cart_products tbody tr td.name a.update-child-items {
+            text-decoration: underline;
+            font-size: 11px;
         }
     
     #cart_products tbody tr td.value {
@@ -1266,6 +1276,24 @@ li.promotion,  ul.promotion{
     #cart_products .multiship-address {
         min-width: 140px;
     }
+    
+    #cart_products tr.has-adjustment td {
+        border: none;
+        padding-bottom: 0;
+    }
+
+    #cart_products .product-promotion-row td {
+        padding: 0;
+    }
+        #cart_products .product-promotion-row td ul.promotion {
+            padding: 0 10px;
+            margin: 0 0 6px 0;
+            white-space: normal;
+        }
+
+        #cart_products .product-promotion-row td ul.promotion span.promotion-applied {
+            color: #655c5a;
+        }
     
 #checkout_content .shipping-info-read-only, #checkout_content .billing-info-read-only, #checkout_content .order-info {float: left; margin-right: 10px; padding: 10px 20px; width: 250px; background: url('../img/sidebarbg.jpg') repeat; position: relative;}
 #checkout_content #cart_total {display: none;}
@@ -1785,6 +1813,8 @@ ul#payment_methods li {
     
     #product_content #price .has-sale {
         text-decoration: line-through;
+        font-size: 18px;
+        margin-left: 10px;
     }
     
     #product_content #price .sale {
@@ -1792,6 +1822,16 @@ ul#payment_methods li {
         margin-bottom: 10px;
     }
     
+    #product_content .promotion-message {
+        color: #E40037;
+        font-size: 14px;
+        margin-top: 10px;
+    }
+
+    #product_content .promotion-message .on-sale {
+        color: #655c5a;
+    }
+
     #product_content #product_options {
         margin: 20px 0;
         float: left;
@@ -1923,6 +1963,10 @@ ul#payment_methods li {
                 text-decoration: none;
             }
         
+        #products li .promotion-message {
+            color: #E40037;
+            margin-top: -5px;
+        }
         
         .product-options.modal .productActions, .product-options.modal h3 {
             text-align: center;
@@ -2366,7 +2410,7 @@ and (max-width : 1024px)  {
     }
 
     #right_column {
-        display: block;
+        display: table;
         float: none;
         margin: 60px auto;
         width: 520px;
@@ -2546,10 +2590,10 @@ and (max-width : 768px)  {
     }
 
     #right_column {
-        display: block;
+        display: table;
         float: none;
         margin: 60px auto;
-        width: 480px;
+        width: 220px;
         height: 100%;
     }
 
@@ -2559,23 +2603,6 @@ and (max-width : 768px)  {
 
     #right_column > div:first-child {
         float: right;
-        width: 220px;
-    }
-
-    #right_column > div:first-child div {
-        width: 220px;
-    }
-
-    #right_column > div:first-child header {
-        width: 180px;
-    }
-
-    #right_column #options .maker {
-        width: 180px;
-    }
-
-    #right_column #options .section {
-         margin-bottom: 0;
     }
 
     #right-hand-banner-ads div {
@@ -3368,7 +3395,7 @@ and (max-width : 480px) {
     }
 
     #right_column {
-        display: inherit;
+        display: table;
         float: none;
         margin: 60px auto;
         width: 520px;
@@ -3505,7 +3532,7 @@ and (max-width : 480px) {
 }
 
 #simplemodal-container a.modalCloseImg {
-    background:url(/img/x.png) no-repeat; 
+	background:url(../img/x.png) no-repeat; 
     width:25px; 
     height:29px; 
     display:inline; 
@@ -3872,7 +3899,7 @@ and (max-width : 480px) {
 .icon-map-marker{background-position:-24px -72px;}
 .icon-adjust{background-position:-48px -72px;}
 .icon-tint{background-position:-72px -72px;}
-.blc-icon-edit{background-position:-96px -72px;}
+.icon-edit{background-position:-96px -72px;}
 .icon-share{background-position:-120px -72px;}
 .icon-check{background-position:-144px -72px;}
 .icon-move{background-position:-168px -72px;}
@@ -3916,7 +3943,7 @@ and (max-width : 480px) {
 .icon-eye-close{background-position:-120px -120px;}
 .icon-warning-sign{background-position:-144px -120px;}
 .icon-plane{background-position:-168px -120px;}
-.blc-icon-calendar{background-position:-192px -120px;}
+.icon-calendar{background-position:-192px -120px;}
 .icon-random{background-position:-216px -120px;}
 .icon-comment{background-position:-240px -120px;}
 .icon-magnet{background-position:-264px -120px;}
