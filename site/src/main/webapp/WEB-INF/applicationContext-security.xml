@@ -40,6 +40,7 @@
         <sec:intercept-url pattern="/register*" requires-channel="https" />
         <sec:intercept-url pattern="/login*/**" requires-channel="https" />
         <sec:intercept-url pattern="/account/**" access="ROLE_USER" requires-channel="https" />
+        <sec:intercept-url pattern="/account/**" access="ROLE_DOCTOR" requires-channel="https" />
         <sec:intercept-url pattern="/checkout/**" requires-channel="https" />
         <sec:intercept-url pattern="/null-checkout/**" requires-channel="https" />
         <sec:intercept-url pattern="/null-giftcard/**" requires-channel="https" />
@@ -54,7 +55,7 @@
         
         <!-- Define the login form along with the success and failure handlers -->
         <sec:form-login login-page='/login'
-            authentication-success-handler-ref="blAuthenticationSuccessHandler"
+            authentication-success-handler-ref="mdAuthenticationSuccessHandler"
             authentication-failure-handler-ref="blAuthenticationFailureHandler"
             login-processing-url="/login_post.htm" 
         />
@@ -100,7 +101,7 @@
     </bean>
 
     <!-- Sets the login success URL -->
-    <bean id="blAuthenticationSuccessHandler" class="org.broadleafcommerce.core.web.order.security.BroadleafAuthenticationSuccessHandler">
+    <bean id="mdAuthenticationSuccessHandler" class="com.mycompany.core.web.order.security.MediDocAuthenticationSuccessHandler">
         <property name="redirectStrategy" ref="blAuthenticationSuccessRedirectStrategy" />
         <property name="defaultTargetUrl" value="/" />
         <property name="targetUrlParameter" value="successUrl" />
