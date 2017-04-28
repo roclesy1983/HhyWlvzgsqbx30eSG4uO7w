@@ -39,8 +39,7 @@
         <!-- Specify these URLs as requiring HTTPS to encrypt user data  -->
         <sec:intercept-url pattern="/register*" requires-channel="https" />
         <sec:intercept-url pattern="/login*/**" requires-channel="https" />
-        <sec:intercept-url pattern="/account/**" access="ROLE_USER" requires-channel="https" />
-        <sec:intercept-url pattern="/account/**" access="ROLE_DOCTOR" requires-channel="https" />
+        <sec:intercept-url pattern="/account/**" access="ROLE_USER,ROLE_DOCTOR" requires-channel="https" />
         <sec:intercept-url pattern="/checkout/**" requires-channel="https" />
         <sec:intercept-url pattern="/null-checkout/**" requires-channel="https" />
         <sec:intercept-url pattern="/null-giftcard/**" requires-channel="https" />
