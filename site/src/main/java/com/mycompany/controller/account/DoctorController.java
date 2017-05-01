@@ -17,11 +17,15 @@
 package com.mycompany.controller.account;
 
 import org.broadleafcommerce.common.exception.ServiceException;
+import org.broadleafcommerce.core.order.domain.Order;
+import org.broadleafcommerce.core.order.service.type.OrderStatus;
 import org.broadleafcommerce.core.web.controller.account.BroadleafOrderHistoryController;
 import org.broadleafcommerce.core.web.controller.account.BroadleafUpdateAccountController;
 import org.broadleafcommerce.core.web.controller.account.UpdateAccountForm;
+import org.broadleafcommerce.profile.core.domain.Customer;
 import org.broadleafcommerce.profile.core.service.CountryService;
 import org.broadleafcommerce.profile.core.service.StateService;
+import org.broadleafcommerce.profile.web.core.CustomerState;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -30,6 +34,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -46,7 +52,11 @@ public class DoctorController extends BroadleafOrderHistoryController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String viewOrderHistory(HttpServletRequest request, Model model) {
-        super.viewOrderHistory(request, model); 
+    	Customer customer = (Customer)request.getAttribute("customer");
+    	String emailAddress = customer.getEmailAddress();
+    	Long productId = catalogService.findProductAttributeByValue(emailAddress).getProduct().getId();
+        List<Order> orders = orderService.findOrdersByProductId(productId);
+        model.addAttribute("orders", orders);
         return "/account/doctor";
     }
 
