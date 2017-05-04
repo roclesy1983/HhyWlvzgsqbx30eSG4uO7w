@@ -69,5 +69,25 @@ public class DoctorController extends BroadleafOrderHistoryController {
         model.addAttribute("order", order);
         return isAjaxRequest(request) ? getOrderDetailsView() : getOrderDetailsRedirectView();
     }
+    
+    @RequestMapping(value = "/complete/{orderNumber}", method = RequestMethod.GET)
+    public String CompleteOrder(HttpServletRequest request, Model model, @PathVariable("orderNumber") String orderNumber) {
+    	Order order = orderService.findOrderByOrderNumber(orderNumber);
+        Order orderModel = orderService.completeOrder(order);
+        if (orderModel == null) {
+            throw new IllegalArgumentException("The orderNumber provided is not valid");
+        }
+        return "redirect:/doctor";
+    }
+    
+    @RequestMapping(value = "/cancel/{orderNumber}", method = RequestMethod.GET)
+    public String CancelOrder(HttpServletRequest request, Model model, @PathVariable("orderNumber") String orderNumber) {
+    	Order order = orderService.findOrderByOrderNumber(orderNumber);
+        Order orderModel = orderService.cancelOrderByDoctor(order);
+        if (orderModel == null) {
+            throw new IllegalArgumentException("The orderNumber provided is not valid");
+        }
+        return "redirect:/doctor";
+    }
 
 }

@@ -4,15 +4,19 @@
             <li>
                 <span class="order-number">Order Number</span>
                 <span class="submit-date">Date</span>
-                <span class="status">Status</span>
-                <span class="total">Total</span>
+                <span class="service-status">Service Status</span>
+                <span class="actions">Actions</span>
             </li>
             <li class="order" th:each="order : ${orders}" th:object="${order}" th:attr="data-order-number=*{orderNumber}">
                 <div class="order-info-row">
-	                 <span class="order-number"><a th:href="@{/doctor/} + *{orderNumber}" class="view-order-details" th:utext="*{orderNumber}"></a></span>
+	                 <span class="order-number"><a th:href="@{/doctor/} + *{orderNumber}" class="view-order-details" th:utext="*{customer.lastName} + ' ' + *{customer.firstName}"></a></span>
 	                 <span class="submit-date" th:utext="*{#dates.format(submitDate, 'MM-dd-yyyy')}"></span>
-	                 <span class="status" th:utext="*{status.friendlyType}">Processing</span>
-	                 <span class="total" blc:price="*{total}"></span>
+	                 <span class="service-status" th:utext="*{serviceStatus.friendlyType}">Processing</span>
+	                 <span class="actions">
+	                 	<a th:href="@{/doctor/complete/} + *{orderNumber}" class="action">Complete</a>
+	                 	<br/>
+	                 	<a th:href="@{/doctor/cancel/} + *{orderNumber}" class="action">Cancel</a>
+	                 </span>
              	</div>
                 <div class="order-details"></div>
             </li>

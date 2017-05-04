@@ -884,6 +884,14 @@ li.promotion,  ul.promotion{
     width: 120px;
 }
 
+#order-history > li .service-status {
+    width: 120px;
+}
+
+#order-history > li .actions {
+    width: 120px;
+}
+
 #order-history > li .total {
     width: 100px;
 }
