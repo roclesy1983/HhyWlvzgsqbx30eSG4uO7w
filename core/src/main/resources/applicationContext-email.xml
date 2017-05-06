@@ -10,15 +10,18 @@
         To view the emails sent use "DevNull SMTP" (download separately) with the following setting: 
             Port: 30000 -->
     
-    <!--
+
     <bean id="blMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-        <property name="host"><value>localhost</value></property>
-        <property name="port"><value>30000</value></property>
+        <property name="host"><value>smtp.gmail.com</value></property>
+        <property name="port"><value>587</value></property>
         <property name="protocol"><value>smtp</value></property>
+        <property name="username"><value>medidocsearch@gmail.com</value></property>
+        <property name="password"><value>medidoc2016</value></property>
         <property name="javaMailProperties">
             <props>
+                <prop key="mail.smtp.auth">true</prop>
                 <prop key="mail.smtp.starttls.enable">true</prop>
-                <prop key="mail.smtp.timeout">25000</prop>
+                <prop key="mail.smtp.quitwait">false</prop>
             </props>
         </property>
     </bean>
@@ -48,10 +51,10 @@
         <constructor-arg ref="blEmailTemplateEngine"/>
         <constructor-arg ref="blMailSender"/>
     </bean>
-    -->
+
     
-    <!--
-    <bean id="blVelocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+    
+    <!--<bean id="blVelocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
         <property name="resourceLoaderPath" value="/WEB-INF/emailTemplates/" />
         <property name="velocityProperties">
             <value>
@@ -95,15 +98,15 @@
             </map>
         </constructor-arg>
     </bean>
-    -->
+
     
     <bean id="blMessageCreator" class="org.broadleafcommerce.common.email.service.message.NullMessageCreator">
         <constructor-arg ref="blMailSender"/>
-    </bean>
+    </bean>-->
 
         
     <bean id="blEmailInfo" class="org.broadleafcommerce.common.email.service.info.EmailInfo">
-        <property name="fromAddress"><value>support@mycompany.com</value></property>
+        <property name="fromAddress"><value>medidocsearch@gmail.com</value></property>
         <property name="sendAsyncPriority"><value>2</value></property>
         <property name="sendEmailReliableAsync"><value>false</value></property>     
     </bean>

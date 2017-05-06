@@ -31,7 +31,7 @@
 		<repository>
 			<id>local-files</id>
 			<name>local-files</name>
-			<url>file://C:\workspace\medidocsearch\lib</url>
+			<url>file:///Users/shuchengli/.m2/repository/</url>
 		</repository>
     </repositories>
     <build>
@@ -145,6 +145,9 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-war-plugin</artifactId>
                     <version>2.6</version>
+					<configuration>
+                		<outputDirectory>/Users/shuchengli/Documents/apache-tomcat-8.0.38/webapps</outputDirectory>
+            		</configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>

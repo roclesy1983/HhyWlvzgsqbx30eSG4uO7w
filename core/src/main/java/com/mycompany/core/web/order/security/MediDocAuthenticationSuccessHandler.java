@@ -19,16 +19,6 @@
  */
 package com.mycompany.core.web.order.security;
 
-import org.apache.commons.lang.StringUtils;
-import org.broadleafcommerce.common.util.BLCRequestUtils;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.web.WebAttributes;
-import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
-import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
-import org.springframework.stereotype.Component;
-import org.springframework.web.context.request.ServletWebRequest;
-
 import java.io.IOException;
 import java.util.Collection;
 
@@ -36,6 +26,15 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.apache.commons.lang.StringUtils;
+import org.broadleafcommerce.common.util.BLCRequestUtils;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.web.WebAttributes;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.ServletWebRequest;
 
 @Component("mdAuthenticationSuccessHandler")
 public class MediDocAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {

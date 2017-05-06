@@ -91,4 +91,8 @@
     <!-- This validator will additionally require state on shipping addresses -->
     <bean id="blShippingInfoFormValidator" class="org.broadleafcommerce.core.web.checkout.validator.USShippingInfoFormValidator" />
     
+    <mvc:interceptors>
+      <bean class="com.mycompany.core.web.compatibility.MediDocCompatibilityInterceptor" />
+    </mvc:interceptors>
+    
 </beans>
