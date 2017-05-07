@@ -2,7 +2,7 @@
     <div id="header_content">
         <div id="cart_info">
 
-            <div th:if="${customer.anonymous}"  th:remove="tag">
+            <div th:if="${customer.anonymous}" th:remove="tag">
 
                 <a class="account" th:href="@{/login}">
                     <span th:utext="#{home.login}">Login</span>
@@ -23,7 +23,7 @@
             </div>
 
 
-            <a id="cartLink" class="modalcart" th:href="@{/cart}">
+            <a id="cartLink" class="modalcart" th:href="@{/cart}" th:if="${customer.preprod and #httpServletRequest.isUserInRole('ROLE_USER')}">
                 <img blc:src="@{/img/shopping_cart.png}" alt="Shopping Cart Icon" />
                 &nbsp; 
                 <span id="headerCartItemWordSingular_i18n" style="display: none;" th:utext="#{home.item}" />
@@ -60,7 +60,7 @@
 
         <div id="logo"><h1><a th:href="@{/}">MediDoc Search Home</a></h1></div>
         
-        <div id="search">
+        <div id="search" th:if="${#httpServletRequest.isUserInRole('ROLE_USER')}">
             <blc:form th:action="@{/search}" method="GET">
             <input type="search" class="search" name="q" th:value="${originalQuery}" placeholder="City or Station"/>
             <input type="submit" id="search_button" value="go" />

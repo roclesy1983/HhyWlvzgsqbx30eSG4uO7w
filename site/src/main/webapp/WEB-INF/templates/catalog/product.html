@@ -21,7 +21,7 @@
                     <div blc:price="*{defaultSku.retailPrice}" th:classappend="*{defaultSku.onSale}? 'has-sale'"></div>-->
                 </div>
                 
-                <div class="product-options" th:substituteby="catalog/partials/productOptions"/>                                
+                <div th:if="${customer.preprod}" th:remove="tag"><div class="product-options" th:substituteby="catalog/partials/productOptions"/></div>                                
                 
                 <th:block th:with="checkInventory=*{defaultSku.inventoryType?.type == 'CHECK_QUANTITY'},
                                    availableInventory=${checkInventory ? #object.defaultSku.quantityAvailable != null and #object.defaultSku.quantityAvailable != 0 : true},
@@ -55,7 +55,8 @@
                             <div class="add_to_cart" th:classappend="${inCart or !availableInventory}? ' hidden'">
                                 <input type="hidden" name="productId" th:value="*{id}" />
                                 <input type="hidden" name="quantity" value="1" />
-                                <input type="submit" class="addToCart big red" th:value="#{product.buyNow}"/>
+                                <input type="submit" class="addToCart big red" th:value="#{product.buyNow}" th:if="${customer.preprod}"/>
+                                <p th:unless="${customer.preprod}">&nbsp;</p>
                             </div>
                             <p class="error" th:if="${param.errorMessage}" th:utext="${param.errorMessage[0]}"></p>
                         </div>

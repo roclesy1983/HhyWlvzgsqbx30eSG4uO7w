@@ -16,33 +16,25 @@
 
 package com.mycompany.controller.account;
 
-import org.broadleafcommerce.common.exception.ServiceException;
-import org.broadleafcommerce.core.order.domain.Order;
-import org.broadleafcommerce.core.order.service.type.OrderStatus;
-import org.broadleafcommerce.core.web.controller.account.BroadleafOrderHistoryController;
-import org.broadleafcommerce.core.web.controller.account.BroadleafUpdateAccountController;
-import org.broadleafcommerce.core.web.controller.account.UpdateAccountForm;
-import org.broadleafcommerce.profile.core.domain.Customer;
-import org.broadleafcommerce.profile.core.service.CountryService;
-import org.broadleafcommerce.profile.core.service.StateService;
-import org.broadleafcommerce.profile.web.core.CustomerState;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.broadleafcommerce.core.order.domain.Order;
+import org.broadleafcommerce.core.web.controller.account.BroadleafOrderHistoryController;
+import org.broadleafcommerce.profile.core.domain.Customer;
+import org.broadleafcommerce.profile.core.service.CountryService;
+import org.broadleafcommerce.profile.core.service.StateService;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 @Controller
-@RequestMapping("/doctor")
-public class DoctorController extends BroadleafOrderHistoryController {
+@RequestMapping("/doctorappt")
+public class DoctorApptController extends BroadleafOrderHistoryController {
 
     @Resource(name = "blStateService")
     StateService stateService;
@@ -50,15 +42,14 @@ public class DoctorController extends BroadleafOrderHistoryController {
     @Resource(name = "blCountryService")
     CountryService countryService;
 
-    @RequestMapping(method = RequestMethod.GET)
-    public String viewOrderHistory(HttpServletRequest request, Model model) {
-    	Customer customer = (Customer)request.getAttribute("customer");
-    	String emailAddress = customer.getEmailAddress();
-    	Long productId = catalogService.findProductAttributeByValue(emailAddress).getProduct().getId();
-        List<Order> orders = orderService.findOrdersByProductId(productId);
-        model.addAttribute("orders", orders);
-        return "/account/doctor";
-    }
+	@RequestMapping(method = RequestMethod.GET)
+	public String viewOrderHistory(HttpServletRequest request, Model model) {
+		Customer customer = (Customer) request.getAttribute("customer");
+		Long productId = catalogService.readProductByCustomerId(customer.getId()).getId();
+		List<Order> orders = orderService.findOrdersByProductId(productId);
+		model.addAttribute("orders", orders);
+		return "/account/doctorAppt";
+	}
 
     @RequestMapping(value = "/{orderNumber}", method = RequestMethod.GET)
     public String viewOrderDetails(HttpServletRequest request, Model model, @PathVariable("orderNumber") String orderNumber) {
@@ -77,7 +68,7 @@ public class DoctorController extends BroadleafOrderHistoryController {
         if (orderModel == null) {
             throw new IllegalArgumentException("The orderNumber provided is not valid");
         }
-        return "redirect:/doctor";
+        return "redirect:/doctorappt";
     }
     
     @RequestMapping(value = "/cancel/{orderNumber}", method = RequestMethod.GET)
@@ -87,7 +78,7 @@ public class DoctorController extends BroadleafOrderHistoryController {
         if (orderModel == null) {
             throw new IllegalArgumentException("The orderNumber provided is not valid");
         }
-        return "redirect:/doctor";
+        return "redirect:/doctorappt";
     }
 
 }

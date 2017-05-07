@@ -19,13 +19,9 @@
  */
 package com.mycompany.core.web.compatibility;
 
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.broadleafcommerce.profile.core.domain.Customer;
-import org.broadleafcommerce.profile.core.domain.CustomerAttribute;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 /**
@@ -35,20 +31,13 @@ public class MediDocCompatibilityInterceptor extends HandlerInterceptorAdapter {
 
     @Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-    	
+
 		// TODO Auto-generated method stub
 		boolean result = true;
-		Customer customer = (Customer) request.getAttribute("customer");
 
-		if (customer != null) {
-			Map<String, CustomerAttribute> customerAttributes = customer.getCustomerAttributes();
-			if ((customerAttributes.size() == 0 || customerAttributes.get("Authority").getValue().equals("User")) && request.getRequestURI().contains("doctor")) {
-				response.sendRedirect("/mycompany");
-				result = false;
-			} else if (customerAttributes.size() != 0 && customerAttributes.get("Authority").getValue().equals("Doctor") && !request.getRequestURI().contains("doctor")) {
-				response.sendRedirect("/mycompany/doctor");
-				result = false;
-			}
+		if (request.isUserInRole("ROLE_DOCTOR") && !request.getRequestURI().contains("account")) {
+			response.sendRedirect(request.getContextPath() + "/account/orders");
+			result = false;
 		}
 
 		return result;

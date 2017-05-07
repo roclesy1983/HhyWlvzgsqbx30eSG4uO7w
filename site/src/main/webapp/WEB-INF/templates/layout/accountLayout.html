@@ -15,7 +15,7 @@
     
     <div id="content" class="width_setter group" role="main">   
 
-        <nav th:substituteby="layout/partials/nav" />
+        <div th:if="${#httpServletRequest.isUserInRole('ROLE_USER')}" th:remove="tag"><nav th:substituteby="layout/partials/nav" /></div>
 
         <div class="manage-account-container clearfix">
 

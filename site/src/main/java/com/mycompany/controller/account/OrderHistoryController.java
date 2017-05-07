@@ -16,10 +16,14 @@
 
 package com.mycompany.controller.account;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.broadleafcommerce.core.order.domain.Order;
 import org.broadleafcommerce.core.web.controller.account.BroadleafOrderHistoryController;
+import org.broadleafcommerce.profile.core.domain.Customer;
 import org.broadleafcommerce.profile.core.service.CountryService;
 import org.broadleafcommerce.profile.core.service.StateService;
 import org.springframework.stereotype.Controller;
@@ -40,12 +44,39 @@ public class OrderHistoryController extends BroadleafOrderHistoryController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String viewOrderHistory(HttpServletRequest request, Model model) {
-        return super.viewOrderHistory(request, model); 
+    	String orderHistoryView = super.viewOrderHistory(request, model);
+    	if(request.isUserInRole("ROLE_DOCTOR")){
+    		Customer customer = (Customer) request.getAttribute("customer");
+    		Long productId = catalogService.readProductByCustomerId(customer.getId()).getId();
+    		List<Order> orders = orderService.findOrdersByProductId(productId);
+    		model.addAttribute("orders", orders);
+    	}
+        return orderHistoryView; 
     }
 
     @RequestMapping(value = "/{orderNumber}", method = RequestMethod.GET)
     public String viewOrderDetails(HttpServletRequest request, Model model, @PathVariable("orderNumber") String orderNumber) {
         return super.viewOrderDetails(request, model, orderNumber);
+    }
+
+    @RequestMapping(value = "/complete/{orderNumber}", method = RequestMethod.GET)
+    public String CompleteOrder(HttpServletRequest request, Model model, @PathVariable("orderNumber") String orderNumber) {
+    	Order order = orderService.findOrderByOrderNumber(orderNumber);
+        Order orderModel = orderService.completeOrder(order);
+        if (orderModel == null) {
+            throw new IllegalArgumentException("The orderNumber provided is not valid");
+        }
+        return "redirect:/account/orders";
+    }
+    
+    @RequestMapping(value = "/cancel/{orderNumber}", method = RequestMethod.GET)
+    public String CancelOrder(HttpServletRequest request, Model model, @PathVariable("orderNumber") String orderNumber) {
+    	Order order = orderService.findOrderByOrderNumber(orderNumber);
+        Order orderModel = orderService.cancelOrderByDoctor(order);
+        if (orderModel == null) {
+            throw new IllegalArgumentException("The orderNumber provided is not valid");
+        }
+        return "redirect:/account/orders";
     }
 
 }

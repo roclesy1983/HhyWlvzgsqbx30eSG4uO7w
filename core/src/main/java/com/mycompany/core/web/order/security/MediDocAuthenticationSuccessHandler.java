@@ -79,7 +79,7 @@ public class MediDocAuthenticationSuccessHandler extends SimpleUrlAuthentication
 		if (isUser) {
 			return "/";
 		} else if (isDoctor) {
-			return "/doctor";
+			return "/account/orders";
 		} else {
 			throw new IllegalStateException();
 		}
