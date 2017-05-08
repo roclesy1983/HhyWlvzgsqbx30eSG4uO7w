@@ -78,7 +78,7 @@
                     <span class="error" th:if="${#fields.hasErrors('address.stateProvinceRegion')}" th:errors="*{address.stateProvinceRegion}"></span>
                     <input type="text" th:field="*{address.city}" class="field25 clearable"
                            th:classappend="${#fields.hasErrors('address.city')}? 'fieldError'" />
-                    <select id="state" th:field="*{address.stateProvinceRegion}" size="1" style="width: 48px;"
+                    <select id="state" th:field="*{address.stateProvinceRegion}" size="1" style="width: 48px;;margin-left:5px"
                         class="clearable" th:classappend="${#fields.hasErrors('address.stateProvinceRegion')}? 'fieldError'">
                         <option value="">--</option>
                         <option th:each="state : ${states}"
