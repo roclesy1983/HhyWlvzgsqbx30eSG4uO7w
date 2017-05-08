@@ -18,10 +18,10 @@ IT IS NOT RECOMMENDED TO USE JETTY IN A PRODUCTION ENVIRONMENT.
         <Arg>jdbc/web</Arg>
         <Arg>
             <New class="org.apache.commons.dbcp.BasicDataSource">
-			    <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-				<property name="url" value="jdbc:mysql://localhost:3306/broadleaf" />
-				<property name="username" value="root" />
-				<property name="password" value="root" />
+		    <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		    <property name="url" value="jdbc:mysql://expsrcmysql.cvqjltbcrg60.us-west-2.rds.amazonaws.com:3306/broadleaf" />
+		    <property name="username" value="expsrc" />
+		    <property name="password" value="medidoc2016" />
             </New>
         </Arg>
     </New>
@@ -30,10 +30,10 @@ IT IS NOT RECOMMENDED TO USE JETTY IN A PRODUCTION ENVIRONMENT.
         <Arg>jdbc/secure</Arg>
         <Arg>
             <New class="org.apache.commons.dbcp.BasicDataSource">
-			    <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-				<property name="url" value="jdbc:mysql://localhost:3306/broadleaf" />
-				<property name="username" value="root" />
-				<property name="password" value="root" />
+		    <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		    <property name="url" value="jdbc:mysql://expsrcmysql.cvqjltbcrg60.us-west-2.rds.amazonaws.com:3306/broadleaf" />
+		    <property name="username" value="expsrc" />
+		    <property name="password" value="medidoc2016" />
             </New>
         </Arg>
     </New>
@@ -42,10 +42,10 @@ IT IS NOT RECOMMENDED TO USE JETTY IN A PRODUCTION ENVIRONMENT.
         <Arg>jdbc/storage</Arg>
         <Arg>
             <New class="org.apache.commons.dbcp.BasicDataSource">
-			    <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-				<property name="url" value="jdbc:mysql://localhost:3306/broadleaf" />
-				<property name="username" value="root" />
-				<property name="password" value="root" />
+		    <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		    <property name="url" value="jdbc:mysql://expsrcmysql.cvqjltbcrg60.us-west-2.rds.amazonaws.com:3306/broadleaf" />
+		    <property name="username" value="expsrc" />
+		    <property name="password" value="medidoc2016" />
             </New>
         </Arg>
     </New>
