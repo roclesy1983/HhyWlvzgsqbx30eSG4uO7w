@@ -19,4 +19,13 @@ $(function(){
         return false;
     });
 
+
+    $('body').on('click', 'a.action', function() {
+        var url = $(this).attr('href');
+        var $serviceStatusTag = $(this).parents('.order-info-row').find('.service-status');
+		
+		$serviceStatusTag.load(url + ' #' + $serviceStatusTag.attr('id'));
+        return false;
+    });
+
 });

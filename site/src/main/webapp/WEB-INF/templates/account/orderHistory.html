@@ -33,12 +33,12 @@
                 <div class="order-info-row">
 					<span class="appt-number"><a th:href="@{/account/orders/} + *{orderNumber}" class="view-order-details" th:utext="*{customer.lastName} + ' ' + *{customer.firstName}"></a></span>
 					<span class="submit-date" th:utext="*{#dates.format(submitDate, 'MM-dd-yyyy')}"></span>
-	                 <span class="service-status" th:utext="*{serviceStatus.friendlyType}">Processing</span>
-	                 <span class="actions">
-	                 	<a th:href="@{/account/orders/complete/} + *{orderNumber}" class="action">Complete</a>
-	                 	<br/>
-	                 	<a th:href="@{/account/orders/cancel/} + *{orderNumber}" class="action">Cancel</a>
-	                 </span>
+					<span class="service-status" th:utext="*{serviceStatus.friendlyType}" th:attr="id=*{orderNumber} + _ServiceStatus">Processing</span>
+					<span class="actions">
+						<a th:href="@{/account/orders/complete/} + *{orderNumber}" class="action">Complete</a>
+						<br/>
+						<a th:href="@{/account/orders/cancel/} + *{orderNumber}" class="action">Cancel</a>
+					</span>
 				</div>
                 <div class="order-details"></div>
 			</li>

@@ -851,6 +851,7 @@ li.promotion,  ul.promotion{
 
 #order-history .order-info-row {
     padding: 8px 0;
+    background-color: #fff;
 }
 
 #order-history > li:nth-child(2n) div.order-info-row {
@@ -1044,6 +1045,7 @@ li.promotion,  ul.promotion{
 .order-details-container {
     float: left;
     width: 600px;
+    background-color: #fff;
 }
 
 .order-details-container ul {
@@ -2527,7 +2529,27 @@ and (max-width : 1024px)  {
 	#order-history > li .total {
 	    width: 90px;
 	}
-    
+	.order-details-container {
+	    float: left;
+	    width: 450px;
+	    background-color: #fff;
+	}
+	
+	.order-details-container .shipping-groups > li {
+	    margin: 10px 0;
+	    border: 1px solid #c5c8c1;
+	    width: 450px;
+	}
+	
+	
+	.order-details-container .order-items, .order-details-container .order-summary {
+	    float: right;
+	    width: 430px;
+	}
+	
+	.order-details-container .payment-information .order-summary {
+	    width: 430px;
+	}
     #wishlist_items {
     	width: 508px;
     	float: left;
@@ -2776,7 +2798,27 @@ and (max-width : 768px)  {
 	#order-history > li .total {
 	    width: 45px;
 	}
+	.order-details-container {
+		float: left;
+		width: 310px;
+		background-color: #fff;
+	}
 
+	.order-details-container .shipping-groups > li {
+		margin: 10px 0;
+		border: 1px solid #c5c8c1;
+		width: 310px;
+	}
+
+
+	.order-details-container .order-items, .order-details-container .order-summary {
+		float: right;
+		width: 290px;
+	}
+
+	.order-details-container .payment-information .order-summary {
+		width: 290px;
+	}
     #wishlist_items {
     	width: 305px;
     	float: left;
@@ -3372,7 +3414,27 @@ and (max-width : 480px) {
 	#order-history > li .total {
 	    width: 45px;
 	}
-	
+	.order-details-container {
+		float: left;
+		width: 297px;
+		background-color: #fff;
+	}
+
+	.order-details-container .shipping-groups > li {
+		margin: 10px 0;
+		border: 1px solid #c5c8c1;
+		width: 297px;
+	}
+
+
+	.order-details-container .order-items, .order-details-container .order-summary {
+		float: right;
+		width: 277px;
+	}
+
+	.order-details-container .payment-information .order-summary {
+		width: 277px;
+	}
     #wishlist_items {
     	width: 297px;
     	float: left;
@@ -3615,7 +3677,27 @@ and (max-width : 480px) {
 	#order-history > li .total {
 	    width: 90px;
 	}
+	.order-details-container {
+		float: left;
+		width: 575px;
+		background-color: #fff;
+	}
 
+	.order-details-container .shipping-groups > li {
+		margin: 10px 0;
+		border: 1px solid #c5c8c1;
+		width: 575px;
+	}
+
+
+	.order-details-container .order-items, .order-details-container .order-summary {
+		float: right;
+		width: 555px;
+	}
+
+	.order-details-container .payment-information .order-summary {
+		width: 555px;
+	}
     #wishlist_items {
     	width: 305px;
     	float: left;
