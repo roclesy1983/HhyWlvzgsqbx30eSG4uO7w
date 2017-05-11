@@ -2368,7 +2368,169 @@ button[disabled]:hover, input[disabled]:hover {
     cursor: default; 
     background-color: #BBAFAE !important; 
 }
-    
+.slider_container, .slider_container>div, .slider_container .slide a,
+	.slider_container .slide img, .slider_container .slide div {
+	width: 940px !important;
+	height: 280px !important;
+}
+
+.slider_container {
+	position: relative;
+	top: 0;
+	left: 20px;
+	max-width: 100%;
+	max-height: 100%;
+}
+
+.slides {
+	cursor: move;
+	position: absolute;
+	overflow: hidden;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+}
+
+@media ( max-width : 1024px) {
+	.slider_container, .slider_container>div, .slider_container .slide a,
+		.slider_container .slide img, .slider_container .slide div {
+		width: 768px !important;
+		height: 229px !important;
+	}
+	.slider_container {
+		left: 0;
+	}
+}
+
+@media ( max-width : 767px) {
+	.slider_container, .slider_container>div, .slider_container .slide a,
+		.slider_container .slide img, .slider_container .slide div {
+		width: 480px !important;
+		height: 143px !important;
+	}
+}
+
+@media ( max-width : 480px) {
+	.slider_container, .slider_container>div, .slider_container .slide a,
+		.slider_container .slide img, .slider_container .slide div {
+		display: none;
+	}
+}
+
+.header_container {
+	position: absolute;
+	width: 600px;
+	height: 45px;
+	top: 0;
+	left: 0;
+}
+
+@media ( max-width : 767px) {
+	.header_container {
+		display: none;
+	}
+}
+
+.header_text {
+	font-family: verdana;
+	font-weight: normal;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	color: rgb(255, 255, 255);
+	line-height: 45px;
+	font-size: 20px;
+	padding-left: 10px;
+}
+
+.subheader_text {
+	font-family: verdana;
+	font-weight: normal;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 40px;
+	left: 0;
+	color: rgb(245, 237, 240);
+	line-height: 15px;
+	font-size: 16px;
+	padding-left: 10px;
+}
+
+/* jssor slider arrow navigator skin 01 css */
+/*
+.jssora01l                  (normal)
+.jssora01r                  (normal)
+.jssora01l:hover            (normal mouseover)
+.jssora01r:hover            (normal mouseover)
+.jssora01l.jssora01ldn      (mousedown)
+.jssora01r.jssora01rdn      (mousedown)
+*/
+.jssora01l, .jssora01r {
+	display: block;
+	position: absolute;
+	/* size of arrow element */
+	width: 45px;
+	height: 45px;
+	cursor: pointer;
+	background: url(../img/carousel_arrows.png) no-repeat;
+	overflow: hidden;
+}
+
+.jssora01l {
+	background-position: -8px -38px;
+}
+
+.jssora01r {
+	background-position: -68px -38px;
+}
+
+.jssora01l:hover {
+	background-position: -128px -38px;
+}
+
+.jssora01r:hover {
+	background-position: -188px -38px;
+}
+
+.jssora01l.jssora01ldn {
+	background-position: -8px -38px;
+}
+
+.jssora01r.jssora01rdn {
+	background-position: -68px -38px;
+}
+
+.left_arrow {
+	top: 123px;
+	left: 8px;
+}
+
+.right_arrow {
+	top: 123px;
+	right: 8px;
+}
+
+@media ( max-width : 1024px) {
+	.left_arrow, .right_arrow {
+		top: 88px;
+	}
+}
+
+@media ( max-width : 767px) {
+	.left_arrow, .right_arrow {
+		top: 50px;
+	}
+}
+
+@media ( max-width : 480px) {
+	.left_arrow, .right_arrow {
+		display: none;
+	}
+}
 
 /* =============================================================================
    Media Queries
