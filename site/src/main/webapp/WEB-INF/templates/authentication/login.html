@@ -36,5 +36,12 @@
                 </div>
             </blc:form>
         </div>
+		<h4>OR</h4>
+		<blc:form th:action="@{/signin/facebook}" method="POST">
+			<input type="hidden" name="scope" value="public_profile,email" />
+			<button type="submit">
+				<img th:src="@{/img/social/facebook_16.png}" /> Sign in with Facebook
+			</button>
+		</blc:form>
     </div>
 </div>

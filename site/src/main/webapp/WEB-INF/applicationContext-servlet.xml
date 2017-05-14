@@ -15,7 +15,8 @@
        http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd">
     
     <!-- Scan Broadleaf defined web utility classes -->
-    <!--  context:component-scan base-package="org.broadleafcommerce.cms.web"/ -->
+    <context:component-scan base-package="org.broadleafcommerce.cms.web"/>
+    <context:component-scan base-package="org.broadleafcommerce.core.web"/>
     <context:component-scan base-package="org.broadleafcommerce.common.web"/>
     <context:component-scan base-package="org.broadleafcommerce.profile.web.controller"/>
     <context:component-scan base-package="org.broadleafcommerce.profile.web.core.service.login"/>
@@ -39,14 +40,23 @@
     <bean class="org.broadleafcommerce.cms.web.PageHandlerMapping">
       <property name="order" value="4"/>
     </bean>
-    
-    <!--  Checks for a URL match to a category's SEO URL -->
-    <bean class="org.broadleafcommerce.core.web.catalog.CategoryHandlerMapping">
-      <property name="order" value="5"/>
-    </bean>
 
-    <!-- Scan for custom controllers -->
-    <context:component-scan base-package="com.mycompany.controller" />
+	<!-- Checks for a URL match to a category's SEO URL -->
+	<bean class="org.broadleafcommerce.core.web.catalog.CategoryHandlerMapping">
+		<property name="order" value="5" />
+	</bean>
+	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<prop key="org.springframework.web.servlet.NoHandlerFoundException">
+					error/pageNotFound
+				</prop>
+			</props>
+		</property>
+		<property name="defaultErrorView" value="error/errorPage" />
+	</bean>
+	<!-- Scan for custom controllers -->
+	<context:component-scan base-package="com.mycompany.controller" />
     
     <!-- Allow annotation driven controllers -->
     <mvc:annotation-driven/>
@@ -68,17 +78,17 @@
     <mvc:resources order="-10" location="/img/, classpath:/common_style/img/" mapping="/img/**" />
     <mvc:resources order="-10" location="/fonts/, classpath:/common_style/fonts/" mapping="/fonts/**" />
     <mvc:resources order="-10" location="WEB-INF/favicon.ico" mapping="/favicon.ico" />
-    
-    <!-- Map various location URLs to our resource handlers -->
-    <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
-        <property name="order" value="-10" />
-        <property name="mappings">
-            <props>
-                <prop key="/js/**">blJsResources</prop>
-                <prop key="/css/**">blCssResources</prop>
-            </props>
-        </property>
-    </bean>
+
+	<!-- Map various location URLs to our resource handlers -->
+	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="order" value="-10" />
+		<property name="mappings">
+			<props>
+				<prop key="/js/**">blJsResources</prop>
+				<prop key="/css/**">blCssResources</prop>
+			</props>
+		</property>
+	</bean>
     
     <!-- Set up the view resolver to be used by Spring -->
     <bean class="org.broadleafcommerce.common.web.BroadleafThymeleafViewResolver">
@@ -87,12 +97,30 @@
         <property name="cache" value="${thymeleaf.view.resolver.cache}" />
         <property name="characterEncoding" value="UTF-8" />
     </bean>
-    
-    <!-- This validator will additionally require state on shipping addresses -->
-    <bean id="blShippingInfoFormValidator" class="org.broadleafcommerce.core.web.checkout.validator.USShippingInfoFormValidator" />
-    
-    <mvc:interceptors>
-      <bean class="com.mycompany.core.web.compatibility.MediDocCompatibilityInterceptor" />
-    </mvc:interceptors>
+	<!-- This validator will additionally require state on shipping addresses -->
+	<bean id="blShippingInfoFormValidator" class="org.broadleafcommerce.core.web.checkout.validator.USShippingInfoFormValidator" />
+	<bean id="blSignInUtils" class="org.springframework.social.connect.web.ProviderSignInUtils">
+		<constructor-arg ref="connectionFactoryLocator" />
+		<constructor-arg ref="usersConnectionRepository" />
+	</bean>
+	<bean class="org.springframework.social.connect.web.ProviderSignInController">
+		<property name="applicationUrl" value="${application.url}" />
+		<property name="signUpUrl" value="/register" />
+		<property name="signInUrl" value="/login" />
+	</bean>
+
+	<mvc:annotation-driven>
+		<!-- This changes the ordering of the message converters such that JSON appears prior to any XML converters -->
+		<mvc:message-converters>
+			<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
+		<property name="useSuffixPatternMatch" value="false" />
+	</bean>
+	<mvc:interceptors>
+		<bean class="com.mycompany.core.web.compatibility.MediDocCompatibilityInterceptor" />
+	</mvc:interceptors>
     
 </beans>

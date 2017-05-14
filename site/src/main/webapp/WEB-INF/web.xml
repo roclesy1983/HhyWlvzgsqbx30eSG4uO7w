@@ -24,6 +24,7 @@
             /WEB-INF/applicationContext-datasource.xml
             /WEB-INF/applicationContext-rest-api-security.xml
             /WEB-INF/applicationContext-security.xml
+            /WEB-INF/applicationContext-social.xml
             /WEB-INF/applicationContext-filter.xml
             /WEB-INF/applicationContext-workflow.xml
             /WEB-INF/applicationContext.xml
@@ -92,19 +93,23 @@
     <!-- Note: The applicationContext-servlet-cms-contentClient.xml file is used to load static assets
          from the Broadleaf CMS such as images. It will match on any URL that contains the static asset
          prefix URL in any depth of it. -->
-    <servlet>
-        <servlet-name>mycompany</servlet-name>
-        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-        <init-param>
-            <param-name>contextConfigLocation</param-name>
-            <param-value>
+	<servlet>
+		<servlet-name>mycompany</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>
                 classpath*:/blc-config/site/bl-*-applicationContext-servlet.xml
                 classpath:/applicationContext-servlet-cms-contentClient.xml
                 /WEB-INF/applicationContext-servlet.xml
             </param-value>
-        </init-param>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
+		</init-param>
+		<init-param>
+			<param-name>throwExceptionIfNoHandlerFound</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
     
     <servlet-mapping>
         <servlet-name>mycompany</servlet-name>
@@ -142,10 +147,13 @@
     	<url-pattern>/api/v1/*</url-pattern>
 	</servlet-mapping>
 
-    <env-entry>
-        <env-entry-name>appName</env-entry-name>
-        <env-entry-type>java.lang.String</env-entry-type>
-        <env-entry-value>mycompanySite</env-entry-value>
-    </env-entry>
-    
+	<env-entry>
+		<env-entry-name>appName</env-entry-name>
+		<env-entry-type>java.lang.String</env-entry-type>
+		<env-entry-value>mycompanySite</env-entry-value>
+	</env-entry>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/WEB-INF/templates/error/pageNotFound.html</location>
+	</error-page>
 </web-app>

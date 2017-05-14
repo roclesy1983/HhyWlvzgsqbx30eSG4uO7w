@@ -91,12 +91,12 @@
     </listener>
 
     <!-- Initialize spring mvc -->
-    <servlet>
-        <servlet-name>admin</servlet-name>
-        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-        <init-param>
-            <param-name>contextConfigLocation</param-name>
-            <param-value>
+	<servlet>
+		<servlet-name>admin</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>
                 classpath:/applicationContext-servlet-open-admin.xml
                 classpath:/applicationContext-servlet-admin.xml
                 classpath:/applicationContext-servlet-cms-contentClient.xml
@@ -105,9 +105,13 @@
                 classpath*:/blc-config/admin/bl-*-admin-applicationContext-servlet.xml
                 /WEB-INF/applicationContext-servlet-admin.xml
             </param-value>
-        </init-param>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
+		</init-param>
+		<init-param>
+			<param-name>throwExceptionIfNoHandlerFound</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
     
     <!-- specify the url pattern that will engage spring mvc -->
     <servlet-mapping>
