@@ -16,10 +16,10 @@
 			</list>
 		</property>
 	</bean>
-	<bean id="mdFacebookSaveDataService" class="com.mycompany.controller.account.FacebookSaveDataService" />
+	<bean id="mdSocialSaveDataService" class="com.mycompany.controller.account.MediDocSocialSaveDataService" />
 
 	<bean id="mdConnectionSignUp" class="com.mycompany.controller.account.MediDocConnectionSignUp">
-		<property name="facebookSaveDataService" ref="mdFacebookSaveDataService" />
+		<property name="mdSocialSaveDataService" ref="mdSocialSaveDataService" />
 	</bean>
 	<bean id="usersConnectionRepository" class="org.springframework.social.connect.jdbc.JdbcUsersConnectionRepository">
 		<constructor-arg ref="webDS" />
