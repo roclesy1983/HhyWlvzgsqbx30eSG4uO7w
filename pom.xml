@@ -31,7 +31,7 @@
 		<repository>
 			<id>local-files</id>
 			<name>local-files</name>
-			<url>file:///Users/shuchengli/.m2/repository/</url>
+			<url>file://C:/Users/shucheng.li/.m2/repository/</url>
 		</repository>
     </repositories>
     <build>
@@ -146,7 +146,7 @@
                     <artifactId>maven-war-plugin</artifactId>
                     <version>2.6</version>
 					<configuration>
-                		<outputDirectory>/Users/shuchengli/Documents/apache-tomcat-8.0.38/webapps</outputDirectory>
+                		<outputDirectory>C:/apache-tomcat-8.0.42/webapps</outputDirectory>
             		</configuration>
                 </plugin>
                 <plugin>
@@ -341,20 +341,20 @@
                 <classifier>tests</classifier>
                 <scope>test</scope>
             </dependency>
-<dependency>
-    <groupId>org.springframework.social</groupId>
-    <artifactId>spring-social-facebook</artifactId>
-    <version>2.0.3.RELEASE</version>
-    <type>jar</type>
-    <scope>compile</scope>
-</dependency>
-<dependency>
-    <groupId>org.springframework.social</groupId>
-    <artifactId>spring-social-web</artifactId>
-    <version>1.1.4.RELEASE</version>
-    <type>jar</type>
-    <scope>compile</scope>
-</dependency>
+			<dependency>
+				<groupId>org.springframework.social</groupId>
+				<artifactId>spring-social-facebook</artifactId>
+				<version>2.0.3.RELEASE</version>
+				<type>jar</type>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.social</groupId>
+				<artifactId>spring-social-web</artifactId>
+				<version>1.1.4.RELEASE</version>
+				<type>jar</type>
+				<scope>compile</scope>
+			</dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-web</artifactId>
@@ -369,21 +369,28 @@
                 <type>jar</type>
                 <scope>compile</scope>
             </dependency>
-    <dependency>
-        <groupId>com.fasterxml.jackson.core</groupId>
-        <artifactId>jackson-core</artifactId>
-        <version>2.5.0</version>
-    </dependency>
-    <dependency>
-        <groupId>com.fasterxml.jackson.core</groupId>
-        <artifactId>jackson-databind</artifactId>
-        <version>2.5.0</version>
-    </dependency>
-<dependency>
-  <groupId>com.fasterxml.jackson.core</groupId>
-  <artifactId>jackson-annotations</artifactId>
-  <version>2.5.0</version>
-</dependency>
+			<dependency>
+			    <groupId>org.springframework</groupId>
+			    <artifactId>spring-instrument</artifactId>
+	            <version>4.1.9.RELEASE</version>
+	            <type>jar</type>
+	            <scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-core</artifactId>
+				<version>2.5.0</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-databind</artifactId>
+				<version>2.5.0</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-annotations</artifactId>
+				<version>2.5.0</version>
+			</dependency>
             <dependency>
                 <groupId>javax.servlet</groupId>
                 <artifactId>javax.servlet-api</artifactId>

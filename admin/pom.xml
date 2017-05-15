@@ -116,5 +116,9 @@
             <version>1.4</version>
             <type>jar</type>
 		</dependency>
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-instrument</artifactId>
+		</dependency>
     </dependencies>
 </project>
