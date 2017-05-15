@@ -31,7 +31,7 @@
 		<repository>
 			<id>local-files</id>
 			<name>local-files</name>
-			<url>file://C:/Users/shucheng.li/.m2/repository/</url>
+			<url>file:///Users/shuchengli/.m2/repository/</url>
 		</repository>
     </repositories>
     <build>
@@ -146,7 +146,7 @@
                     <artifactId>maven-war-plugin</artifactId>
                     <version>2.6</version>
 					<configuration>
-                		<outputDirectory>C:/apache-tomcat-8.0.42/webapps</outputDirectory>
+                		<outputDirectory>/Users/shuchengli/Documents/apache-tomcat-8.0.38/webapps</outputDirectory>
             		</configuration>
                 </plugin>
                 <plugin>
