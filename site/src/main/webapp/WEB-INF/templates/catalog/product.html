@@ -21,7 +21,7 @@
                     <div blc:price="*{defaultSku.retailPrice}" th:classappend="*{defaultSku.onSale}? 'has-sale'"></div>-->
                 </div>
                 
-                <div th:if="${customer.preprod}" th:remove="tag"><div class="product-options" th:substituteby="catalog/partials/productOptions"/></div>                                
+                                                
                 
                 <th:block th:with="checkInventory=*{defaultSku.inventoryType?.type == 'CHECK_QUANTITY'},
                                    availableInventory=${checkInventory ? #object.defaultSku.quantityAvailable != null and #object.defaultSku.quantityAvailable != 0 : true},
@@ -62,7 +62,7 @@
                         </div>
                     </blc:form>
                 </th:block>
-    
+				<div th:if="${customer.preprod}" th:remove="tag"><div class="product-options" th:substituteby="catalog/partials/productOptions"/></div>
                 <div th:if="${customer.loggedIn}" th:remove="tag">
 
                     <blc:form method="POST" th:action="@{/account/wishlist/add}">

@@ -16,12 +16,12 @@
                     </tr>
                     <tr>
                         <td style="font: 16px/10px 'Oxygen', Helvetica, sans-serif; color: #655C5A">
-                            Thank you for your order<span th:unless="${customer.anonymous}" th:utext="${', ' + customer.firstName + ' ' + customer.lastName}" />!
+                            Thank you for your appointment<span th:unless="${customer.anonymous}" th:utext="${', ' + customer.firstName + ' ' + customer.lastName}" />!
                         </td>
                     </tr>
                     <tr>   <!-- Order summary table -->
                         <td width="100%" style="margin: 10px 0; padding: 10px; font: 14px/18px 'Oxygen', Helvetica, sans-serif; background-color: #1C3149; color: #fff; float: left; display: block;" colspan="2">
-                            Order Summary
+                            Appointment Summary
                         </td>
                     </tr>
                     <tr>
@@ -30,10 +30,10 @@
                                 <thead style="padding: 0 5px; text-align: center; font: bold 10px/10px Helvetica, sans-serif; text-transform: uppercase; color: #333; vertical-align: top;">
                                     <tr>
                                         <th style="border-bottom: dotted 1px #afafaf;" align="left">Item</th>
-                                        <th style="border-bottom: dotted 1px #afafaf;">Quantity</th>
-                                        <th style="border-bottom: dotted 1px #afafaf;">Price</th>
-                                        <th style="border-bottom: dotted 1px #afafaf;">Average Discount</th>
-                                        <th style="border-bottom: dotted 1px #afafaf;">Total</th>
+                                        <!-- <th style="border-bottom: dotted 1px #afafaf;">Quantity</th>
+                                        <th style="border-bottom: dotted 1px #afafaf;">Price</th> -->
+                                        <th style="border-bottom: dotted 1px #afafaf;">Discount</th>
+                                        <!--<th style="border-bottom: dotted 1px #afafaf;">Total</th>-->
                                     </tr>
                                 </thead>
                                 <tbody style="font: 14px/16px 'Oxygen', Helvetica, sans-serif; color: #655C5A">
@@ -49,8 +49,8 @@
                                                  </ul>
                                             </blc:product_option_display>
                                         </td>
-                                        <td align="center" th:utext="*{quantity}"></td>
-                                        <td align="left" blc:price="*{price}"></td>
+                                        <!--<td align="center" th:utext="*{quantity}"></td>
+                                        <td align="left" blc:price="*{price}"></td>-->
                                         <td align="center" style="color: #00a3c8;" th:if="*{adjustmentValue.zero}">---</td>
                                         <td align="center" style="color: #00a3c8;" th:unless="*{adjustmentValue.zero}" >
                                              <span  align="center"  blc:price="*{adjustmentValue}" class="promotion" ></span>
@@ -62,7 +62,7 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td align="left" style="font-family: Helvetica, sans-serif; font-size: 16px; font-weight: bold;" blc:price="*{price.multiply(quantity)}"></td>
+                                        <!--<td align="left" style="font-family: Helvetica, sans-serif; font-size: 16px; font-weight: bold;" blc:price="*{price.multiply(quantity)}"></td>-->
                                     </tr>
                                 </tbody>
                             </table>
@@ -72,16 +72,16 @@
                             <table style=" margin: 0 0 10px 0; width: 290px; padding: 10px 20px; background-color: #ebe2df; color: #655C5A; float: right; font: 12px/18px 'Oxygen', Helvetica, sans-serif;">
                                 <tr colspan="2">
                                     <td colspan="2" width="100%" style="border-bottom: dotted 1px #afafaf;" >
-                                        <h3 style="font: 14px/18px 'Oxygen', Helvetica, sans-serif; margin: 0 0 5px 0;padding: 0;">
+                                        <!--<h3 style="font: 14px/18px 'Oxygen', Helvetica, sans-serif; margin: 0 0 5px 0;padding: 0;">
                                             Order Total
                                         </h3>
-                                        <div style="font: 32px/28px 'Oxygen', Helvetica, sans-serif;" blc:price="${order.total}"></div>
+                                        <div style="font: 32px/28px 'Oxygen', Helvetica, sans-serif;" blc:price="${order.total}"></div>-->
                                         <h3 style="font: 14px/18px 'Oxygen', Helvetica, sans-serif; margin: 10px 0 5px 0;padding: 0;">
-                                            Order number  <b><span th:utext="${orderNumber}" /></b>
+                                            Appointment number  <b><span th:utext="${orderNumber}" /></b>
                                         </h3>
                                     </td>
                                 </tr>
-                                <tr>
+                                <!--<tr>
                                     <td style="padding: 5px 0; border-bottom: dotted 1px #afafaf;">Subtotal</td>
                                     <td style="padding: 5px 0; border-bottom: dotted 1px #afafaf;" blc:price="${order.subTotal}"></td>
                                 </tr>
@@ -97,17 +97,17 @@
                                 <tr>
                                     <td style="padding: 5px 0; border-bottom: dotted 1px #afafaf;">Shipping</td>
                                     <td style="padding: 5px 0; border-bottom: dotted 1px #afafaf;" blc:price="${order.totalShipping}"></td>
-                                </tr>
+                                </tr>-->
                             </table>
 
                         </td>
                     </tr>
-                    <tr>   <!-- Shipping information Header -->
+                    <!--<tr>   <!-- Shipping information Header 
                         <td width="100%" style="margin: 10px 0; padding: 10px; font: 14px/18px 'Oxygen', Helvetica, sans-serif; background-color: #1C3149; color: #fff; float: left; display: block;" colspan="2">
                             Shipping Information
                         </td>
                     </tr>
-                    <tr> <!-- Shipping information table - 1 Address -->
+                    <tr> <!-- Shipping information table - 1 Address 
                         <td colspan="2">
                             <table width="100%" style="font: 12px/18px 'Oxygen', Helvetica, sans-serif; color: #655C5A">
                                 <tr th:object="${order.fulfillmentGroups[0]}" th:inline="text" th:unless="${#lists.size(order.fulfillmentGroups) > 1}">
@@ -138,7 +138,7 @@
                                         </td>
                                     </div>
                                 </tr>
-                                <!-- Shipping information table - Multi-ship -->
+                                <!-- Shipping information table - Multi-ship 
                                 <tr th:if="${#lists.size(order.fulfillmentGroups) > 1}" >
                                     <td>
                                         <table width="100%" th:object="${order.fulfillmentGroups[0]}" style="padding: 4px; margin-bottom: 3px; font: 12px/18px 'Oxygen', Helvetica, sans-serif; color: #655C5A">
@@ -179,12 +179,12 @@
                             </table>
                         </td>
                     </tr>
-                    <tr>   <!-- Billing information Header -->
+                    <tr>   <!-- Billing information Header 
                         <td width="100%" style="margin: 10px 0; padding: 10px; font: 14px/18px 'Oxygen', Helvetica, sans-serif; background-color: #1C3149; color: #fff; float: left; display: block;" colspan="2">
                             Billing Information
                         </td>
                     </tr>
-                    <tr> <!-- Billing information table -->
+                    <tr> <!-- Billing information table 
                         <td colspan="2">
                             <table width="100%" style="font: 12px/18px 'Oxygen', Helvetica, sans-serif; color: #655C5A">
                                 <tr th:each="payment : ${order.payments}" th:object="${payment}" th:inline="text">
@@ -228,7 +228,7 @@
                                 </tr>
                             </table>
                         </td>
-                    </tr>
+                    </tr>-->
                 </table>
             </td>
         </tr>

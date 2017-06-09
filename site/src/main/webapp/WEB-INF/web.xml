@@ -26,6 +26,7 @@
             /WEB-INF/applicationContext-security.xml
             /WEB-INF/applicationContext-social.xml
             /WEB-INF/applicationContext-filter.xml
+            /WEB-INF/applicationContext-receive-email.xml
             /WEB-INF/applicationContext-workflow.xml
             /WEB-INF/applicationContext.xml
         </param-value>

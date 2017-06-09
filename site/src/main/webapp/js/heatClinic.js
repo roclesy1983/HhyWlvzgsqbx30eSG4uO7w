@@ -87,19 +87,21 @@ var HC = (function($) {
             $option.toggleClass('active');
             var selectedOption = $option.data('product-option-value');
             var $optionText = $option.parents('.product-option-group').find('span.option-value');
-            $optionText.text(selectedOption.valueName);
-            var productOptionData = getProductOptionData();
+            if (selectedOption !== undefined) {
+                $optionText.text(selectedOption.valueName);
+                var productOptionData = getProductOptionData();
 
-            for (var i = 0; i < productOptionData.length; i++) {
-                var option = productOptionData[i];
-                if (option.id === selectedOption.optionId) {
-                    option.selectedValue = selectedOption.valueId;
-                    break;
+                for (var i = 0; i < productOptionData.length; i++) {
+                    var option = productOptionData[i];
+                    if (option.id === selectedOption.optionId) {
+                        option.selectedValue = selectedOption.valueId;
+                        break;
+                    }
                 }
+                
+                updateCurrentImage();
+                updatePriceDisplay();
             }
-            
-            updateCurrentImage();
-            updatePriceDisplay();
         }
     }
     
