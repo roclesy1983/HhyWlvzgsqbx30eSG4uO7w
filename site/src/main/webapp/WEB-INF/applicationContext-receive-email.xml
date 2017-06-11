@@ -20,10 +20,6 @@
 		http://www.springframework.org/schema/util/spring-util-4.1.xsd">
 
 	<!-- IMAP and IMAP IDLE sample configuration to use with Gmail There is no test to back this up, just a sample config to use with your tests -->
-	<bean class="org.springframework.jmx.export.MBeanExporter" lazy-init="false">
-		<property name="namingStrategy" ref="namingStrategy" />
-	</bean>
-	<bean id="namingStrategy" class="org.springframework.jmx.export.naming.IdentityNamingStrategy" />
 	<util:properties id="javaMailProperties">
 		<prop key="mail.imap.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
 		<prop key="mail.imap.socketFactory.fallback">false</prop>
@@ -42,12 +38,7 @@
 	</int-mail:imap-idle-channel-adapter>
 
 	<int:channel id="recieveEmailChannel">
-		<int:interceptors>
-			<int:wire-tap channel="logger" />
-		</int:interceptors>
 	</int:channel>
-
-	<int:logging-channel-adapter id="logger" level="DEBUG" />
 
 	<int:service-activator input-channel="recieveEmailChannel" ref="emailReceiverService" method="translateAndSendEmail" />
 
