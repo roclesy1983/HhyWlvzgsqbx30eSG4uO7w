@@ -42,6 +42,6 @@
 
 	<int:service-activator input-channel="recieveEmailChannel" ref="emailReceiverService" method="translateAndSendEmail" />
 
-	<bean id="emailReceiverService" class="com.mycompany.core.web.email.TransferApptEmail" />
+	<bean id="emailReceiverService" class="com.mycompany.web.email.TransferApptEmail" />
 	<task:executor id="pool" pool-size="10" keep-alive="50"/>
 </beans>

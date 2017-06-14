@@ -120,7 +120,7 @@
 		<property name="useSuffixPatternMatch" value="false" />
 	</bean>
 	<mvc:interceptors>
-		<bean class="com.mycompany.core.web.compatibility.MediDocCompatibilityInterceptor" />
+		<bean class="com.mycompany.web.compatibility.MediDocCompatibilityInterceptor" />
 	</mvc:interceptors>
     
 </beans>
