@@ -13,6 +13,7 @@ import org.broadleafcommerce.common.email.service.EmailService;
 import org.broadleafcommerce.common.email.service.info.EmailInfo;
 import org.broadleafcommerce.common.time.SystemTime;
 import org.broadleafcommerce.core.catalog.service.CatalogService;
+import org.broadleafcommerce.core.order.domain.DiscreteOrderItem;
 import org.broadleafcommerce.core.order.domain.Order;
 import org.broadleafcommerce.core.order.service.OrderService;
 import org.broadleafcommerce.profile.core.domain.Customer;
@@ -59,7 +60,8 @@ public class TransferApptEmail {
 		HashMap<String, Object> vars = new HashMap<String, Object>();
 		vars.put("message", translateMsg);
 		Customer patientContact = order.getCustomer();
-		Customer clinicContact = catalogService.readCustomerByProductId(order.getDiscreteOrderItems().get(0).getProduct().getId());
+		DiscreteOrderItem discreteOrderItem = orderService.findDiscreteOrderItemByOrderNumber(orderNumber);
+		Customer clinicContact = catalogService.readCustomerByProductId(discreteOrderItem.getProduct().getId());
 		String clinicEmailAddress = clinicContact.getEmailAddress();
 		String patientEmailAddress = patientContact.getEmailAddress();
 
