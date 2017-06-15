@@ -9,6 +9,7 @@ import javax.mail.internet.MimeMessage;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.broadleafcommerce.common.email.domain.EmailTargetImpl;
 import org.broadleafcommerce.common.email.service.EmailService;
 import org.broadleafcommerce.common.email.service.info.EmailInfo;
 import org.broadleafcommerce.common.time.SystemTime;
@@ -17,6 +18,7 @@ import org.broadleafcommerce.core.order.domain.DiscreteOrderItem;
 import org.broadleafcommerce.core.order.domain.Order;
 import org.broadleafcommerce.core.order.service.OrderService;
 import org.broadleafcommerce.profile.core.domain.Customer;
+import org.springframework.beans.factory.annotation.Value;
 
 import com.google.cloud.translate.Translate;
 import com.google.cloud.translate.Translate.TranslateOption;
@@ -28,6 +30,9 @@ public class TransferApptEmail {
 
 	protected static final Log LOG = LogFactory.getLog(SendAppointmentConfirmationEmailToDoctorActivity.class);
 
+	@Value("${site.emailAddress}")
+	protected String fromEmailAddress;
+
 	@Resource(name = "blEmailService")
 	protected EmailService emailService;
 
@@ -37,17 +42,14 @@ public class TransferApptEmail {
 	@Resource(name = "blOrderService")
 	protected OrderService orderService;
 
-	@Resource(name = "blApptPatDocConfirmationEmailInfo")
-	protected EmailInfo apptPatDocConfirmationEmailInfo;
-
 	public void translateAndSendEmail(MimeMessage mimeMessage) throws Exception {
 		mimeMessage.getFrom();
 		mimeMessage.getReplyTo();
 		mimeMessage.getSubject();
 
 		System.out.println(mimeMessage.getSubject() + mimeMessage.getContent() + "----------" + SystemTime.asDate());
-
-		String translateMsg = mimeMessage.getContent().toString();
+		String translateMsg = mimeMessage.getContent().toString().split("[-------------------------]")[0];
+		translateMsg = translate("[-------------------------]<br />" + translateMsg.replaceAll("(\r\n|\n)", "<br />"));
 		System.out.println(translateMsg + "----------" + SystemTime.asDate());
 		Pattern p = Pattern.compile("[0-9]+");
 		Matcher m = p.matcher(mimeMessage.getSubject());
@@ -65,14 +67,24 @@ public class TransferApptEmail {
 		String clinicEmailAddress = clinicContact.getEmailAddress();
 		String patientEmailAddress = patientContact.getEmailAddress();
 
+		vars.put("message", translateMsg);
+
+		EmailInfo emailInfo = new EmailInfo();
+
+		emailInfo.setFromAddress(fromEmailAddress);
+		emailInfo.setSubject(mimeMessage.getSubject());
+		emailInfo.setMessageBody(translateMsg);
+		EmailTargetImpl emailTarget = new EmailTargetImpl();
+
+		if (mimeMessage.getFrom()[0].toString().contains(patientEmailAddress)) {
+			emailTarget.setEmailAddress(clinicEmailAddress);
+		} else if (mimeMessage.getFrom()[0].toString().contains(clinicEmailAddress)) {
+			emailTarget.setEmailAddress(patientEmailAddress);
+		}
+
 		// Email service failing should not trigger rollback
 		try {
-			apptPatDocConfirmationEmailInfo.setSubject(mimeMessage.getSubject());
-			if (mimeMessage.getFrom().equals(patientEmailAddress)) {
-				emailService.sendTemplateEmail(clinicEmailAddress, getApptPatDocConfirmationEmailInfo(), vars);
-			} else if (mimeMessage.getFrom().equals(clinicEmailAddress)) {
-				emailService.sendTemplateEmail(patientEmailAddress, getApptPatDocConfirmationEmailInfo(), vars);
-			}
+			emailService.sendBasicEmail(emailInfo, emailTarget, vars);
 		} catch (Exception e) {
 			LOG.error(e);
 		}
@@ -88,14 +100,6 @@ public class TransferApptEmail {
 			translation = translate.translate(translateText, TranslateOption.sourceLanguage("en"), TranslateOption.targetLanguage("ja"));
 		}
 		return translation.getTranslatedText();
-	}
-
-	public EmailInfo getApptPatDocConfirmationEmailInfo() {
-		return apptPatDocConfirmationEmailInfo;
-	}
-
-	public void setApptPatDocConfirmationEmailInfo(EmailInfo apptPatDocConfirmationEmailInfo) {
-		this.apptPatDocConfirmationEmailInfo = apptPatDocConfirmationEmailInfo;
 	}
 
 }

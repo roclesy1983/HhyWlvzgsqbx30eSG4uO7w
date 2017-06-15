@@ -125,13 +125,5 @@
         <property name="subject" value="Your order with MediDoc Search"/>
         <property name="emailTemplate" value="orderConfirmation-email"/>
     </bean>
-    
-    <bean id="blApptDocConfirmationEmailInfo" parent="blEmailInfo">
-        <property name="emailTemplate" value="apptDocConfirmation-email"/>
-    </bean>
-    
-        <bean id="blApptPatDocConfirmationEmailInfo" parent="blEmailInfo">
-        <property name="emailTemplate" value="apptPatDocConfirmation-email"/>
-    </bean>
-                  
+
 </beans>

@@ -22,6 +22,7 @@ import javax.annotation.Resource;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.broadleafcommerce.common.email.domain.EmailTargetImpl;
 import org.broadleafcommerce.common.email.service.EmailService;
 import org.broadleafcommerce.common.email.service.info.EmailInfo;
 import org.broadleafcommerce.core.catalog.service.CatalogService;
@@ -30,6 +31,7 @@ import org.broadleafcommerce.core.order.domain.Order;
 import org.broadleafcommerce.core.workflow.BaseActivity;
 import org.broadleafcommerce.core.workflow.ProcessContext;
 import org.broadleafcommerce.profile.core.domain.Customer;
+import org.springframework.beans.factory.annotation.Value;
 
 /**
  * Send order confirmation email
@@ -41,11 +43,11 @@ public class SendAppointmentConfirmationEmailToDoctorActivity extends BaseActivi
 
 	protected static final Log LOG = LogFactory.getLog(SendAppointmentConfirmationEmailToDoctorActivity.class);
 
+	@Value("${site.emailAddress}")
+	protected String fromEmailAddress;
+
 	@Resource(name = "blEmailService")
 	protected EmailService emailService;
-
-	@Resource(name = "blApptDocConfirmationEmailInfo")
-	protected EmailInfo apptDocConfirmationEmailInfo;
 
 	@Resource(name = "blCatalogService")
 	protected CatalogService catalogService;
@@ -59,23 +61,22 @@ public class SendAppointmentConfirmationEmailToDoctorActivity extends BaseActivi
 		vars.put("order", order);
 		Customer clinic = catalogService.readCustomerByProductId(order.getDiscreteOrderItems().get(0).getProduct().getId());
 		String emailAddressTo = clinic.getEmailAddress();
+		EmailInfo emailInfo = new EmailInfo();
+
+		emailInfo.setFromAddress(fromEmailAddress);
+		emailInfo.setSubject("[Appointment Number:" + order.getOrderNumber() + "]");
+		emailInfo.setMessageBody("[-------------------------]<br />新しい予約はきました。<br />患者様：" + order.getCustomer().getLastName() + " " + order.getCustomer().getFirstName() + "<br />予約希望日："
+				+ order.getOrderItems().get(0).getOrderItemAttributes() + "<br />変更がある場合、このメールに返信して患者様に連絡してください<br />よろしくお願いします。");
+		EmailTargetImpl emailTarget = new EmailTargetImpl();
+		emailTarget.setEmailAddress(emailAddressTo);
 
 		// Email service failing should not trigger rollback
 		try {
-			apptDocConfirmationEmailInfo.setSubject("[Appointment Number:" + order.getOrderNumber() + "]");
-			emailService.sendTemplateEmail(emailAddressTo, getApptDocConfirmationEmailInfo(), vars);
+			emailService.sendBasicEmail(emailInfo, emailTarget, vars);
 		} catch (Exception e) {
 			LOG.error(e);
 		}
 		return context;
-	}
-
-	public EmailInfo getApptDocConfirmationEmailInfo() {
-		return apptDocConfirmationEmailInfo;
-	}
-
-	public void setApptDocConfirmationEmailInfo(EmailInfo apptDocConfirmationEmailInfo) {
-		this.apptDocConfirmationEmailInfo = apptDocConfirmationEmailInfo;
 	}
 
 }
