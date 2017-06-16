@@ -56,17 +56,15 @@ public class SendAppointmentConfirmationEmailToDoctorActivity extends BaseActivi
 	public ProcessContext<CheckoutSeed> execute(ProcessContext<CheckoutSeed> context) throws Exception {
 		Order order = context.getSeedData().getOrder();
 		HashMap<String, Object> vars = new HashMap<String, Object>();
-		vars.put("customer", order.getCustomer());
-		vars.put("orderNumber", order.getOrderNumber());
-		vars.put("order", order);
+
 		Customer clinic = catalogService.readCustomerByProductId(order.getDiscreteOrderItems().get(0).getProduct().getId());
 		String emailAddressTo = clinic.getEmailAddress();
 		EmailInfo emailInfo = new EmailInfo();
 
 		emailInfo.setFromAddress(fromEmailAddress);
 		emailInfo.setSubject("[Appointment Number:" + order.getOrderNumber() + "]");
-		emailInfo.setMessageBody("[-------------------------]<br />新しい予約はきました。<br />患者様：" + order.getCustomer().getLastName() + " " + order.getCustomer().getFirstName() + "<br />予約希望日："
-				+ order.getOrderItems().get(0).getOrderItemAttributes() + "<br />変更がある場合、このメールに返信して患者様に連絡してください<br />よろしくお願いします。");
+		emailInfo.setMessageBody("-------------------------<br />新しい予約はきました。<br />患者様：" + order.getCustomer().getLastName() + " " + order.getCustomer().getFirstName() + "<br />予約希望日："
+				+ order.getOrderItems().get(0).getOrderItemAttributes() + "<br />患者様と連絡がある場合、このメールに返信してください<br />よろしくお願いします。<br />-------------------------");
 		EmailTargetImpl emailTarget = new EmailTargetImpl();
 		emailTarget.setEmailAddress(emailAddressTo);
 

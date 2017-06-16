@@ -12,7 +12,6 @@ import org.apache.commons.logging.LogFactory;
 import org.broadleafcommerce.common.email.domain.EmailTargetImpl;
 import org.broadleafcommerce.common.email.service.EmailService;
 import org.broadleafcommerce.common.email.service.info.EmailInfo;
-import org.broadleafcommerce.common.time.SystemTime;
 import org.broadleafcommerce.core.catalog.service.CatalogService;
 import org.broadleafcommerce.core.order.domain.DiscreteOrderItem;
 import org.broadleafcommerce.core.order.domain.Order;
@@ -43,14 +42,7 @@ public class TransferApptEmail {
 	protected OrderService orderService;
 
 	public void translateAndSendEmail(MimeMessage mimeMessage) throws Exception {
-		mimeMessage.getFrom();
-		mimeMessage.getReplyTo();
-		mimeMessage.getSubject();
 
-		System.out.println(mimeMessage.getSubject() + mimeMessage.getContent() + "----------" + SystemTime.asDate());
-		String translateMsg = mimeMessage.getContent().toString().split("[-------------------------]")[0];
-		translateMsg = translate("[-------------------------]<br />" + translateMsg.replaceAll("(\r\n|\n)", "<br />"));
-		System.out.println(translateMsg + "----------" + SystemTime.asDate());
 		Pattern p = Pattern.compile("[0-9]+");
 		Matcher m = p.matcher(mimeMessage.getSubject());
 		String orderNumber = "";
@@ -59,26 +51,30 @@ public class TransferApptEmail {
 		}
 		Order order = orderService.findOrderByOrderNumber(orderNumber);
 
-		HashMap<String, Object> vars = new HashMap<String, Object>();
-		vars.put("message", translateMsg);
 		Customer patientContact = order.getCustomer();
 		DiscreteOrderItem discreteOrderItem = orderService.findDiscreteOrderItemByOrderNumber(orderNumber);
 		Customer clinicContact = catalogService.readCustomerByProductId(discreteOrderItem.getProduct().getId());
 		String clinicEmailAddress = clinicContact.getEmailAddress();
 		String patientEmailAddress = patientContact.getEmailAddress();
 
-		vars.put("message", translateMsg);
+		HashMap<String, Object> vars = new HashMap<String, Object>();
 
 		EmailInfo emailInfo = new EmailInfo();
 
 		emailInfo.setFromAddress(fromEmailAddress);
 		emailInfo.setSubject(mimeMessage.getSubject());
-		emailInfo.setMessageBody(translateMsg);
 		EmailTargetImpl emailTarget = new EmailTargetImpl();
 
+		String translateMsg = mimeMessage.getContent().toString().split("[-]{15,}")[0].replaceAll("(\r\n|\n)", "<br />");
 		if (mimeMessage.getFrom()[0].toString().contains(patientEmailAddress)) {
+			translateMsg = "-------------------------<br />[---患者様と連絡がある場合、このメールに返信してください。---]<br />" + translate(translateMsg, "en") + "<br />-------------------------";
+			emailInfo.setMessageBody(translateMsg);
+			vars.put("message", translateMsg);
 			emailTarget.setEmailAddress(clinicEmailAddress);
 		} else if (mimeMessage.getFrom()[0].toString().contains(clinicEmailAddress)) {
+			translateMsg = "-------------------------<br />[---When contacting the doctor, please reply this email.---]<br />" + translate(translateMsg, "ja") + "<br />-------------------------";
+			emailInfo.setMessageBody(translateMsg);
+			vars.put("message", translateMsg);
 			emailTarget.setEmailAddress(patientEmailAddress);
 		}
 
@@ -91,15 +87,19 @@ public class TransferApptEmail {
 
 	}
 
-	public String translate(String translateText) {
+	public String translate(String translateText, String sourceLanguage) {
 		Translate translate = TranslateOptions.newBuilder().setApiKey("AIzaSyDq18Z3RIAR_PKn0dLmsYwUkbRjRZKu4Bs").build().getService();
-		Translation translation;
-		if ("ja".equals(translate.detect(translateText).getLanguage())) {
+		String result = translateText;
+		Translation translation = null;
+		if ("ja".equals(sourceLanguage)) {
 			translation = translate.translate(translateText, TranslateOption.sourceLanguage("ja"), TranslateOption.targetLanguage("en"));
-		} else {
+		} else if ("en".equals(sourceLanguage)) {
 			translation = translate.translate(translateText, TranslateOption.sourceLanguage("en"), TranslateOption.targetLanguage("ja"));
 		}
-		return translation.getTranslatedText();
+		if (translation != null) {
+			result = translation.getTranslatedText();
+		}
+		return result;
 	}
 
 }
