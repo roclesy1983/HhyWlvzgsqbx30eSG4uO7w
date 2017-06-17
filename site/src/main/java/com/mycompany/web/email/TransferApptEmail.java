@@ -13,10 +13,8 @@ import org.broadleafcommerce.common.email.domain.EmailTargetImpl;
 import org.broadleafcommerce.common.email.service.EmailService;
 import org.broadleafcommerce.common.email.service.info.EmailInfo;
 import org.broadleafcommerce.core.catalog.service.CatalogService;
-import org.broadleafcommerce.core.order.domain.DiscreteOrderItem;
 import org.broadleafcommerce.core.order.domain.Order;
 import org.broadleafcommerce.core.order.service.OrderService;
-import org.broadleafcommerce.profile.core.domain.Customer;
 import org.springframework.beans.factory.annotation.Value;
 
 import com.google.cloud.translate.Translate;
@@ -43,19 +41,15 @@ public class TransferApptEmail {
 
 	public void translateAndSendEmail(MimeMessage mimeMessage) throws Exception {
 
-		Pattern p = Pattern.compile("[0-9]+");
-		Matcher m = p.matcher(mimeMessage.getSubject());
+		Matcher matcher = Pattern.compile("[0-9]+").matcher(mimeMessage.getSubject());
 		String orderNumber = "";
-		while (m.find()) {
-			orderNumber = m.group();
+		while (matcher.find()) {
+			orderNumber = matcher.group();
 		}
 		Order order = orderService.findOrderByOrderNumber(orderNumber);
 
-		Customer patientContact = order.getCustomer();
-		DiscreteOrderItem discreteOrderItem = orderService.findDiscreteOrderItemByOrderNumber(orderNumber);
-		Customer clinicContact = catalogService.readCustomerByProductId(discreteOrderItem.getProduct().getId());
-		String clinicEmailAddress = clinicContact.getEmailAddress();
-		String patientEmailAddress = patientContact.getEmailAddress();
+		String patientEmailAddress = order.getCustomer().getEmailAddress();
+		String clinicEmailAddress = catalogService.readCustomerByOrder(order).getEmailAddress();
 
 		HashMap<String, Object> vars = new HashMap<String, Object>();
 
@@ -69,12 +63,11 @@ public class TransferApptEmail {
 		if (mimeMessage.getFrom()[0].toString().contains(patientEmailAddress)) {
 			translateMsg = "-------------------------<br />[---患者様と連絡がある場合、このメールに返信してください。分かりやすい日本語を書いてください。---]<br />" + translate(translateMsg, "en") + "<br />-------------------------";
 			emailInfo.setMessageBody(translateMsg);
-			vars.put("message", translateMsg);
 			emailTarget.setEmailAddress(clinicEmailAddress);
 		} else if (mimeMessage.getFrom()[0].toString().contains(clinicEmailAddress)) {
-			translateMsg = "-------------------------<br />[---When contacting the doctor, please reply this email. Easy understanding English please.---]<br />" + translate(translateMsg, "ja") + "<br />-------------------------";
+			translateMsg = "-------------------------<br />[---When contacting the doctor, please reply this email. Easy understanding English please.---]<br />" + translate(translateMsg, "ja")
+					+ "<br />-------------------------";
 			emailInfo.setMessageBody(translateMsg);
-			vars.put("message", translateMsg);
 			emailTarget.setEmailAddress(patientEmailAddress);
 		}
 

@@ -57,16 +57,16 @@ public class SendAppointmentConfirmationEmailToDoctorActivity extends BaseActivi
 		Order order = context.getSeedData().getOrder();
 		HashMap<String, Object> vars = new HashMap<String, Object>();
 
-		Customer clinic = catalogService.readCustomerByProductId(order.getDiscreteOrderItems().get(0).getProduct().getId());
-		String emailAddressTo = clinic.getEmailAddress();
+		Customer clinic = catalogService.readCustomerByOrder(order);
+		String clinicEmailAddressTo = clinic.getEmailAddress();
 		EmailInfo emailInfo = new EmailInfo();
 
 		emailInfo.setFromAddress(fromEmailAddress);
 		emailInfo.setSubject("[Appointment Number:" + order.getOrderNumber() + "]");
 		emailInfo.setMessageBody("-------------------------<br />新しい予約はきました。<br />患者様：" + order.getCustomer().getLastName() + " " + order.getCustomer().getFirstName() + "<br />予約希望日："
-				+ order.getOrderItems().get(0).getOrderItemAttributes() + "<br />患者様と連絡がある場合、このメールに返信してください<br />よろしくお願いします。<br />-------------------------");
+				+ order.getOrderItems().get(0).getOrderItemAttributes() + "<br />患者様と連絡がある場合、このメールに返信してください。分かりやすい日本語を書いてください。<br />よろしくお願いします。<br />-------------------------");
 		EmailTargetImpl emailTarget = new EmailTargetImpl();
-		emailTarget.setEmailAddress(emailAddressTo);
+		emailTarget.setEmailAddress(clinicEmailAddressTo);
 
 		// Email service failing should not trigger rollback
 		try {
