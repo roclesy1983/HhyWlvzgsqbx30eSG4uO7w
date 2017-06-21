@@ -29,14 +29,21 @@
     </div>
     <div class="in_cart" th:classappend="${!inCart}? ' hidden'" th:if="*{#lists.isEmpty(productOptions)}">
         <a class="modalcart inCart" th:href="@{/cart}"><span th:utext="#{product.inCart}">In Cart!</span></a>
-    </div>-->
+    </div>
 
     <div class="add_to_cart" th:classappend="${inCart or !availableInventory}? ' hidden'">
         <blc:form method="POST" th:action="@{/cart/add}">
             <input type="hidden" name="productId" th:value="*{id}" />
             <input type="hidden" name="quantity" value="1" />
             <input type="hidden" name="hasProductOptions" th:value="*{!#lists.isEmpty(productOptions)}" />
-            <!--<input type="submit" class="addToCart" th:value="#{product.buyNow}"/>-->
+            <input type="submit" class="addToCart" th:value="#{product.buyNow}"/>
+        </blc:form>
+    </div>-->
+    <div class="add_to_cart">
+        <blc:form method="POST" th:action="@{/cart/add}">
+            <input type="hidden" name="productId" th:value="*{id}" />
+            <input type="hidden" name="quantity" value="1" />
+            <input type="hidden" name="hasProductOptions" th:value="*{!#lists.isEmpty(productOptions)}" />
             &nbsp;
         </blc:form>
     </div>

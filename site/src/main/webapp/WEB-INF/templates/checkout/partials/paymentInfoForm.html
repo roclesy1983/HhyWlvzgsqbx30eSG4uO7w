@@ -13,7 +13,7 @@
 
     <div th:if="${'FORM' == sectionDTO.state.type}"
          id="payment_info_form">
-
+		<div th:if="${!cart.orderItems[0].product.isService}" th:remove="tag">
         <dl id="promoCreditOptions">
             <dt>
                 <input type="checkbox" id="promoCreditOption_credit" />
@@ -30,7 +30,7 @@
                 <div th:replace="checkout/partials/promoCodes :: promo-code-form"></div>
             </dd>
         </dl>
-
+		</div>
         <div th:replace="checkout/partials/paymentMethodForm :: payment-method-form"></div>
 
         <div class="clearfix"></div>

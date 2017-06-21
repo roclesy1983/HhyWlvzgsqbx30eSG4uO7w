@@ -16,19 +16,21 @@
 
 package com.mycompany.worklow.checkout;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.annotation.Resource;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.broadleafcommerce.common.email.domain.EmailTargetImpl;
 import org.broadleafcommerce.common.email.service.EmailService;
 import org.broadleafcommerce.common.email.service.info.EmailInfo;
 import org.broadleafcommerce.core.checkout.service.workflow.CheckoutSeed;
 import org.broadleafcommerce.core.order.domain.Order;
+import org.broadleafcommerce.core.order.domain.OrderItemAttribute;
 import org.broadleafcommerce.core.workflow.BaseActivity;
 import org.broadleafcommerce.core.workflow.ProcessContext;
-
-import java.util.HashMap;
-
-import javax.annotation.Resource;
-
 
 /**
  * Send order confirmation email
@@ -38,38 +40,71 @@ import javax.annotation.Resource;
  */
 public class SendOrderConfirmationEmailActivity extends BaseActivity<ProcessContext<CheckoutSeed>> {
 
-    protected static final Log LOG = LogFactory.getLog(SendOrderConfirmationEmailActivity.class);
+	protected static final Log LOG = LogFactory.getLog(SendOrderConfirmationEmailActivity.class);
 
-    @Resource(name = "blEmailService")
-    protected EmailService emailService;
-    
-    @Resource(name = "blOrderConfirmationEmailInfo")
-    protected EmailInfo orderConfirmationEmailInfo;
-    
-    @Override
-    public ProcessContext<CheckoutSeed> execute(ProcessContext<CheckoutSeed> context) throws Exception {
-        Order order = context.getSeedData().getOrder();
-        HashMap<String, Object> vars = new HashMap<String, Object>();
-        vars.put("customer", order.getCustomer());
-        vars.put("orderNumber", order.getOrderNumber());
-        vars.put("order", order);
+	@Resource(name = "blEmailService")
+	protected EmailService emailService;
 
-        //Email service failing should not trigger rollback
-        try {
-            emailService.sendTemplateEmail(order.getEmailAddress(), getOrderConfirmationEmailInfo(), vars);
-        } catch (Exception e) {
-            LOG.error(e);
-        }
-        return context;
-    }
-    
-    public EmailInfo getOrderConfirmationEmailInfo() {
-        return orderConfirmationEmailInfo;
-    }
+	@Resource(name = "blOrderConfirmationEmailInfo")
+	protected EmailInfo orderConfirmationEmailInfo;
 
-    public void setOrderConfirmationEmailInfo(EmailInfo orderConfirmationEmailInfo) {
-        this.orderConfirmationEmailInfo = orderConfirmationEmailInfo;
-    }
+	@Override
+	public ProcessContext<CheckoutSeed> execute(ProcessContext<CheckoutSeed> context) throws Exception {
+		Order order = context.getSeedData().getOrder();
+
+		if (order.getDiscreteOrderItems().get(0).getProduct().getIsService()) {
+			sendServiceEmail(order);
+		} else {
+			sendGoodsEmail(order);
+		}
+
+		return context;
+	}
+
+	public EmailInfo getOrderConfirmationEmailInfo() {
+		return orderConfirmationEmailInfo;
+	}
+
+	public void setOrderConfirmationEmailInfo(EmailInfo orderConfirmationEmailInfo) {
+		this.orderConfirmationEmailInfo = orderConfirmationEmailInfo;
+	}
+
+	private void sendGoodsEmail(Order order) {
+		HashMap<String, Object> vars = new HashMap<String, Object>();
+		vars.put("customer", order.getCustomer());
+		vars.put("orderNumber", order.getOrderNumber());
+		vars.put("order", order);
+
+		// Email service failing should not trigger rollback
+		try {
+			emailService.sendTemplateEmail(order.getEmailAddress(), getOrderConfirmationEmailInfo(), vars);
+		} catch (Exception e) {
+			LOG.error(e);
+		}
+	}
+
+	private void sendServiceEmail(Order order) {
+		HashMap<String, Object> vars = new HashMap<String, Object>();
+		EmailInfo emailInfo = new EmailInfo();
+
+		emailInfo.setFromAddress(orderConfirmationEmailInfo.getFromAddress());
+		emailInfo.setSubject("[Appointment Number:" + order.getOrderNumber() + "]");
+		emailInfo.setMessageBody("-------------------------<br />The appointment is sent to the clinic.<br />The clinic: " + order.getDiscreteOrderItems().get(0).getProduct().getName()
+				+ "<br />The appointed date:" + getDateFromOptions(order.getOrderItems().get(0).getOrderItemAttributes())
+				+ "<br />The clinic will send you an email to confirm this appoinment.<br />Thank you.<br />-------------------------");
+		EmailTargetImpl emailTarget = new EmailTargetImpl();
+		emailTarget.setEmailAddress(order.getEmailAddress());
+
+		// Email service failing should not trigger rollback
+		try {
+			emailService.sendBasicEmail(emailInfo, emailTarget, vars);
+		} catch (Exception e) {
+			LOG.error(e);
+		}
+	}
+
+	private String getDateFromOptions(Map<String, OrderItemAttribute> options) {
+		return ((OrderItemAttribute) options.get("Month")).getValue() + ", " + ((OrderItemAttribute) options.get("Day")).getValue() + ", " + ((OrderItemAttribute) options.get("Time")).getValue();
+	}
 
 }
-

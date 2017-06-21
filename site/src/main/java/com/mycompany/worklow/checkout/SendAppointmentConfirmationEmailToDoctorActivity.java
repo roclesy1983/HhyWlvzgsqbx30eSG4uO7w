@@ -17,6 +17,7 @@
 package com.mycompany.worklow.checkout;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -28,6 +29,7 @@ import org.broadleafcommerce.common.email.service.info.EmailInfo;
 import org.broadleafcommerce.core.catalog.service.CatalogService;
 import org.broadleafcommerce.core.checkout.service.workflow.CheckoutSeed;
 import org.broadleafcommerce.core.order.domain.Order;
+import org.broadleafcommerce.core.order.domain.OrderItemAttribute;
 import org.broadleafcommerce.core.workflow.BaseActivity;
 import org.broadleafcommerce.core.workflow.ProcessContext;
 import org.broadleafcommerce.profile.core.domain.Customer;
@@ -64,7 +66,7 @@ public class SendAppointmentConfirmationEmailToDoctorActivity extends BaseActivi
 		emailInfo.setFromAddress(fromEmailAddress);
 		emailInfo.setSubject("[Appointment Number:" + order.getOrderNumber() + "]");
 		emailInfo.setMessageBody("-------------------------<br />新しい予約はきました。<br />患者様：" + order.getCustomer().getLastName() + " " + order.getCustomer().getFirstName() + "<br />予約希望日："
-				+ order.getOrderItems().get(0).getOrderItemAttributes() + "<br />患者様と連絡がある場合、このメールに返信してください。分かりやすい日本語を書いてください。<br />よろしくお願いします。<br />-------------------------");
+				+ getDateFromOptions(order.getOrderItems().get(0).getOrderItemAttributes()) + "<br />患者様と連絡がある場合、このメールに返信してください。分かりやすい日本語を書いてください。<br />よろしくお願いします。<br />-------------------------");
 		EmailTargetImpl emailTarget = new EmailTargetImpl();
 		emailTarget.setEmailAddress(clinicEmailAddressTo);
 
@@ -75,6 +77,51 @@ public class SendAppointmentConfirmationEmailToDoctorActivity extends BaseActivi
 			LOG.error(e);
 		}
 		return context;
+	}
+
+	private String getDateFromOptions(Map<String, OrderItemAttribute> options) {
+		String monthJa = "";
+		switch (MonthEnToJa.valueOf(((OrderItemAttribute) options.get("Month")).getValue())) {
+		case Jan:
+			monthJa = "1";
+			break;
+		case Feb:
+			monthJa = "2";
+			break;
+		case Mar:
+			monthJa = "3";
+			break;
+		case Apr:
+			monthJa = "4";
+			break;
+		case May:
+			monthJa = "5";
+			break;
+		case Jun:
+			monthJa = "6";
+			break;
+		case Jul:
+			monthJa = "7";
+			break;
+		case Aug:
+			monthJa = "8";
+			break;
+		case Sep:
+			monthJa = "9";
+			break;
+		case Otc:
+			monthJa = "10";
+			break;
+		case Nov:
+			monthJa = "11";
+			break;
+		case Dec:
+			monthJa = "12";
+			break;
+		default:
+			break;
+		}
+		return monthJa + "月" + ((OrderItemAttribute) options.get("Day")).getValue() + "日　" + ((OrderItemAttribute) options.get("Time")).getValue();
 	}
 
 }
