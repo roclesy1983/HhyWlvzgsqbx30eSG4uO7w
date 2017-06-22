@@ -5,13 +5,13 @@
 
     <div id="order_confirmation">
         <h2><span th:utext="#{confirmation.success}">Success!</span></h2>
-        <h3><span th:utext="#{confirmation.orderNum}">Order Confirmation #</span> - <span th:utext="${order.orderNumber}"/></h3>
+        <h3><span th:utext="#{confirmation.orderNum}">Appointment Confirmation #</span> - <span th:utext="${order.orderNumber}"/></h3>
         <p class="confirmation-note"><span th:utext="#{confirmation.confirmEmail.toBeSent}">A confirmation email will be sent to</span> <span th:utext="${order.emailAddress}"></span>.</p>
     </div>
 
     <div id="cart">
 
-        <div class="cart_title"><span th:utext="#{confirmation.orderSummary}">Order Summary</span></div>
+        <div class="cart_title"><span th:utext="#{confirmation.orderSummary}">Appointment Summary</span></div>
 
         <table id="cart_products">
             <thead>
@@ -81,6 +81,7 @@
                     <td class="discount" th:if="${order.orderAdjustmentsValue.zero}">---</td>
                     <td class="discount" th:unless="*{order.orderAdjustmentsValue.zero}" blc:price="${order.orderAdjustmentsValue}"></td>
                 </tr>
+                <div th:if="${!order.orderItems[0].product.isService}" th:remove="tag">
                 <tr>
                     <td><span th:utext="#{confirmation.taxes}">Taxes</span></td>
                     <td blc:price="${order.totalTax}"></td>
@@ -89,9 +90,10 @@
                     <td><span th:utext="#{confirmation.shipping}">Shipping</span></td>
                     <td blc:price="${order.totalShipping}"></td>
                 </tr>
+                </div>
             </table>
         </div>
-
+		<div th:if="${!order.orderItems[0].product.isService}" th:remove="tag">
         <div class="cart_title"><span th:utext="#{confirmation.shipping.info}">Shipping Information</span></div>
 
         <div class="clearfix"></div>
@@ -147,7 +149,7 @@
                 <div class="clearfix"></div>
             </div>
         </div>
-
+		</div>
         <div class="cart_title"><span th:utext="#{confirmation.billing.info}">Billing Information</span></div>
 
         <div class="clearfix"></div>
