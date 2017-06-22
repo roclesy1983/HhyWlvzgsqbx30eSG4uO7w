@@ -2,6 +2,14 @@
  * used by various other areas of the site */
 var HC = (function($) {
     
+	var quickviewOptions = {
+	        minWidth    : 760,
+	        maxWidth    : 760,
+	        minHeight   : 485,
+	        maxHeight   : 700,
+	        position    : ['30px']
+	};
+	
     function showFacetMultiselect(abbr) {
         $.modal($('#facet-' + abbr), {
             maxWidth: 200,
@@ -112,16 +120,28 @@ var HC = (function($) {
     function getPricingData() {
         return $('#product-option-data').data('product-option-pricing');
     }
-
+    
+    /**
+     * Hides/shows a product's quickview link
+     * @param {element} $container - the container of the quickview link
+     * @param {boolean} show - whether or not the quickview link should be shown
+     */
+    function toggleQuickview($container, show) {
+		var $qv = $container.find('.js-quickview');
+		$qv.toggle(show);
+	}
+    
     function updateLocaleSelection(){
         var locale = $('span#selectedLocale').text();
         $("#" + locale).addClass('selected');
     }
     
     return {
-        showNotification : showNotification,
+    	quickviewOptions : quickviewOptions,
+    	showNotification : showNotification,
         changeProductOption : changeProductOption,
         showFacetMultiselect : showFacetMultiselect,
+        toggleQuickview : toggleQuickview,
         getProductOptionData : getProductOptionData,
         updateLocaleSelection: updateLocaleSelection
     }

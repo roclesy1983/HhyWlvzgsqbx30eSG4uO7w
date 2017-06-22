@@ -12,7 +12,7 @@ $(function(){
             swipeStatus         : swipeStatus,
             allowPageScroll     : "vertical",
             threshold           : 40            
-    }
+    };
 
     // Update the locale that has been selected
     HC.updateLocaleSelection();

@@ -57,6 +57,14 @@ public class SendAppointmentConfirmationEmailToDoctorActivity extends BaseActivi
 	@Override
 	public ProcessContext<CheckoutSeed> execute(ProcessContext<CheckoutSeed> context) throws Exception {
 		Order order = context.getSeedData().getOrder();
+		if (order.getDiscreteOrderItems().get(0).getProduct().getIsService()) {
+			sendToDocServiceEmail(order);
+		}
+
+		return context;
+	}
+
+	private void sendToDocServiceEmail(Order order) {
 		HashMap<String, Object> vars = new HashMap<String, Object>();
 
 		Customer clinic = catalogService.readCustomerByOrder(order);
@@ -76,7 +84,6 @@ public class SendAppointmentConfirmationEmailToDoctorActivity extends BaseActivi
 		} catch (Exception e) {
 			LOG.error(e);
 		}
-		return context;
 	}
 
 	private String getDateFromOptions(Map<String, OrderItemAttribute> options) {

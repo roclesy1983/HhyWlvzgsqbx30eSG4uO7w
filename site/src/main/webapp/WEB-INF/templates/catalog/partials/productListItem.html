@@ -1,7 +1,7 @@
 <div th:if="*{featuredProduct}" class="new_badge">New!</div>
 
 <div class="image">
-    <a th:href="@{*{url}}">
+    <a th:href="@{*{url}}" class="imageLink">
     <img th:if="*{media['primary']}" blc:src="@{*{media['primary'].url} + '?browse'}" th:alt="*{name}" />
     <!--<div class="price" th:if="${#object instanceof T(org.broadleafcommerce.core.catalog.domain.ProductBundle)}">
         <div blc:price="*{salePrice}" th:if="*{onSale}" th:classappend="*{defaultSku.onSale}? 'sale'"></div>
@@ -11,6 +11,9 @@
         <div blc:price="*{defaultSku.salePrice}" th:if="*{defaultSku.onSale}" th:classappend="*{defaultSku.onSale}? 'sale'"></div>
         <div blc:price="*{defaultSku.retailPrice}" th:classappend="*{defaultSku.onSale}? 'has-sale'"></div>
     </div>-->
+	<div class="js-quickview quickview" th:if="${customer.preprod}" >
+        <div>Quick View</div>
+    </div>
     </a>
 </div>
 
