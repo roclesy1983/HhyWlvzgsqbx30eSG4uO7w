@@ -51,7 +51,12 @@
                      </ul>
                 </blc:product_option_display>
                 </td>
-                <td align="center" th:utext="*{quantity}"></td>
+	            <div th:if="${item.product.isService}" th:remove="tag">
+	            <td align="center"></td>
+	            </div>
+	            <div th:unless="${item.product.isService}" th:remove="tag">
+	            <td align="center" th:utext="*{quantity}"></td>
+	            </div>
                 <td align="center" blc:price="*{price}"></td>
                 <td align="center" th:if="*{adjustmentValue.zero}">---</td>
                 <td align="center" class="discount" th:unless="*{adjustmentValue.zero}" >

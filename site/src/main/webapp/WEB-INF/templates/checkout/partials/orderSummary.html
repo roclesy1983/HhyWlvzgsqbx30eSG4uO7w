@@ -46,7 +46,12 @@
                     <li th:each="doi : *{discreteOrderItems}" th:utext="${doi.quantity + ' x ' + doi.name}" />
                 </ul>
             </td>
+            <div th:if="${item.product.isService}" th:remove="tag">
+            <td align="center"></td>
+            </div>
+            <div th:unless="${item.product.isService}" th:remove="tag">
             <td align="center" th:utext="*{quantity}"></td>
+            </div>
             <td align="center" blc:price="*{price}"></td>
             <td align="center" th:if="*{adjustmentValue.zero}">---</td>
 
