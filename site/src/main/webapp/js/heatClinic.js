@@ -3,11 +3,14 @@
 var HC = (function($) {
     
 	var quickviewOptions = {
-	        minWidth    : 760,
-	        maxWidth    : 760,
-	        minHeight   : 485,
-	        maxHeight   : 700,
-	        position    : ['30px']
+	        maxWidth    : 845,
+	        maxHeight   : 823,
+            fitToView   : false,
+            width       : '100%',
+            height      : '100%',
+            autoSize    : true,
+            closeClick  : false,
+            topRatio    : 0
 	};
 	
     function showFacetMultiselect(abbr) {
