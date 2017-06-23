@@ -89,7 +89,7 @@
                         </div>
                     </blc:form>
                 </div>
-                    
+                <div th:if="${#httpServletRequest.getParameter('quickview')  == null}" th:remove="tag">
                 <p>
                     Share this Clinic:
                     <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
@@ -102,7 +102,7 @@
                     </div>
                     <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-5006d3e47d6ace5d"></script>
                 </p>
-                
+                </div>
             </div>
             
             <div id="product_main_image" th:if="*{media['primary']}">
@@ -136,7 +136,9 @@
                     <blc:ratings itemId="${product.id}" />
                     <div th:if="${ratingSummary}" th:object="${ratingSummary}">
                         <span class="title">Patients' Rating</span>
+                        
                         <div id="community-rating-container">
+                        	<div th:if="${#httpServletRequest.getParameter('quickview')  == null}" th:remove="tag">
                             <blc:form id="community-rating" class="star-rating" th:attr="data-community-rating=*{averageRating}">
                                 <input type="radio" class="star {split:4}" /> 
                                 <input type="radio" class="star {split:4}" /> 
@@ -159,10 +161,12 @@
                                 <input type="radio" class="star {split:4}" />
                                 <input type="radio" class="star {split:4}" />
                             </blc:form>
+                            </div>
                             <br/>
                             <div class="total-reviews">
                                 (<span th:utext="*{numberOfReviews}"></span><span th:if="*{numberOfReviews} == 1"> review</span><span th:if="*{numberOfReviews} > 1"> reviews</span>)
                             </div>
+                        
                         </div>
                         <div class="clearfix"></div>
                             <blc:ratings itemId="${product.id}" />
@@ -172,6 +176,7 @@
                                     <span th:utext="*{helpfulCount()}">9</span> of
                                     <span th:utext="*{notHelpfulCount()} + *{helpfulCount()}">10</span> found the following review helpful
                                 </p>
+                                <div th:if="${#httpServletRequest.getParameter('quickview')  == null}" th:remove="tag">
                                 <blc:form class="customer-rating" th:attr="data-customer-rating=*{ratingDetail.rating}">
                                     <input type="radio" class="star" />
                                     <input type="radio" class="star" />
@@ -179,6 +184,7 @@
                                     <input type="radio" class="star" />
                                     <input type="radio" class="star" />
                                 </blc:form>
+                                </div>
                                 <span class="reviewer-info">
                                     on <span th:utext="*{#dates.format(reviewSubmittedDate, 'MMMM d, yyyy')}">1-2-2010</span>
                                 </span>
@@ -193,6 +199,7 @@
                                         <span th:utext="*{helpfulCount()}">9</span> of
                                         <span th:utext="*{notHelpfulCount()} + *{helpfulCount()}">10</span> found the following review helpful
                                     </p>
+                                    <div th:if="${#httpServletRequest.getParameter('quickview')  == null}" th:remove="tag">
                                     <blc:form class="customer-rating" th:attr="data-customer-rating=*{ratingDetail.rating}">
                                         <input type="radio" class="star" />
                                         <input type="radio" class="star" />
@@ -200,6 +207,7 @@
                                         <input type="radio" class="star" />
                                         <input type="radio" class="star" />
                                     </blc:form>
+                                    </div>
                                     <span class="reviewer-info">
                                         by <span class="penname" th:utext="${review.customer.firstName}">John</span> on
                                         <span th:utext="*{#dates.format(reviewSubmittedDate, 'MMMM d, yyyy')}">1-2-2010</span>
@@ -210,6 +218,7 @@
                             </ul>
                         </div>
                     </div>
+                    <div th:if="${#httpServletRequest.getParameter('quickview')  == null}" th:remove="tag">
                     <div th:if="${customer.loggedIn}">
                         <div th:if="${ratingSummary}">
                             <a th:unless="${currentCustomerReview}" class="create-review" th:href="@{'/reviews/product/' + ${product.id}}">Create a review</a> 
@@ -221,6 +230,7 @@
                     <div th:unless="${customer.loggedIn}">
                         <a th:if="${ratingSummary}" href="#" th:href="@{/login}" class="small dark account">Login to create a review</a>
                         <a th:unless="${ratingSummary}" th:href="@{/login}" class="account">Login and be the first to write a review!</a>
+                    </div>
                     </div>
                 </div>          
         </section>

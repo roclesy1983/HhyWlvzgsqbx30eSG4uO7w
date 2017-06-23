@@ -11,7 +11,7 @@
         <div blc:price="*{defaultSku.salePrice}" th:if="*{defaultSku.onSale}" th:classappend="*{defaultSku.onSale}? 'sale'"></div>
         <div blc:price="*{defaultSku.retailPrice}" th:classappend="*{defaultSku.onSale}? 'has-sale'"></div>
     </div>-->
-	<div class="js-quickview quickview" th:if="${customer.preprod}" >
+	<div class="js-quickview quickview">
         <div>Quick View</div>
     </div>
     </a>

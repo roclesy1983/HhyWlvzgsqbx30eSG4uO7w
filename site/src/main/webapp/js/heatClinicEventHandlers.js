@@ -18,7 +18,7 @@ $('body').on('mouseleave', '.product_container .image', function() {
 $('body').on('click', '.js-quickview', function() {
     var link = $(this).closest('.image').find('.imageLink').attr('href');
     BLC.ajax({
-        url: link
+        url: link + "?quickview=true"
     }, function(data) {
         data.find('.product-options').removeClass('hidden');
         data.find('.product-option-nonjs').remove();
