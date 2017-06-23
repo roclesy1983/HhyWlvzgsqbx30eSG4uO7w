@@ -1,15 +1,20 @@
 /**
  * Reveal the Product's quickview link
  */
+var windowsize = $(window).width();
 $('body').on('mouseenter', '.product_container .image', function() {
-    HC.toggleQuickview($(this), true);
+	if(windowsize > 480) {
+		HC.toggleQuickview($(this), true);
+	}
 });
 
 /**
  * Hide the Product's quickview link
  */
 $('body').on('mouseleave', '.product_container .image', function() {
-    HC.toggleQuickview($(this), false);
+	if(windowsize > 480) {
+		HC.toggleQuickview($(this), false);
+	}
 });
 
 /**
@@ -22,7 +27,7 @@ $('body').on('click', '.js-quickview', function() {
     }, function(data) {
         data.find('.product-options').removeClass('hidden');
         data.find('.product-option-nonjs').remove();
-        $.modal(data.find('#left_column')[0], HC.quickviewOptions);
+        $.modal(data.find('#left_column').first().css({"width": "90%", "height": "85%"}), HC.quickviewOptions);
         $('#simplemodal-container').find('.jqzoom').jqzoom({
             zoomType: 'innerzoom', 
             zoomWidth: 402,

@@ -2395,7 +2395,7 @@ button[disabled]:hover, input[disabled]:hover {
 @media ( max-width : 1024px) {
 	.slider_container, .slider_container>div, .slider_container .slide a,
 		.slider_container .slide img, .slider_container .slide div {
-		width: 768px !important;
+		width: 748px !important;
 		height: 229px !important;
 	}
 	.slider_container {
@@ -3292,7 +3292,8 @@ and (max-width : 480px) {
             z-index: 10;
         }
         
-            #products li .image .price {
+            #products li .image .price,
+            #products li .image .quickview {
                 position: absolute;
                 background-color: black;
                 color: white;
@@ -3302,6 +3303,10 @@ and (max-width : 480px) {
                 font-weight: 600;
                 bottom: 5px;
                 right: 5px;
+            }
+            
+            #products li .image .quickview {
+                display: block;
             }
         
             #products li .image img {
