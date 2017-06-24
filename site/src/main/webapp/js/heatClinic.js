@@ -2,27 +2,35 @@
  * used by various other areas of the site */
 var HC = (function($) {
     
-	var quickviewOptions = {
-	        maxWidth    : 845,
-	        maxHeight   : 823,
-            fitToView   : false,
-            width       : '100%',
-            height      : '100%',
-            autoSize    : true,
-            closeClick  : false,
-            topRatio    : 0
+
+		var quickviewOptions = {
+		maxWidth : 845,
+		maxHeight : 823,
+		fitToView : false,
+		width : '100%',
+		height : '100%',
+		autoSize : true,
+		closeClick : false,
+		topRatio : 0
 	};
-	
-    function showFacetMultiselect(abbr) {
-        $.modal($('#facet-' + abbr), {
-            maxWidth: 200,
-            minWidth: 200,
-            minHeight: 150
-        });
-    }
+
+	function showFacetMultiselect(abbr) {
+		$.modal($('#facet-' + abbr).css({
+			"height" : "90%"
+		}), {
+			maxWidth : 200,
+			minWidth : 200,
+			fitToView : false,
+			width : '100%',
+			height : '100%',
+			autoSize : true,
+			closeClick : false,
+			topRatio : 0
+		});
+	}
     
     function updateCurrentImage() {
-        //grab the active product option values
+        // grab the active product option values
         var activeOptions = $('.product-options .active');
         var optionValues = [];
         $.each(activeOptions, function() {
