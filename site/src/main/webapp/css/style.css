@@ -2933,16 +2933,16 @@ and (max-width : 768px)  {
 	
 	#order-history > li .order-number {
 	    padding-left: 6px;
-	    width: 135px;
+	    width: 85px;
 	}
 	
 	#order-history > li .appt-number {
 	    padding-left: 6px;
-	    width: 115px;
+	    width: 85px;
 	}
 	
 	#order-history > li .submit-date {
-	    width: 45px;
+	    width: 75px;
 	}
 	
 	#order-history > li .status {
@@ -3554,16 +3554,16 @@ and (max-width : 480px) {
 	}
 	#order-history > li .order-number {
 	    padding-left: 6px;
-	    width: 135px;
+	    width: 85px;
 	}
 	
 	#order-history > li .appt-number {
 	    padding-left: 6px;
-	    width: 115px;
+	    width: 85px;
 	}
 	
 	#order-history > li .submit-date {
-	    width: 40px;
+	    width: 70px;
 	}
 	
 	#order-history > li .status {
