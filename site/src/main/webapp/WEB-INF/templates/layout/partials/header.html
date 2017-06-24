@@ -60,7 +60,7 @@
 
         <div id="logo"><h1><a th:href="@{/}">MediDoc Search Home</a></h1></div>
         
-        <div id="search" th:if="${#httpServletRequest.isUserInRole('ROLE_USER')}">
+        <div id="search" th:if="${!#httpServletRequest.isUserInRole('ROLE_DOCTOR')}">
             <blc:form th:action="@{/search}" method="GET">
             <input type="search" class="search" name="q" th:value="${originalQuery}" placeholder="City or Station"/>
             <input type="submit" id="search_button" value="go" />
