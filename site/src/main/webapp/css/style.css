@@ -3938,8 +3938,8 @@ and (max-width : 480px) {
     display:inline; 
     z-index:3200; 
     position:absolute; 
-    top:-15px; 
-    right:-16px; 
+    top:-10px; 
+    right:-11px; 
     cursor:pointer;
 }
 

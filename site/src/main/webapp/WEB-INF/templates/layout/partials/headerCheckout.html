@@ -8,15 +8,15 @@
                     <tr>
                         <th>Subtotal</th>
                         <th>Promotions</th>
-                        <th>Taxes</th>
-                        <th>Shipping</th>
+                        <!--<th>Taxes</th>
+                        <th>Shipping</th>-->
                     </tr>
                     <tr>
                         <td blc:price="${cart.subTotal}"></td>
                         <td class="discount" th:if="${cart.orderAdjustmentsValue.zero}">---</td>
                         <td class="discount" th:unless="*{cart.orderAdjustmentsValue.zero}" blc:price="${cart.orderAdjustmentsValue}"></td>
-                        <td blc:price="${cart.totalTax}"></td>
-                        <td blc:price="${cart.totalShipping}"></td>
+                        <!--<td blc:price="${cart.totalTax}"></td>
+                        <td blc:price="${cart.totalShipping}"></td>-->
                     </tr>
                 </table>
 
