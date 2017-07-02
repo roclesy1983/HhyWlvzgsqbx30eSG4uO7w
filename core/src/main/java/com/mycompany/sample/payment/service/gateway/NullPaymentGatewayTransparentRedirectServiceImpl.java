@@ -108,4 +108,40 @@ public class NullPaymentGatewayTransparentRedirectServiceImpl implements Payment
 
     }
 
+	@Override
+	public PaymentResponseDTO createCustomerPaymentTokenForm(PaymentRequestDTO requestDTO) throws PaymentException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public PaymentResponseDTO updateCustomerPaymentTokenForm(PaymentRequestDTO requestDTO) throws PaymentException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getCreateCustomerPaymentTokenReturnURLFieldKey(PaymentResponseDTO responseDTO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getCreateCustomerPaymentTokenCancelURLFieldKey(PaymentResponseDTO responseDTO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getUpdateCustomerPaymentTokenReturnURLFieldKey(PaymentResponseDTO responseDTO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getUpdateCustomerPaymentTokenCancelURLFieldKey(PaymentResponseDTO responseDTO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
