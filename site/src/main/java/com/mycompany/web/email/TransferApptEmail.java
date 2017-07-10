@@ -39,15 +39,42 @@ public class TransferApptEmail {
 	@Resource(name = "blOrderService")
 	protected OrderService orderService;
 
-	public void translateAndSendEmail(MimeMessage mimeMessage) throws Exception {
-
-		Matcher matcher = Pattern.compile("[0-9]+").matcher(mimeMessage.getSubject());
-		String orderNumber = "";
-		while (matcher.find()) {
-			orderNumber = matcher.group();
+	public void translateAndSendEmail(MimeMessage mimeMessage) {
+		try {
+			Matcher matcher = Pattern.compile("[0-9]+").matcher(mimeMessage.getSubject());
+			String orderNumber = "";
+			while (matcher.find()) {
+				orderNumber = matcher.group();
+			}
+			Order order = orderService.findOrderByOrderNumber(orderNumber);
+			if (order == null) {
+				sendBackEmail(mimeMessage);
+			} else {
+				forwardEmail(mimeMessage, order);
+			}
+		} catch (Exception e) {
+			LOG.error(e);
 		}
-		Order order = orderService.findOrderByOrderNumber(orderNumber);
+	}
 
+	private void sendBackEmail(MimeMessage mimeMessage) throws Exception {
+		HashMap<String, Object> vars = new HashMap<String, Object>();
+
+		EmailInfo emailInfo = new EmailInfo();
+
+		emailInfo.setFromAddress(fromEmailAddress);
+		emailInfo.setSubject(mimeMessage.getSubject());
+		EmailTargetImpl emailTarget = new EmailTargetImpl();
+
+		emailInfo.setMessageBody("-------------------------<br />この予約は見つかりません。" + fromEmailAddress + "に問い合わせてください。<br />The appointment cannot be found. Please contact " + fromEmailAddress
+				+ ".<br />-------------------------");
+		emailTarget.setEmailAddress(mimeMessage.getFrom()[0].toString());
+
+		// Email service failing should not trigger rollback
+		emailService.sendBasicEmail(emailInfo, emailTarget, vars);
+	}
+
+	private void forwardEmail(MimeMessage mimeMessage, Order order) throws Exception {
 		String patientEmailAddress = order.getCustomer().getEmailAddress();
 		String clinicEmailAddress = catalogService.readCustomerByOrder(order).getEmailAddress();
 
@@ -72,15 +99,10 @@ public class TransferApptEmail {
 		}
 
 		// Email service failing should not trigger rollback
-		try {
-			emailService.sendBasicEmail(emailInfo, emailTarget, vars);
-		} catch (Exception e) {
-			LOG.error(e);
-		}
-
+		emailService.sendBasicEmail(emailInfo, emailTarget, vars);
 	}
 
-	public String translate(String translateText, String sourceLanguage) {
+	private String translate(String translateText, String sourceLanguage) {
 		Translate translate = TranslateOptions.newBuilder().setApiKey("AIzaSyDq18Z3RIAR_PKn0dLmsYwUkbRjRZKu4Bs").build().getService();
 		String result = translateText;
 		Translation translation = null;
