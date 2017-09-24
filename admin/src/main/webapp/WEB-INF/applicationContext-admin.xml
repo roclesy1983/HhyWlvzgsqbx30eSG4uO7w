@@ -50,9 +50,9 @@
         <property name="password"><value>medidoc2016</value></property>
         <property name="javaMailProperties">
             <props>
-                <prop key="mail.smtp.auth">true</prop>
                 <prop key="mail.smtp.starttls.enable">true</prop>
                 <prop key="mail.smtp.timeout">25000</prop>
+                <prop key="mail.smtp.auth">true</prop>
             </props>
         </property>
     </bean>

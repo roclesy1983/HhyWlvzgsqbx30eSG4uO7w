@@ -87,7 +87,7 @@ public class SendOrderConfirmationEmailActivity extends BaseActivity<ProcessCont
 		HashMap<String, Object> vars = new HashMap<String, Object>();
 		EmailInfo emailInfo = new EmailInfo();
 
-		emailInfo.setFromAddress(orderConfirmationEmailInfo.getFromAddress());
+		emailInfo.setFromAddress("rcpt.medidoc@gmail.com");
 		emailInfo.setSubject("[Appointment Number:" + order.getOrderNumber() + "]");
 		emailInfo.setMessageBody("-------------------------<br />The appointment is sent to the clinic.<br />The clinic: " + order.getDiscreteOrderItems().get(0).getProduct().getName()
 				+ "<br />The appointed date:" + getDateFromOptions(order.getOrderItems().get(0).getOrderItemAttributes())

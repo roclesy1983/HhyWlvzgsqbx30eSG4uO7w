@@ -10,8 +10,8 @@
     <name>ecommerce</name>
     <url>http://www.blc-archetype.com</url>
     <properties>
-        <blc.version>4.0.11-SNAPSHOT</blc.version>
-        <blc.menu.version>1.1.1-SNAPSHOT</blc.menu.version>
+        <blc.version>4.0.22-GA</blc.version>
+        <blc.menu.version>1.0.3-GA</blc.menu.version>
         <tomcat.conf.dir.name>tomcat-server-conf</tomcat.conf.dir.name>
         
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -341,7 +341,8 @@
                 <classifier>tests</classifier>
                 <scope>test</scope>
             </dependency>
-			<dependency>
+
+            <dependency>
 				<groupId>org.springframework.social</groupId>
 				<artifactId>spring-social-facebook</artifactId>
 				<version>2.0.3.RELEASE</version>

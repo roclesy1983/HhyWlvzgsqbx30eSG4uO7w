@@ -37,7 +37,7 @@
         </artifact:mvn>
     </target>
 
-    <target name="tomcat">
+    <target name="tomcat" depends="start-db">
         <delete dir="war/WEB-INF/lib"/>
         <artifact:mvn mavenHome="${maven.home}" fork="true">
             <jvmarg value="-XX:MaxPermSize=256M" />
@@ -57,7 +57,7 @@
         </artifact:mvn>
     </target>
 
-    <target name="tomcat-jrebel">
+    <target name="tomcat-jrebel" depends="start-db">
         <delete dir="war/WEB-INF/lib"/>
         <artifact:mvn mavenHome="${maven.home}" fork="true">
             <jvmarg value="-XX:MaxPermSize=256M" />

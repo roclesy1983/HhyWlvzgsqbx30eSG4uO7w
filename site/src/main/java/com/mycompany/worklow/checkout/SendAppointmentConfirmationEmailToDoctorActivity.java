@@ -71,7 +71,7 @@ public class SendAppointmentConfirmationEmailToDoctorActivity extends BaseActivi
 		String clinicEmailAddressTo = clinic.getEmailAddress();
 		EmailInfo emailInfo = new EmailInfo();
 
-		emailInfo.setFromAddress(fromEmailAddress);
+		emailInfo.setFromAddress("rcpt.medidoc@gmail.com");
 		emailInfo.setSubject("[Appointment Number:" + order.getOrderNumber() + "]");
 		emailInfo.setMessageBody("-------------------------<br />新しい予約はきました。<br />患者様：" + order.getCustomer().getLastName() + " " + order.getCustomer().getFirstName() + "<br />予約希望日："
 				+ getDateFromOptions(order.getOrderItems().get(0).getOrderItemAttributes()) + "<br />患者様と連絡がある場合、このメールに返信してください。分かりやすい日本語を書いてください。<br />よろしくお願いします。<br />-------------------------");
