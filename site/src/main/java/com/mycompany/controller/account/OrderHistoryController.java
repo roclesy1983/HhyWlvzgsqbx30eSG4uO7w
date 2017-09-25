@@ -60,7 +60,7 @@ public class OrderHistoryController extends BroadleafOrderHistoryController {
     }
 
     @RequestMapping(value = "/complete/{orderNumber}", method = RequestMethod.GET)
-    public String CompleteOrder(HttpServletRequest request, Model model, @PathVariable("orderNumber") String orderNumber) {
+    public String completeOrder(HttpServletRequest request, Model model, @PathVariable("orderNumber") String orderNumber) {
     	Order order = orderService.findOrderByOrderNumber(orderNumber);
         Order orderModel = orderService.completeOrder(order);
         if (orderModel == null) {
@@ -70,7 +70,7 @@ public class OrderHistoryController extends BroadleafOrderHistoryController {
     }
     
     @RequestMapping(value = "/cancel/{orderNumber}", method = RequestMethod.GET)
-    public String CancelOrder(HttpServletRequest request, Model model, @PathVariable("orderNumber") String orderNumber) {
+    public String cancelOrder(HttpServletRequest request, Model model, @PathVariable("orderNumber") String orderNumber) {
     	Order order = orderService.findOrderByOrderNumber(orderNumber);
         Order orderModel = orderService.cancelOrderByDoctor(order);
         if (orderModel == null) {
