@@ -7,7 +7,7 @@
              <span th:id="*{attributeName}" class="option-value" th:attr="data-optiontype=*{type.type}"></span>
              <ul class="cf" th:switch="*{type.type}">
                 <li th:case="'TEXT'">                     
-                    <input th:name="${'itemAttributes[' + productOption.attributeName + ']'}" value="" th:type="*{type}" th:required="*{required}" maxlength="255" />                               
+                    <input th:name="${'itemAttributes[' + productOption.attributeName + ']'}" value="" th:type="*{type}" th:required="*{required}" maxlength="255" placeholder="MM/DD HH:MM" class="masked"/>                               
                 </li>
                 <li th:case="'SELECT'">
                     <select th:name="${'itemAttributes[' + productOption.attributeName + ']'}">

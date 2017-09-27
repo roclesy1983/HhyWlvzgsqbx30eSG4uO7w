@@ -41,10 +41,12 @@ public class TransferApptEmail {
 
 	public void translateAndSendEmail(MimeMessage mimeMessage) {
 		try {
-			Matcher matcher = Pattern.compile("[0-9]+").matcher(mimeMessage.getSubject());
+			Matcher matcher = Pattern.compile("(Appointment Number:)([0-9]+)").matcher(mimeMessage.getSubject());
 			String orderNumber = "";
-			while (matcher.find()) {
-				orderNumber = matcher.group();
+			if(matcher.find()) {
+				orderNumber = matcher.group(2);
+			} else {
+				return;
 			}
 			Order order = orderService.findOrderByOrderNumber(orderNumber);
 			if (order == null) {

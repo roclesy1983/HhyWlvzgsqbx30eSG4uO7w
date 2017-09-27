@@ -55,14 +55,14 @@
                             <div class="add_to_cart" th:classappend="${inCart or !availableInventory}? ' hidden'">
                                 <input type="hidden" name="productId" th:value="*{id}" />
                                 <input type="hidden" name="quantity" value="1" />
-                                <input type="submit" class="addToCart big red" th:value="#{product.buyNow}" th:if="${customer.preprod}"/>
-                                <p th:unless="${customer.preprod}">&nbsp;</p>
+                                <input type="submit" class="addToCart big red" th:value="#{product.buyNow}" th:if="${product.isService}"/>
+                                <p th:unless="${!product.isService}">&nbsp;</p>
                             </div>
                             <p class="error" th:if="${param.errorMessage}" th:utext="${param.errorMessage[0]}"></p>
                         </div>
                     </blc:form>
                 </th:block>
-				<div th:if="${customer.preprod}" th:remove="tag"><div class="product-options" th:substituteby="catalog/partials/productOptions"/></div>
+				<div th:if="${product.isService}" th:remove="tag"><div class="product-options" th:substituteby="catalog/partials/productOptions"/></div>
                 <div th:if="${customer.loggedIn}" th:remove="tag">
 
                     <blc:form method="POST" th:action="@{/account/wishlist/add}">

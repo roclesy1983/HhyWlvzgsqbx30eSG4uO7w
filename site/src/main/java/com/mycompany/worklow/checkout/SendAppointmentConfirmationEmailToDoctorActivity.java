@@ -71,10 +71,12 @@ public class SendAppointmentConfirmationEmailToDoctorActivity extends BaseActivi
 		String clinicEmailAddressTo = clinic.getEmailAddress();
 		EmailInfo emailInfo = new EmailInfo();
 
-		emailInfo.setFromAddress("rcpt.medidoc@gmail.com");
+		emailInfo.setFromAddress(fromEmailAddress);
 		emailInfo.setSubject("[Appointment Number:" + order.getOrderNumber() + "]");
-		emailInfo.setMessageBody("-------------------------<br />新しい予約はきました。<br />患者様：" + order.getCustomer().getLastName() + " " + order.getCustomer().getFirstName() + "<br />予約希望日："
-				+ getDateFromOptions(order.getOrderItems().get(0).getOrderItemAttributes()) + "<br />患者様と連絡がある場合、このメールに返信してください。分かりやすい日本語を書いてください。<br />よろしくお願いします。<br />-------------------------");
+		emailInfo.setMessageBody("-------------------------<br />新しい予約はきました。<br />患者様：" + order.getCustomer().getLastName() + " " + order.getCustomer().getFirstName() + 
+				"<br />予約希望日（月/日 時:分）：<br />" + getDateFromOptions(order.getOrderItems().get(0).getOrderItemAttributes()) + 
+				"<br />症状説明：" + order.getOrderItems().get(0).getOrderItemAttributes().get("Symptom Description").getValue() +
+				"<br />患者様と連絡がある場合、このメールに返信してください。分かりやすい日本語を書いてください。<br />よろしくお願いします。<br />-------------------------");
 		EmailTargetImpl emailTarget = new EmailTargetImpl();
 		emailTarget.setEmailAddress(clinicEmailAddressTo);
 
@@ -87,48 +89,7 @@ public class SendAppointmentConfirmationEmailToDoctorActivity extends BaseActivi
 	}
 
 	private String getDateFromOptions(Map<String, OrderItemAttribute> options) {
-		String monthJa = "";
-		switch (MonthEnToJa.valueOf(((OrderItemAttribute) options.get("Month")).getValue())) {
-		case Jan:
-			monthJa = "1";
-			break;
-		case Feb:
-			monthJa = "2";
-			break;
-		case Mar:
-			monthJa = "3";
-			break;
-		case Apr:
-			monthJa = "4";
-			break;
-		case May:
-			monthJa = "5";
-			break;
-		case Jun:
-			monthJa = "6";
-			break;
-		case Jul:
-			monthJa = "7";
-			break;
-		case Aug:
-			monthJa = "8";
-			break;
-		case Sep:
-			monthJa = "9";
-			break;
-		case Otc:
-			monthJa = "10";
-			break;
-		case Nov:
-			monthJa = "11";
-			break;
-		case Dec:
-			monthJa = "12";
-			break;
-		default:
-			break;
-		}
-		return monthJa + "月" + ((OrderItemAttribute) options.get("Day")).getValue() + "日　" + ((OrderItemAttribute) options.get("Time")).getValue();
+		return "第一希望日：" + ((OrderItemAttribute) options.get("1st Preferred Date")).getValue() + "<br />第二希望日：" + ((OrderItemAttribute) options.get("2nd Preferred Date")).getValue()+ "<br />第三希望日：" + ((OrderItemAttribute) options.get("3rd Preferred Date")).getValue();
 	}
 
 }

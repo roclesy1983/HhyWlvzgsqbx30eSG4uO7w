@@ -19,12 +19,12 @@
                 </a>
             </div>
             <p>
-                <form blc:null_payment_hosted_action="${paymentRequestDTO}" complete_checkout="${false}" method="POST">
+                <!--<form blc:null_payment_hosted_action="${paymentRequestDTO}" complete_checkout="${false}" method="POST">
                     <input type="hidden" name="TRANSACTION_AMT" th:value="${cart.total}"/>
                     <input type="hidden" name="ORDER_ID" th:value="${cart.id}"/>
                     <input type="hidden" name="COMPLETE_CHECKOUT_ON_CALLBACK" value="false"/>
                     <input type="image" src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" align="left" style="margin-right:7px;" alt="Submit Form" />
-                </form>
+                </form>-->
                 <div class="clearfix"></div>
                 <a th:href="@{/}" target="_top">&laquo; <span th:utext="#{cart.continueShopping}">Continue Searching</span></a>
             </p>

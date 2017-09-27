@@ -19,22 +19,28 @@
                     <tr >
                       <td>
                         <div th:object="${orderItem}" th:remove="tag">
+		                <blc:product_option_display orderItem="${orderItem}" th:remove="tag">
+		                     <ul th:unless="${#lists.isEmpty(productOptionDisplayValues)}" class="productOptions" th:remove="tag">
+		                         <div th:each="entry: ${productOptionDisplayValues}">
+		                           <span  th:utext="${entry.key} + ': ' + ${entry.value}"></span>
+		                         </div>
+		                     </ul>
+		                </blc:product_option_display> 
                             <div class="productOptions" th:substituteby="catalog/partials/offers :: orderDetails"/>
-                          
                          </div>
                       </td>
                       <td></td>
                     </tr>
                     
                     </div>
-                    <tr class="shipment-summary merchandise-total">
+                    <!--<tr class="shipment-summary merchandise-total">
                         <td class="label">Merchandise Total:</td>
                         <td class="price" blc:price="${order.subTotal}"></td>
                     </tr>
-                    <!--<tr class="shipment-summary">
+                    <tr class="shipment-summary">
                         <td class="label">Promotions Applied:</td>
                         <td class="price" blc:price="${order.totalAdjustmentsValue}"></td>
-                    </tr>-->
+                    </tr>
                     <tr class="shipment-summary">
                         <td class="label">Shipping Total:</td>
                         <td class="price" blc:price="${order.totalShipping}"></td>
@@ -42,7 +48,7 @@
                     <tr class="shipment-summary taxes">
                         <td class="label">Taxes:</td>
                         <td class="price" blc:price="${order.totalTax}"></td>
-                    </tr>
+                    </tr>-->
                     <tr class="grand-total">
                         <td class="label">Grand Total:</td>
                         <td class="price" blc:price="${order.total}"></td>
@@ -53,7 +59,7 @@
         </li>
     
         <li th:each="fulfillmentGroup, iterStat : *{fulfillmentGroups}" th:object="${fulfillmentGroup}">
-            <div th:unless="*{type?.type == 'GIFT_CARD' or type?.type == 'DIGITAL' or type?.type == 'PHYSICAL_PICKUP'}">
+            <div th:unless="*{type?.type == 'GIFT_CARD' or type?.type == 'DIGITAL' or type?.type == 'PHYSICAL_PICKUP' or order.orderItems[0].product.isService}">
                 <h3>Shipment<span th:if="*{status}" th:utext="' : ' + *{status}"></span></h3>
                 <div class="details">
                     <div class="shipping-information">
@@ -150,7 +156,7 @@
                         <td class="label">Subtotal:</td>
                         <td class="price" blc:price="*{subTotal}"></td>
                     </tr>
-                    <tr th:unless="*{orderAdjustmentsValue.zero}">
+                    <!--<tr th:unless="*{orderAdjustmentsValue.zero}">
                         <td class="label">Promotions:</td>
                         <td class="discount price">(<span blc:price="*{orderAdjustmentsValue}"></span>)</td>
                     </tr>
@@ -161,7 +167,7 @@
                     <tr class="taxes">
                         <td class="label">Taxes:</td>
                         <td class="price" blc:price="*{totalTax}"></td>
-                    </tr>
+                    </tr>-->
                     <tr class="grand-total">
                         <td class="label">Grand Total:</td>
                         <td class="price" blc:price="*{total}"></td>

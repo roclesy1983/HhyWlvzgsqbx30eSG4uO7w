@@ -20,6 +20,8 @@ $(function(){
     // Show the JavaScript version of product options if the user has JavaScript enabled
     $('.product-options').removeClass('hidden');
     $('.product-option-nonjs').remove();
+    
+    $('.masked').mask('00/00 00:00');
 
     // Bind the JavaScript product option boxes to execute on click
     $('body').on('click', '.product-option-group li:not(.unavailable)', function() {

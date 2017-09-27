@@ -31,6 +31,7 @@ import org.broadleafcommerce.core.order.domain.Order;
 import org.broadleafcommerce.core.order.domain.OrderItemAttribute;
 import org.broadleafcommerce.core.workflow.BaseActivity;
 import org.broadleafcommerce.core.workflow.ProcessContext;
+import org.springframework.beans.factory.annotation.Value;
 
 /**
  * Send order confirmation email
@@ -42,6 +43,9 @@ public class SendOrderConfirmationEmailActivity extends BaseActivity<ProcessCont
 
 	protected static final Log LOG = LogFactory.getLog(SendOrderConfirmationEmailActivity.class);
 
+	@Value("${site.reception.emailAddress}")
+	protected String fromEmailAddress;
+	
 	@Resource(name = "blEmailService")
 	protected EmailService emailService;
 
@@ -87,11 +91,12 @@ public class SendOrderConfirmationEmailActivity extends BaseActivity<ProcessCont
 		HashMap<String, Object> vars = new HashMap<String, Object>();
 		EmailInfo emailInfo = new EmailInfo();
 
-		emailInfo.setFromAddress("rcpt.medidoc@gmail.com");
+		emailInfo.setFromAddress(fromEmailAddress);
 		emailInfo.setSubject("[Appointment Number:" + order.getOrderNumber() + "]");
-		emailInfo.setMessageBody("-------------------------<br />The appointment is sent to the clinic.<br />The clinic: " + order.getDiscreteOrderItems().get(0).getProduct().getName()
-				+ "<br />The appointed date:" + getDateFromOptions(order.getOrderItems().get(0).getOrderItemAttributes())
-				+ "<br />The clinic will send you an email to confirm this appoinment.<br />Thank you.<br />-------------------------");
+		emailInfo.setMessageBody("-------------------------<br />The appointment is sent to the clinic.<br />The clinic: " + order.getDiscreteOrderItems().get(0).getProduct().getName() + 
+				"<br />The appointed date(Month/Day Hour:Minute): <br />" + getDateFromOptions(order.getOrderItems().get(0).getOrderItemAttributes()) + 
+				"<br />The symptom description: " + order.getOrderItems().get(0).getOrderItemAttributes().get("Symptom Description").getValue() + 
+				"<br />The clinic will send you an email to confirm this appoinment.<br />Thank you.<br />-------------------------");
 		EmailTargetImpl emailTarget = new EmailTargetImpl();
 		emailTarget.setEmailAddress(order.getEmailAddress());
 
@@ -104,7 +109,7 @@ public class SendOrderConfirmationEmailActivity extends BaseActivity<ProcessCont
 	}
 
 	private String getDateFromOptions(Map<String, OrderItemAttribute> options) {
-		return ((OrderItemAttribute) options.get("Month")).getValue() + ", " + ((OrderItemAttribute) options.get("Day")).getValue() + ", " + ((OrderItemAttribute) options.get("Time")).getValue();
+		return "1st Preferred Date: " + ((OrderItemAttribute) options.get("1st Preferred Date")).getValue() + "<br />2nd Preferred Date: " + ((OrderItemAttribute) options.get("2nd Preferred Date")).getValue()+ "<br />3rd Preferred Date: " + ((OrderItemAttribute) options.get("3rd Preferred Date")).getValue();
 	}
 
 }

@@ -23,7 +23,7 @@
             </div>
 
 
-            <a id="cartLink" class="modalcart" th:href="@{/cart}" th:if="${customer.preprod and #httpServletRequest.isUserInRole('ROLE_USER')}">
+            <a id="cartLink" class="modalcart" th:href="@{/cart}" th:if="${!#httpServletRequest.isUserInRole('ROLE_DOCTOR')}">
                 <img blc:src="@{/img/shopping_cart.png}" alt="Shopping Cart Icon" />
                 &nbsp; 
                 <span id="headerCartItemWordSingular_i18n" style="display: none;" th:utext="#{home.item}" />
