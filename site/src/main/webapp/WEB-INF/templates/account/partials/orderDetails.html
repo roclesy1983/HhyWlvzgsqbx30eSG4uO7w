@@ -22,7 +22,7 @@
 		                <blc:product_option_display orderItem="${orderItem}" th:remove="tag">
 		                     <ul th:unless="${#lists.isEmpty(productOptionDisplayValues)}" class="productOptions" th:remove="tag">
 		                         <div th:each="entry: ${productOptionDisplayValues}">
-		                           <span  th:utext="${entry.key} + ': ' + ${entry.value}"></span>
+		                           <span style="display:block;word-break:break-all;" th:utext="${entry.key} + ': ' + ${entry.value}"></span>
 		                         </div>
 		                     </ul>
 		                </blc:product_option_display> 

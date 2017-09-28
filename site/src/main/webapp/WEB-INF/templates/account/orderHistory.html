@@ -14,7 +14,7 @@
 		                <blc:product_option_display orderItem="${order.discreteOrderItems[0]}" th:remove="tag">
 		                     <ul th:unless="${#lists.isEmpty(productOptionDisplayValues)}" class="productOptions" th:remove="tag">
 		                         <div>
-		                           <span  th:utext="'1st: ' + ${productOptionDisplayValues['1st Preferred Date']}"></span>
+		                           <span th:utext="'1st: ' + ${productOptionDisplayValues['1st Preferred Date']}"></span>
 		                         </div>
 		                     </ul>
 		                </blc:product_option_display> 
@@ -54,7 +54,7 @@
 		                <blc:product_option_display orderItem="${order.discreteOrderItems[0]}" th:remove="tag">
 		                     <ul th:unless="${#lists.isEmpty(productOptionDisplayValues)}" class="productOptions" th:remove="tag">
 		                         <div>
-		                           <span  th:utext="'1st: ' + ${productOptionDisplayValues['1st Preferred Date']}"></span>
+		                           <span th:utext="'1st: ' + ${productOptionDisplayValues['1st Preferred Date']}"></span>
 		                         </div>
 		                     </ul>
 		                </blc:product_option_display> 

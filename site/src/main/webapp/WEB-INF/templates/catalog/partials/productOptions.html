@@ -15,7 +15,7 @@
                     </select> 
                 </li>                             
                 <li th:case="'TEXTAREA'">
-                    <textarea th:name="${'itemAttributes[' + productOption.attributeName + ']'}" value="" th:type="*{type}" th:required="*{required}" />
+                    <textarea rows="5" th:name="${'itemAttributes[' + productOption.attributeName + ']'}" value="" th:type="*{type}" th:required="*{required}" />
                 </li>
                 <li th:case="'DECIMAL'">
                     <input th:name="${'itemAttributes[' + productOption.attributeName + ']'}" value="" th:type="*{type}" th:required="*{required}" maxlength="10" />

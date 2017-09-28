@@ -38,7 +38,7 @@
                 <blc:product_option_display orderItem="${item}" >
                     <ul th:unless="${#lists.isEmpty(productOptionDisplayValues)}" class="productOptions">
                         <li th:each="entry: ${productOptionDisplayValues}">
-                            <span  th:utext="${entry.key} + ': ' + ${entry.value}"></span>
+                            <span style="display:block;word-break:break-all;" th:utext="${entry.key} + ': ' + ${entry.value}"></span>
                         </li>
                     </ul>
                 </blc:product_option_display>
