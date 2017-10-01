@@ -41,7 +41,7 @@
                     <div th:replace="checkout/partials/billingInfoForm :: billing-info-form"
                             th:with="${sectionDTO}"></div>
                 </div>
-                <div th:if="${'SHIPPING_INFO' == sectionDTO.view.type and !cart.orderItems[0].product.isService}" th:remove="tag">
+                <div th:if="${'SHIPPING_INFO' == sectionDTO.view.type and cart.orderItems[0].product.proSerSeg != 1}" th:remove="tag">
                     <div th:replace="checkout/partials/shippingInfoForm :: shipping-info-form"
                             th:with="${sectionDTO}"></div>
                 </div>

@@ -33,6 +33,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -118,6 +119,22 @@ public class CartController extends BroadleafCartController {
             @ModelAttribute("addToCartItem") AddToCartItem addToCartItem) throws IOException, PricingException, AddToCartException {
         try {
             return super.add(request, response, model, addToCartItem);
+        } catch (AddToCartException e) {
+            Product product = catalogService.findProductById(addToCartItem.getProductId());
+            return "redirect:" + product.getUrl();
+        }
+    }
+    
+    /*
+     * The Heat Clinic does not support adding products with required product options from a category browse page
+     * when JavaScript is disabled. When this occurs, we will redirect the user to the full product details page 
+     * for the given product so that the required options may be chosen.
+     */
+    @RequestMapping(value = "/addService", method=RequestMethod.POST)
+    public String addService(HttpServletRequest request, HttpServletResponse response, Model model, RedirectAttributes redirectAttributes,
+            @ModelAttribute("addToCartItem") AddToCartItem addToCartItem) throws IOException, PricingException, AddToCartException {
+        try {
+        		return super.add(request, response, model, addToCartItem);
         } catch (AddToCartException e) {
             Product product = catalogService.findProductById(addToCartItem.getProductId());
             return "redirect:" + product.getUrl();

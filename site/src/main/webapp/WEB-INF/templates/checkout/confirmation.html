@@ -51,10 +51,10 @@
                      </ul>
                 </blc:product_option_display>
                 </td>
-	            <div th:if="${item.product.isService}" th:remove="tag">
+	            <div th:if="${item.product.proSerSeg == 1}" th:remove="tag">
 	            <td align="center"></td>
 	            </div>
-	            <div th:unless="${item.product.isService}" th:remove="tag">
+	            <div th:unless="${item.product.proSerSeg == 1}" th:remove="tag">
 	            <td align="center" th:utext="*{quantity}"></td>
 	            </div>
                 <td align="center" blc:price="*{price}"></td>
@@ -81,7 +81,7 @@
                     <td class="discount" th:if="${order.orderAdjustmentsValue.zero}">---</td>
                     <td class="discount" th:unless="*{order.orderAdjustmentsValue.zero}" blc:price="${order.orderAdjustmentsValue}"></td>
                 </tr>
-                <div th:if="${!order.orderItems[0].product.isService}" th:remove="tag">
+                <div th:if="${order.orderItems[0].product.proSerSeg != 1}" th:remove="tag">
                 <tr>
                     <td><span th:utext="#{confirmation.taxes}">Taxes</span></td>
                     <td blc:price="${order.totalTax}"></td>
@@ -93,7 +93,7 @@
                 </div>
             </table>
         </div>
-		<div th:if="${!order.orderItems[0].product.isService}" th:remove="tag">
+		<div th:if="${order.orderItems[0].product.proSerSeg != 1}" th:remove="tag">
         <div class="cart_title"><span th:utext="#{confirmation.shipping.info}">Shipping Information</span></div>
 
         <div class="clearfix"></div>

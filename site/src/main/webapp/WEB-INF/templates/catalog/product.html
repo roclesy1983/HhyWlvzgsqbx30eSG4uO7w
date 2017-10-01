@@ -26,7 +26,7 @@
                 <th:block th:with="checkInventory=*{defaultSku.inventoryType?.type == 'CHECK_QUANTITY'},
                                    availableInventory=${checkInventory ? #object.defaultSku.quantityAvailable != null and #object.defaultSku.quantityAvailable != 0 : true},
                                    inCart=${cart.containsSku(#object.defaultSku) and #lists.isEmpty(product.productOptions)}">
-                    <blc:form method="POST" th:action="@{/cart/add}">
+                    <blc:form method="POST" th:action="${product.proSerSeg == 1} ? @{/cart/addService} : @{/cart/add}">
                         <div class="product-option-nonjs" th:each="productOption : *{productOptions}" th:object="${productOption}">
                             <div class="form50">
                                 <label th:utext="*{label}"></label>
@@ -55,14 +55,16 @@
                             <div class="add_to_cart" th:classappend="${inCart or !availableInventory}? ' hidden'">
                                 <input type="hidden" name="productId" th:value="*{id}" />
                                 <input type="hidden" name="quantity" value="1" />
-                                <input type="submit" class="addToCart big red" th:value="#{product.buyNow}" th:if="${product.isService}"/>
-                                <p th:unless="${!product.isService}">&nbsp;</p>
+                                <input type="submit" class="addToCartAddService big red" th:value="#{product.buyNow}" th:if="${product.proSerSeg == 1}"/>
+                                <input type="submit" class="addToCart big red" th:value="#{product.buyNow}" th:if="${product.proSerSeg == 2}"/>
+                                <p th:if="${product.proSerSeg != 1 or product.proSerSeg != 2}">&nbsp;</p>
                             </div>
                             <p class="error" th:if="${param.errorMessage}" th:utext="${param.errorMessage[0]}"></p>
                         </div>
+                        <div th:if="${product.proSerSeg == 1}" th:remove="tag"><div class="product-options" th:substituteby="catalog/partials/productOptions"/></div>
                     </blc:form>
                 </th:block>
-				<div th:if="${product.isService}" th:remove="tag"><div class="product-options" th:substituteby="catalog/partials/productOptions"/></div>
+				<div th:unless="${product.proSerSeg == 1}" th:remove="tag"><div class="product-options" th:substituteby="catalog/partials/productOptions"/></div>
                 <div th:if="${customer.loggedIn}" th:remove="tag">
 
                     <blc:form method="POST" th:action="@{/account/wishlist/add}">

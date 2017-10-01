@@ -57,7 +57,7 @@ public class ManageWishlistController extends BroadleafManageWishlistController 
 			Product product = catalogService.findProductById(addToCartItem.getProductId());
 			responseMap.put("productName", product.getName());
 			responseMap.put("quantityAdded", addToCartItem.getQuantity());
-			if (addToCartItem.getItemAttributes() == null || addToCartItem.getItemAttributes().size() == 0 || product.getIsService()) {
+			if (addToCartItem.getItemAttributes() == null || addToCartItem.getItemAttributes().size() == 0 || product.getProSerSeg() == 1) {
                 // We don't want to return a productId to hide actions for when it is a product that has multiple
                 // product options. The user may want the product in another version of the options as well.
                 responseMap.put("productId", addToCartItem.getProductId());

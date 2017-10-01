@@ -34,7 +34,7 @@
     <div class="payment_info"
             th:if="${showAllPaymentMethods}">
         <h3><span th:utext="#{cart.paymentMethod}">Payment Method</span></h3>
-		<div th:if="${!cart.orderItems[0].product.isService}" th:remove="tag">
+		<div th:if="${cart.orderItems[0].product.proSerSeg != 1}" th:remove="tag">
 	        <ul class="payment_methods">
 	            <li><img blc:src="@{/img/payment/american-express-curved-32px.png}"/></li>
 	            <li><img blc:src="@{/img/payment/mastercard-curved-32px.png}"/></li>
@@ -44,7 +44,7 @@
 	        </ul>
 		</div>
         <dl id="paymentOptions">
-            <div th:if="${!cart.orderItems[0].product.isService}" th:remove="tag">
+            <div th:if="${cart.orderItems[0].product.proSerSeg != 1}" th:remove="tag">
 	            <dt>
 	                <input type="radio" name="paymentMethod" value="credit_card" id="paymentMethod_cc" />
 	                <label for="paymentMethod_cc"><span th:utext="#{cart.creditCard}">Credit Card</span></label>

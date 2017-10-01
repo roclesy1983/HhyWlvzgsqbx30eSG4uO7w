@@ -43,7 +43,7 @@
                     <input type="hidden" name="productId" th:value="*{product.id}" />
                     <input type="hidden" name="skuId" th:value="*{sku.id}" />
                     <input type="hidden" name="orderItemId" th:value="*{id}" />
-                    <div th:if="${!item.product.isService}" th:remove="tag">
+                    <div th:if="${item.product.proSerSeg != 1}" th:remove="tag">
                     <input type="number" name="quantity" class="quantityInput" style="width:30px" th:value="*{quantity}" maxlength="3" autocomplete="off"/><br />
                     <input type="submit" class="updateQuantity" style="margin-top:5px" th:value="#{cart.update}"/>
                     </div>

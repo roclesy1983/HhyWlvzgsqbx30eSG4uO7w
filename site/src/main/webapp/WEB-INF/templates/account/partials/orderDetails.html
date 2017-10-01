@@ -59,7 +59,7 @@
         </li>
     
         <li th:each="fulfillmentGroup, iterStat : *{fulfillmentGroups}" th:object="${fulfillmentGroup}">
-            <div th:unless="*{type?.type == 'GIFT_CARD' or type?.type == 'DIGITAL' or type?.type == 'PHYSICAL_PICKUP' or order.orderItems[0].product.isService}">
+            <div th:unless="*{type?.type == 'GIFT_CARD' or type?.type == 'DIGITAL' or type?.type == 'PHYSICAL_PICKUP' or order.orderItems[0].product.proSerSeg == 1}">
                 <h3>Shipment<span th:if="*{status}" th:utext="' : ' + *{status}"></span></h3>
                 <div class="details">
                     <div class="shipping-information">

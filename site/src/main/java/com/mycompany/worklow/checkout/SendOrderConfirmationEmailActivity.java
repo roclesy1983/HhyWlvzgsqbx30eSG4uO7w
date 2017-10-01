@@ -56,7 +56,7 @@ public class SendOrderConfirmationEmailActivity extends BaseActivity<ProcessCont
 	public ProcessContext<CheckoutSeed> execute(ProcessContext<CheckoutSeed> context) throws Exception {
 		Order order = context.getSeedData().getOrder();
 
-		if (order.getDiscreteOrderItems().get(0).getProduct().getIsService()) {
+		if (order.getDiscreteOrderItems().get(0).getProduct().getProSerSeg() == 1) {
 			sendServiceEmail(order);
 		} else {
 			sendGoodsEmail(order);
