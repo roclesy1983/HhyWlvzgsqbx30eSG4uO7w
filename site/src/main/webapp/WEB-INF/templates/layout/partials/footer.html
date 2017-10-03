@@ -34,6 +34,11 @@
     <script th:inline="text">
         //<![CDATA[
         window.jQuery || document.write('<script src="[[@{/js/lib/jquery-1.9.1.js}]]"><\/script>');
+		$(function () {
+			$('#jstree').jstree().on("click", ".jstree-anchor", function() {
+				document.location.href = this.href;
+				});
+			});
         //]]>
     </script>
     
@@ -43,6 +48,7 @@
                        libs/jquery.MetaData.js,
                        libs/jquery.mask.min.js,
                        libs/jquery.rating.pack.js,
+                       libs/jstree.min.js,
                        libs/jquery.dotdotdot-1.5.1.js" />
     
     <blc:bundle name="heatclinic.js" 

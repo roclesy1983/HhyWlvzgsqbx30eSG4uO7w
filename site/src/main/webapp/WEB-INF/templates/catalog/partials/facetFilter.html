@@ -27,23 +27,34 @@
     <!-- Inactive facets -->
     <div th:each="facetDto : ${facets}" th:unless="${facetDto.active}" class="section">
         <h3 th:utext="${facetDto.facet.label}"></h3>
-        <ul>
-            <li th:each="facetValue : ${facetDto.facetValues}" th:class="${facetValue.active}? 'active'" th:if="${!facetDto.showQuantity or facetValue.quantity > 0}">
-                <a blc:togglefacetlink="${facetValue}" class="maker">
-                    
-                    <span th:substituteby="catalog/partials/facetFilter :: facet-value-display" />
-                
-                    <span class="facetCount" th:if="${facetDto.showQuantity and !facetDto.active}" th:utext="${facetValue.quantity}"></span>
-                    <i th:if="${facetValue.active}" class="icon-remove"></i>
-                </a>
-            </li>
-            <li>
-                <a th:if="${facetDto.facet.canMultiselect}" 
-                    th:attr="onclick=${'HC.showFacetMultiselect(''__${facetDto.facet.field.abbreviation}__'')'}"
-                    href="javascript:;" 
-                    class="maker multiple"><span th:utext="#{facet.chooseMultiple}">Choose Multiple...</span></a>
-            </li>
-        </ul>
+	    <ul>
+			<blc:search_facet_tree_display searchFacetDto="${facetDto}" >
+			<div id="jstree">
+				<ul>
+		            <li th:each="facetValue : ${facetTreeDisplayValues}" th:class="${facetValue.facetResultDTO.active}? 'active'" th:if="${!facetDto.showQuantity or facetValue.quantity > 0}">
+							<span th:if="${facetValue.displayValue != null}" th:remove="tag" th:utext="${facetValue.displayValue}"></span>
+							<span class="facetCount" th:if="${facetDto.showQuantity and !facetDto.active}" th:utext="${facetValue.quantity}"></span>
+							<i th:if="${facetValue.facetResultDTO.active}" class="icon-remove"></i>
+							<ul>
+								<li th:each="facetValueChild : ${facetValue.children}" th:class="${facetValueChild.facetResultDTO.active}? 'active'" th:if="${!facetDto.showQuantity or facetValueChild.facetResultDTO.quantity > 0}">
+									<a blc:togglefacetlink="${facetValueChild.facetResultDTO}" class="maker">
+										<span th:if="${facetValueChild.displayValue != null}" th:remove="tag" th:utext="${facetValueChild.displayValue}"></span>
+										<span class="facetCount" th:if="${facetDto.showQuantity and !facetDto.active}" th:utext="${facetValueChild.facetResultDTO.quantity}"></span>
+										<i th:if="${facetValueChild.facetResultDTO.active}" class="icon-remove"></i>
+									</a>
+								</li>
+		                    </ul>
+					</li>
+				</ul>
+	        </div>
+			</blc:search_facet_tree_display>
+			<li>
+			    <a th:if="${facetDto.facet.canMultiselect}" 
+			        th:attr="onclick=${'HC.showFacetMultiselect(''__${facetDto.facet.field.abbreviation}__'')'}"
+			        href="javascript:;" 
+			        class="maker multiple"><span th:utext="#{facet.chooseMultiple}">Choose Multiple...</span></a>
+			</li>
+		</ul>
     </div>
     
     <!-- Multiselect facets -->
