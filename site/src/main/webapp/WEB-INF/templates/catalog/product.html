@@ -64,7 +64,7 @@
                         <div th:if="${product.proSerSeg == 1}" th:remove="tag"><div class="product-options" th:substituteby="catalog/partials/productOptions"/></div>
                     </blc:form>
                 </th:block>
-				<div th:unless="${product.proSerSeg == 1}" th:remove="tag"><div class="product-options" th:substituteby="catalog/partials/productOptions"/></div>
+				<div th:if="${product.proSerSeg == 2}" th:remove="tag"><div class="product-options" th:substituteby="catalog/partials/productOptions"/></div>
                 <div th:if="${customer.loggedIn}" th:remove="tag">
 
                     <blc:form method="POST" th:action="@{/account/wishlist/add}">
