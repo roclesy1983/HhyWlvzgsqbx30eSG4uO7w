@@ -35,9 +35,30 @@
         //<![CDATA[
         window.jQuery || document.write('<script src="[[@{/js/lib/jquery-1.9.1.js}]]"><\/script>');
 		$(function () {
-			$('#jstree').jstree().on("click", ".jstree-anchor", function() {
+			$('.jstree').jstree().on("click", ".jstree-anchor", function() {
 				document.location.href = this.href;
 				});
+			$(".jstreechk").jstree({
+				"checkbox" : {
+					"keep_selected_style" : false
+					},
+					"plugins" : [ "checkbox" ]
+					}).on('changed.jstree', function(node, action, selected, event) {
+						if (action.node) {
+							// Set the state of the belonging checkbox and children checkboxes recursively
+							childrenNodes = action.instance.get_json(action.node.id, { flat: true });
+							childrenNodes.forEach(function(childNode) {
+								$('#'+childNode.a_attr.id).find('input:checkbox:first').prop('checked', action.node.state.selected);
+								});
+							
+							// Set the state of the parent checkboxes recursively
+							parentNode = action.instance.get_node(action.node.parent);
+							while (parentNode.hasOwnProperty('a_attr')) {
+								$('#'+parentNode.a_attr.id).find('input:checkbox:first').prop('checked', parentNode.state.selected);
+								parentNode = action.instance.get_node(parentNode.parent);
+								}
+							}
+						});
 			});
         //]]>
     </script>
