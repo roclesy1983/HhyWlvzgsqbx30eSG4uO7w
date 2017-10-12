@@ -32,22 +32,22 @@
     <jee:jndi-lookup id="webStorageDS" jndi-name="jdbc/storage"/>-->
 	<bean id="webDS" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 	    <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-	    <property name="url" value="jdbc:mysql://expsrcmysql.cvqjltbcrg60.us-west-2.rds.amazonaws.com:3306/broadleaf" />
+	    <property name="url" value="jdbc:mysql://expsrcmysql.czvu96mchq9p.us-west-2.rds.amazonaws.com:3306/broadleaf" />
 		<property name="username" value="expsrc" />
-		<property name="password" value="medidoc2016" />
+		<property name="password" value="medidoc2017" />
 	</bean>
 	
 	<bean id="webSecureDS" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 	    <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-	    <property name="url" value="jdbc:mysql://expsrcmysql.cvqjltbcrg60.us-west-2.rds.amazonaws.com:3306/broadleaf" />
+	    <property name="url" value="jdbc:mysql://expsrcmysql.czvu96mchq9p.us-west-2.rds.amazonaws.com:3306/broadleaf" />
 		<property name="username" value="expsrc" />
-		<property name="password" value="medidoc2016" />
+		<property name="password" value="medidoc2017" />
 	</bean>
 	
 	<bean id="webStorageDS" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 	    <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-	    <property name="url" value="jdbc:mysql://expsrcmysql.cvqjltbcrg60.us-west-2.rds.amazonaws.com:3306/broadleaf" />
+	    <property name="url" value="jdbc:mysql://expsrcmysql.czvu96mchq9p.us-west-2.rds.amazonaws.com:3306/broadleaf" />
 		<property name="username" value="expsrc" />
-		<property name="password" value="medidoc2016" />
+		<property name="password" value="medidoc2017" />
 	</bean>
 </beans>
