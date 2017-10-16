@@ -90,11 +90,11 @@ public class TransferApptEmail {
 
 		String translateMsg = mimeMessage.getContent().toString().split("[-]{15,}")[0].replaceAll("(\r\n|\n)", "<br />");
 		if (mimeMessage.getFrom()[0].toString().contains(patientEmailAddress)) {
-			translateMsg = "-------------------------<br />[---患者様と連絡がある場合、このメールに返信してください。分かりやすい日本語を書いてください。---]<br />" + translate(translateMsg, "en") + "<br />-------------------------";
+			translateMsg = "-------------------------<br />[---患者様と連絡がある場合、このメールに返信してください。分かりやすい日本語を書いてください。登録メールで返信してください。---]<br />" + translate(translateMsg, "en") + "<br />-------------------------";
 			emailInfo.setMessageBody(translateMsg);
 			emailTarget.setEmailAddress(clinicEmailAddress);
 		} else if (mimeMessage.getFrom()[0].toString().contains(clinicEmailAddress)) {
-			translateMsg = "-------------------------<br />[---When contacting the doctor, please reply this email. Easy understanding English please.---]<br />" + translate(translateMsg, "ja")
+			translateMsg = "-------------------------<br />[---When contacting the doctor, please reply this email. Easy understanding English please. Reply by your registered email.---]<br />" + translate(translateMsg, "ja")
 					+ "<br />-------------------------";
 			emailInfo.setMessageBody(translateMsg);
 			emailTarget.setEmailAddress(patientEmailAddress);

@@ -96,7 +96,7 @@ public class SendOrderConfirmationEmailActivity extends BaseActivity<ProcessCont
 		emailInfo.setMessageBody("-------------------------<br />The appointment is sent to the clinic.<br />The clinic: " + order.getDiscreteOrderItems().get(0).getProduct().getName() + 
 				"<br />The appointed date(Month/Day Hour:Minute): <br />" + getDateFromOptions(order.getOrderItems().get(0).getOrderItemAttributes()) + 
 				"<br />The symptom description: " + order.getOrderItems().get(0).getOrderItemAttributes().get("Symptom Description").getValue() + 
-				"<br />The clinic will send you an email to confirm this appoinment.<br />Thank you.<br />-------------------------");
+				"<br />The clinic will send you an email to confirm this appoinment. Reply by your registered email.<br />Thank you.<br />-------------------------");
 		EmailTargetImpl emailTarget = new EmailTargetImpl();
 		emailTarget.setEmailAddress(order.getEmailAddress());
 
