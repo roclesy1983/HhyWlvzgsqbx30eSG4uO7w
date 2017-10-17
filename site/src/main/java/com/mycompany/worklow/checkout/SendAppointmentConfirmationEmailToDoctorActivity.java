@@ -76,7 +76,7 @@ public class SendAppointmentConfirmationEmailToDoctorActivity extends BaseActivi
 		emailInfo.setMessageBody("-------------------------<br />新しい予約はきました。<br />患者様：" + order.getCustomer().getLastName() + " " + order.getCustomer().getFirstName() + 
 				"<br />予約希望日（月/日 時:分）：<br />" + getDateFromOptions(order.getOrderItems().get(0).getOrderItemAttributes()) + 
 				"<br />症状説明：" + order.getOrderItems().get(0).getOrderItemAttributes().get("Symptom Description").getValue() +
-				"<br />患者様と連絡がある場合、このメールに返信してください。分かりやすい日本語を書いてください。登録メールで返信してください。<br />よろしくお願いします。<br />-------------------------");
+				"<br />患者様に分かりやすい日本語で返信してください。登録メールのままをお願いします。<br />よろしくお願いします。<br />-------------------------");
 		EmailTargetImpl emailTarget = new EmailTargetImpl();
 		emailTarget.setEmailAddress(clinicEmailAddressTo);
 
