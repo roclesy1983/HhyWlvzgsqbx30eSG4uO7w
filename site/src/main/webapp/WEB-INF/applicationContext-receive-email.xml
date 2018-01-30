@@ -43,5 +43,5 @@
 	<int:service-activator input-channel="recieveEmailChannel" ref="emailReceiverService" method="translateAndSendEmail" />
 
 	<bean id="emailReceiverService" class="com.mycompany.web.email.TransferApptEmail" />
-	<task:executor id="pool" pool-size="10" keep-alive="50"/>
+	<task:executor id="pool" pool-size="2-5" queue-capacity="10" keep-alive="50" rejection-policy="CALLER_RUNS"/>
 </beans>
