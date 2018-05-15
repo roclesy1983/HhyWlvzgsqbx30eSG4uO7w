@@ -10,7 +10,7 @@
     <name>ecommerce</name>
     <url>http://www.blc-archetype.com</url>
     <properties>
-        <blc.version>4.0.22-GA</blc.version>
+        <blc.version>4.0.25-GA</blc.version>
         <blc.menu.version>1.0.3-GA</blc.menu.version>
         <tomcat.conf.dir.name>tomcat-server-conf</tomcat.conf.dir.name>
         
@@ -146,8 +146,8 @@
                     <artifactId>maven-war-plugin</artifactId>
                     <version>2.6</version>
 					<configuration>
-                		<outputDirectory>/Users/shuchengli/Documents/apache-tomcat-8.0.38/webapps</outputDirectory>
-            		</configuration>
+                			<outputDirectory>/Users/shuchengli/Documents/apache-tomcat-8.0.38/webapps</outputDirectory>
+            			</configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
